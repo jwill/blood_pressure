@@ -27,3 +27,4 @@ doc/api/
 .flutter-plugins-dependencies
 local.properties
 .DS_Store
+/android/.gradle

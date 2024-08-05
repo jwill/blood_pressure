@@ -1,4 +1,4 @@
-package com.example.flutter_application_1
+package dev.jwill.blood_pressure
 
 import io.flutter.embedding.android.FlutterActivity
 

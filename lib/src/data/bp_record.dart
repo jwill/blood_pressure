@@ -1,11 +1,18 @@
 import 'dart:math';
 
+import 'package:objectbox/objectbox.dart';
+
+@Entity()
 class BPRecord {
-  const BPRecord({required this.date, required this.systolic, required this.diastolic});
+  BPRecord({required this.date, required this.systolic, required this.diastolic});
 
-  factory BPRecord.fromJson(Map<String, dynamic> json) => BPRecord(
-    date: json['date'], systolic: json['systolic'], diastolic: json['diastolic']);
+  //factory BPRecord.fromJson(Map<String, dynamic> json) => BPRecord(
+  //  date: json['date'], systolic: json['systolic'], diastolic: json['diastolic']);
 
+  @Id()
+  int id = 0;
+
+  @Property(type: PropertyType.date)
   final DateTime date;
   final int systolic;
   final int diastolic;

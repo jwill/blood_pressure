@@ -1,9 +1,11 @@
+import 'package:blood_pressure_app/main.dart';
+import 'package:blood_pressure_app/object_box.dart';
 import 'package:blood_pressure_app/src/feature/app_tab_view.dart';
+import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'feature/sample_item_details_view.dart';
 import 'feature/blood_pressure_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
@@ -12,7 +14,7 @@ import 'settings/settings_view.dart';
 class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
-    required this.settingsController,
+    required this.settingsController
   });
 
   final SettingsController settingsController;
@@ -73,8 +75,8 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
+                  case BloodPressureItemDetailsView.routeName:
+                    return BloodPressureItemDetailsView();
                   case BloodPressureTabView.routeName:
                     return const BloodPressureTabView();
                   default:

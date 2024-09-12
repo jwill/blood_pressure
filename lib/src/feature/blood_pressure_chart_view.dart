@@ -1,3 +1,4 @@
+import 'package:blood_pressure_app/main.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:flutter/material.dart';
 
@@ -12,16 +13,23 @@ class BloodPressureChartView extends StatelessWidget {
 
   static const routeName = '/b';
 
-  List<BPRecord> items = BPRecord.generateSampleData(45);
+ // Box<BPRecord> bpBox = objectBox.store.box<BPRecord>();
+ // List<BPRecord> items = bpBox.getAll(); //BPRecord.generateSampleData(45);
 
   @override
   Widget build(BuildContext context) {
+    final box = objectBox.box<BPRecord>();
+    List<BPRecord> items = box.getAll();
+    print(items);
+
     return _buildChart(context, items);
   }
 
 Color pickColorForBP(BPRecord record) {
   if (record.systolic <= 120 && record.diastolic <= 80) {
     return Colors.green;
+  } else if (record.systolic <= 130 && record.diastolic <= 85) {
+    return Colors.yellow;
   } else if (record.systolic >= 140 || record.diastolic >= 90) {
     return Colors.red;
   } else return Colors.orange;

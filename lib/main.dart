@@ -1,19 +1,22 @@
-import 'dart:io';
 
+import 'package:blood_pressure_app/object_box.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:path/path.dart' as p;
+import 'package:objectbox/objectbox.dart';
+
+late Store objectBox;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
-  Hive.init(appDocumentsDir.path);
+  objectBox = await ObjectBox.create();
 
-  //Hive.registerAdapter(BPRecord.fromJson);
+  print(objectBox);
 
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.

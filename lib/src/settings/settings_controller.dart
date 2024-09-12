@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 
+import 'package:blood_pressure_app/main.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cross_file/cross_file.dart';
 import 'settings_service.dart';
 import 'package:excel/excel.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 import 'package:intl/intl.dart';
+import 'package:csv/csv.dart';
 
 /// A class that many Widgets can interact with to read user settings, update
 /// user settings, or listen to user settings changes.
@@ -61,23 +61,53 @@ class SettingsController with ChangeNotifier {
 
     if (result != null) {
       XFile file = result.xFiles.first;
+      final csvString = await file.readAsString();
+
+      List<List<dynamic>> rowsAsListOfValues = const CsvToListConverter().convert(csvString, eol: '\n');
+
+      print(rowsAsListOfValues.length);
+
+List<BPRecord> records = [];
+
+      for (var i = 1; i < rowsAsListOfValues.length; i++) {
+          var row = rowsAsListOfValues[i];
+          print(row);
+          DateTime fullDate = DateFormat.yMd().parse(row[0]);
+          // Fix for wacky parser
+          fullDate = DateTime(fullDate.year + 2000, fullDate.month, fullDate.day);
+          final t = DateFormat.Hm().parse(row[1]);
+          fullDate = fullDate.add(Duration( hours: t.hour, minutes: t.minute));
+
+          records.add(BPRecord(date:fullDate, systolic: row[2], diastolic: row[3]));
+      }
 
       print(file.name);
-      final bytes = await file.readAsBytes();
-      var excel = Excel.decodeBytes(bytes);
+      //final bytes = await file.readAsBytes();
+      /*var excel = Excel.decodeBytes(bytes);
       Sheet sheet = excel[excel.getDefaultSheet()!];
-      var records = [];
+      List<BPRecord> records = [];
 
       for (var i = 0; i < sheet.rows.length; i++) {
         if (i != 0) {
           var row = sheet.rows[i];
+          print(row);
           TextCellValue date = row[0]!.value as TextCellValue;
-          IntCellValue sys = row[1]!.value as IntCellValue;
-          IntCellValue dia = row[2]!.value as IntCellValue;
-          records.add(BPRecord(date:DateTime.parse(date.value), systolic: sys.value, diastolic: dia.value));
+          TextCellValue time = row[1]!.value as TextCellValue;
+          TextCellValue sys = row[2]!.value as TextCellValue;
+          TextCellValue dia = row[3]!.value as TextCellValue;
+
+
+        DateTime fullDate = DateFormat.yMd().parse(date.value);
+        final t = DateFormat.Hm().parse(time.value);
+        fullDate = fullDate.add(Duration(hours: t.hour, minutes: t.minute));
+
+          records.add(BPRecord(date:fullDate, systolic: sys.value, diastolic: dia.value));
         }
-      }
+      }*/
       print(records);
+      objectBox.box<BPRecord>().removeAll();
+      print(objectBox.box<BPRecord>().putMany(records));
+      notifyListeners();
     } else {
       // User canceled the picker
     }
@@ -89,13 +119,13 @@ class SettingsController with ChangeNotifier {
     var list = BPRecord.generateSampleData(25);
 
     var headerRow = [
-      TextCellValue("Date"),
-      TextCellValue("Time"),
-      TextCellValue("Systolic"),
-      TextCellValue("Diastolic")
+      const TextCellValue("Date"),
+      const TextCellValue("Time"),
+      const TextCellValue("Systolic"),
+      const TextCellValue("Diastolic")
     ];
     excel.appendRow("Sheet1", headerRow);
-    list.forEach((element) {
+    for (var element in list) {
       var row = [
         TextCellValue(DateFormat.yMd().format(element.date)),
         TextCellValue(DateFormat.Hm().format(element.date)),
@@ -111,7 +141,7 @@ class SettingsController with ChangeNotifier {
             hour: element.date.hour,
             minute: element.date.minute));
       excel.appendRow("Sheet1", row);
-    });
+    }
 
     print(excel.sheets);
 

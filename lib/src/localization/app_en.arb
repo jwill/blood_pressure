@@ -1,6 +1,6 @@
 {
-  "appTitle": "flutter_application_1",
+  "appTitle": "blood_pressure",
   "@appTitle": {
-    "description": "The title of the application"
+    "description": "Blood Pressure app"
   }
 }

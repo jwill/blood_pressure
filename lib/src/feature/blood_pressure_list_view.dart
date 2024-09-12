@@ -1,7 +1,8 @@
+import 'package:blood_pressure_app/main.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
 
-import 'sample_item_details_view.dart';
 import 'package:intl/intl.dart';
 
 
@@ -13,18 +14,13 @@ class BloodPressureListView extends StatelessWidget {
 
   static const routeName = '/b';
 
-  List<BPRecord> items = BPRecord.generateSampleData(30);
+  late List<BPRecord> items;
 
   @override
   Widget build(BuildContext context) {
+    final box = objectBox.box<BPRecord>();
+    items = box.getAll().reversed.toList();
     return Scaffold(
-
-      // To work with lists that may contain a large number of items, it’s best
-      // to use the ListView.builder constructor.
-      //
-      // In contrast to the default ListView constructor, which requires
-      // building all Widgets up front, the ListView.builder constructor lazily
-      // builds Widgets as they’re scrolled into view.
       body: _buildList(context),
       floatingActionButton: FloatingActionButton(onPressed: () => {}, 
       child: const Icon(Icons.add)
@@ -35,6 +31,8 @@ class BloodPressureListView extends StatelessWidget {
 Color pickColorForBP(BPRecord record) {
   if (record.systolic <= 120 && record.diastolic <= 80) {
     return Colors.green;
+  } else if (record.systolic <=130 && record.diastolic <= 85) {
+    return Colors.yellow;
   } else if (record.systolic >= 140 || record.diastolic >= 90) {
     return Colors.red;
   } else return Colors.orange;
@@ -46,7 +44,7 @@ Widget _buildList(BuildContext context) {
         // Providing a restorationId allows the ListView to restore the
         // scroll position when a user leaves and returns to the app after it
         // has been killed while running in the background.
-        restorationId: 'sampleItemListView',
+        restorationId: 'bloodPressureItemListView',
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           final item = items[index];
@@ -55,7 +53,13 @@ Widget _buildList(BuildContext context) {
             onTap: () {
               Navigator.restorablePushNamed(
                 context,
-                SampleItemDetailsView.routeName,
+                BloodPressureItemDetailsView.routeName,
+                arguments: <String, String>{
+                  'id': item.id.toString(),
+                  'date': item.date.toString(),
+                  'systolic': item.systolic.toString(),
+                  'diastolic': item.diastolic.toString()
+                }
               );
             },
             child: 
@@ -73,55 +77,7 @@ Widget _buildList(BuildContext context) {
             const SizedBox(width: 36,),
             Text("${item.systolic}/${item.diastolic}", style: textTheme.displaySmall)
           ],)));
-
-          /*return ListTile(
-            title: Text('SampleItem ${item.toJson()}'),
-            leading: Container(height: 24, width: 24,
-              decoration: BoxDecoration(
-                color: pickColorForBP(item),
-                borderRadius: BorderRadius.all(Radius.circular(24.0)),
-              ),
-            ),
-            onTap: () {
-              // Navigate to the details page. If the user leaves and returns to
-              // the app after it has been killed while running in the
-              // background, the navigation stack is restored.
-              Navigator.restorablePushNamed(
-                context,
-                SampleItemDetailsView.routeName,
-              );
-            }
-          );*/
         },
       );
 }
 }
-/* 
-ListView.builder(
-        // Providing a restorationId allows the ListView to restore the
-        // scroll position when a user leaves and returns to the app after it
-        // has been killed while running in the background.
-        restorationId: 'sampleItemListView',
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          final item = items[index];
-
-          return ListTile(
-            title: Text('SampleItem ${item.id}'),
-            leading: const CircleAvatar(
-              // Display the Flutter Logo image asset.
-              foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-            ),
-            onTap: () {
-              // Navigate to the details page. If the user leaves and returns to
-              // the app after it has been killed while running in the
-              // background, the navigation stack is restored.
-              Navigator.restorablePushNamed(
-                context,
-                SampleItemDetailsView.routeName,
-              );
-            }
-          );
-        },
-      ),
-      */

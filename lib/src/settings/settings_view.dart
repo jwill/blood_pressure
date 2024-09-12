@@ -65,7 +65,7 @@ class SettingsView extends StatelessWidget {
                 style: FilledButton.styleFrom(backgroundColor: colorScheme.secondary),
                   onPressed: controller.saveFile, child: const Text("Export Data")),
             ),
-            SizedBox(height: 64,),
+            const SizedBox(height: 64,),
             ConstrainedBox(
                 constraints: const BoxConstraints(minWidth: double.infinity),
                 child: FilledButton(

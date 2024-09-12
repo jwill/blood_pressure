@@ -1,3 +1,4 @@
+import 'package:blood_pressure_app/object_box.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_chart_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_list_view.dart';
 import 'package:blood_pressure_app/src/settings/settings_view.dart';
@@ -7,7 +8,6 @@ class BloodPressureTabView extends StatefulWidget {
   const BloodPressureTabView({super.key});
 
   static const routeName = '/';
-
   @override
   State<BloodPressureTabView> createState() => _BloodPressureTabViewState();
 }

@@ -1,5 +1,4 @@
 
-import 'package:blood_pressure_app/object_box.dart';
 import 'package:flutter/material.dart';
 
 import 'src/app.dart';
@@ -9,14 +8,13 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:path/path.dart' as p;
 import 'package:objectbox/objectbox.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-late Store objectBox;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  objectBox = await ObjectBox.create();
-
-  print(objectBox);
+  await GetStorage.init();
 
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.

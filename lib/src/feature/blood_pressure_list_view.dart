@@ -1,9 +1,9 @@
 import 'package:blood_pressure_app/main.dart';
-import 'package:blood_pressure_app/objectbox.g.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_input.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:intl/intl.dart';
 import 'package:signals/signals.dart';
@@ -18,13 +18,15 @@ class BloodPressureListView extends StatelessWidget {
 
   static const routeName = '/b';
 
-  final items = listSignal<BPRecord>([]);
-  final box = objectBox.box<BPRecord>();
+  final items = listSignal([]);
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
 
-    items.value = box.getAll().reversed.toList();
+    box.listen(() {
+      items.value = box.getValues().toList();
+    });
     return Scaffold(
       body: _buildList(context),
       floatingActionButton: FloatingActionButton(onPressed: () => {
@@ -52,7 +54,8 @@ class BloodPressureListView extends StatelessWidget {
           TextButton(
             onPressed: () {
               var record = BPRecord(date: input.date.value, systolic: int.parse(input.systolic.value), diastolic: int.parse(input.diastolic.value));
-              box.put(record);
+              items.add(record);
+              box.write(record.date.toString(), record); // put(record);
               Navigator.pop(context, 'OK');
             },
             child: const Text('OK'),
@@ -88,7 +91,6 @@ Widget _buildList(BuildContext context) {
                 context,
                 BloodPressureItemDetailsView.routeName,
                 arguments: <String, String>{
-                  'id': item.id.toString(),
                   'date': item.date.toString(),
                   'systolic': item.systolic.toString(),
                   'diastolic': item.diastolic.toString()

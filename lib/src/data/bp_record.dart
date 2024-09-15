@@ -1,27 +1,32 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:objectbox/objectbox.dart';
 
-@Entity()
 class BPRecord {
   BPRecord({required this.date, required this.systolic, required this.diastolic});
 
   //factory BPRecord.fromJson(Map<String, dynamic> json) => BPRecord(
   //  date: json['date'], systolic: json['systolic'], diastolic: json['diastolic']);
 
-  @Id()
-  int id = 0;
-
-  @Property(type: PropertyType.date)
   final DateTime date;
   final int systolic;
   final int diastolic;
 
+  List toList() => [
+    date, systolic, diastolic
+  ];
+
   Map<String, dynamic> toJson() => {
-    'date': date,
+    'date': date.toString(),
     'systolic': systolic,
     'diastolic': diastolic
   };
+
+  factory BPRecord.fromJson(String json) {
+    var record = jsonDecode(json);
+    return BPRecord(date: DateTime.parse(record['date']), systolic: int.parse(record['systolic']), diastolic: record['diastolic']);
+  }
 
   @override
   String toString() {

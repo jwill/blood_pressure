@@ -3,6 +3,7 @@ import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:flutter/material.dart';
 
 import 'package:d_chart/d_chart.dart';
+import 'package:get_storage/get_storage.dart';
 
 
 /// Displays a list of SampleItems.
@@ -18,11 +19,11 @@ class BloodPressureChartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final box = objectBox.box<BPRecord>();
-    List<BPRecord> items = box.getAll();
-    print(items);
+    final box = GetStorage();
+    var items = box.getValues();
+    print(items.toList());
 
-    return _buildChart(context, items);
+    return _buildChart(context, items.toList());
   }
 
 Color pickColorForBP(BPRecord record) {
@@ -35,7 +36,7 @@ Color pickColorForBP(BPRecord record) {
   } else return Colors.orange;
 }
 
-Widget _buildChart(BuildContext context, List<BPRecord> items) {
+Widget _buildChart(BuildContext context, List items) {
   final colorScheme = Theme.of(context).colorScheme;
   List<TimeData> systolic =
   items.map((e) => TimeData(domain: e.date, measure: e.systolic)).toList();

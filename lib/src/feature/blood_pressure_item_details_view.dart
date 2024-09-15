@@ -1,6 +1,7 @@
 import 'package:blood_pressure_app/main.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 /// Displays detailed information about a SampleItem.
 class BloodPressureItemDetailsView extends StatelessWidget {
@@ -11,7 +12,7 @@ class BloodPressureItemDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
         final colorScheme = Theme.of(context).colorScheme;
-
+        final box = GetStorage();
         final record = ModalRoute.of(context)?.settings.arguments as Map;
         print(record);
     return Scaffold(
@@ -47,7 +48,8 @@ class BloodPressureItemDetailsView extends StatelessWidget {
               child: FilledButton(
                 style: FilledButton.styleFrom(backgroundColor: colorScheme.error),
                   onPressed: (){
-                    objectBox.box<BPRecord>().remove(int.parse(record['id']));
+                  box.remove(record['id']);
+                  //.box<BPRecord>().remove(int.parse(record['id']));
             Navigator.pop(context);
                   }, child: const Text("Delete Item")),
             ),

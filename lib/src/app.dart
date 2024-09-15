@@ -1,5 +1,4 @@
 import 'package:blood_pressure_app/main.dart';
-import 'package:blood_pressure_app/object_box.dart';
 import 'package:blood_pressure_app/src/feature/app_tab_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';

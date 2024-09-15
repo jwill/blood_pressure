@@ -1,9 +1,13 @@
 import 'package:blood_pressure_app/main.dart';
+import 'package:blood_pressure_app/objectbox.g.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/feature/blood_pressure_input.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:signals/signals.dart';
+import 'package:signals/signals_flutter.dart';
 
 
 /// Displays a list of SampleItems.
@@ -14,18 +18,47 @@ class BloodPressureListView extends StatelessWidget {
 
   static const routeName = '/b';
 
-  late List<BPRecord> items;
+  final items = listSignal<BPRecord>([]);
+  final box = objectBox.box<BPRecord>();
 
   @override
   Widget build(BuildContext context) {
-    final box = objectBox.box<BPRecord>();
-    items = box.getAll().reversed.toList();
+
+    items.value = box.getAll().reversed.toList();
     return Scaffold(
       body: _buildList(context),
-      floatingActionButton: FloatingActionButton(onPressed: () => {}, 
+      floatingActionButton: FloatingActionButton(onPressed: () => {
+        _dialogBuilder(context)
+      },
       child: const Icon(Icons.add)
       ),
     );
+  }
+
+  Future<void> _dialogBuilder(BuildContext context) {
+    var input = BloodPressureInput();
+    return showDialog(context: context, builder: (BuildContext context){
+      return AlertDialog(title: const Text('Add New Reading'),
+      content: SingleChildScrollView(child: Column(children: [
+        input
+      ],),),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, 'Cancel');
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              var record = BPRecord(date: input.date.value, systolic: int.parse(input.systolic.value), diastolic: int.parse(input.diastolic.value));
+              box.put(record);
+              Navigator.pop(context, 'OK');
+            },
+            child: const Text('OK'),
+          ),
+        ],);
+    });
   }
 
 Color pickColorForBP(BPRecord record) {
@@ -40,7 +73,7 @@ Color pickColorForBP(BPRecord record) {
 
 Widget _buildList(BuildContext context) {
   final textTheme = Theme.of(context).textTheme;
-  return ListView.builder(
+  return Watch((context) => ListView.builder(
         // Providing a restorationId allows the ListView to restore the
         // scroll position when a user leaves and returns to the app after it
         // has been killed while running in the background.
@@ -78,6 +111,6 @@ Widget _buildList(BuildContext context) {
             Text("${item.systolic}/${item.diastolic}", style: textTheme.displaySmall)
           ],)));
         },
-      );
+      ));
 }
 }

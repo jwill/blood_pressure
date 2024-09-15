@@ -119,10 +119,10 @@ List<BPRecord> records = [];
     var list = BPRecord.generateSampleData(25);
 
     var headerRow = [
-      const TextCellValue("Date"),
-      const TextCellValue("Time"),
-      const TextCellValue("Systolic"),
-      const TextCellValue("Diastolic")
+      TextCellValue("Date"),
+      TextCellValue("Time"),
+      TextCellValue("Systolic"),
+      TextCellValue("Diastolic")
     ];
     excel.appendRow("Sheet1", headerRow);
     for (var element in list) {

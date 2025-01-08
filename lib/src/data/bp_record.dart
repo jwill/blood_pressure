@@ -1,57 +1,27 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:objectbox/objectbox.dart';
+import 'catalog.dart';
 
-class BPRecord {
-  BPRecord({required this.date, required this.systolic, required this.diastolic});
 
-  //factory BPRecord.fromJson(Map<String, dynamic> json) => BPRecord(
-  //  date: json['date'], systolic: json['systolic'], diastolic: json['diastolic']);
 
-  final DateTime date;
-  final int systolic;
-  final int diastolic;
-
-  List toList() => [
-    date, systolic, diastolic
-  ];
-
-  Map<String, dynamic> toJson() => {
-    'date': date.toString(),
-    'systolic': systolic,
-    'diastolic': diastolic
-  };
-
-  factory BPRecord.fromJson(String json) {
-    var record = jsonDecode(json);
-    return BPRecord(date: DateTime.parse(record['date']), systolic: int.parse(record['systolic']), diastolic: record['diastolic']);
-  }
-
-  @override
-  String toString() {
-    return '$date - $systolic / $diastolic';
-  }
-
-  static List<BPRecord> generateSampleData(int num) {
+   List<BPRecord> generateSampleData(int num) {
     List<BPRecord> list = [];
     final today = DateTime.now();
     var startDate = today.subtract(Duration(days: num));
     Random random = Random();
     for (int i = 0; i<num; i++) {
-      list.add(BPRecord(date: startDate.add(Duration(days: i)), systolic: 110+random.nextInt(40), diastolic: 60+random.nextInt(40)));
+      list.add(BPRecord(startDate.add(Duration(days: i)), 110+random.nextInt(40), 60+random.nextInt(40)));
     }
     return list;
   }
 
-  static List<BPRecord> generateBaseline(int num, BPRecord record) {
+  List<BPRecord> generateBaseline(int num, BPRecord record) {
     List<BPRecord> list = [];
     final today = DateTime.now();
     var startDate = today.subtract(Duration(days: num));
-    Random random = Random();
     for (int i = 0; i<num; i++) {
-      list.add(BPRecord(date: startDate.add(Duration(days: i)), systolic: record.systolic, diastolic: record.diastolic));
+      list.add(BPRecord(startDate.add(Duration(days: i)), record.systolic, record.diastolic));
     }
     return list;
   }
-}

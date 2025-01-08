@@ -7,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:get_storage/get_storage.dart';
 import 'settings_service.dart';
-import 'package:excel/excel.dart';
 import 'package:intl/intl.dart';
 import 'package:csv/csv.dart';
 import 'dart:io' show File, Platform;
@@ -59,39 +58,39 @@ class SettingsController with ChangeNotifier {
     await _settingsService.updateThemeMode(newThemeMode);
   }
 
-  Future<void> loadFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    if (result != null) {
-      XFile file = result.xFiles.first;
-      final csvString = await file.readAsString();
-
-      List<List<dynamic>> rowsAsListOfValues = const CsvToListConverter().convert(csvString, eol: '\n');
-
-      print(rowsAsListOfValues.length);
-
-List<BPRecord> records = [];
-
-      for (var i = 0; i < rowsAsListOfValues.length; i++) {
-          var row = rowsAsListOfValues[i];
-          print(row);
-          DateTime fullDate = DateTime.parse(row[0]);
-          records.add(BPRecord(date:fullDate, systolic: row[1], diastolic: row[2]));
-      }
-
-      print(file.name);
-      print(records);
-      final box = GetStorage();
-      //box.erase();
-
-      records.forEach((record) {
-        box.write(record.date.toString(), record);
-      });
-      notifyListeners();
-    } else {
-      // User canceled the picker
-    }
-  }
+//   Future<void> loadFile() async {
+//     FilePickerResult? result = await FilePicker.platform.pickFiles();
+//
+//     if (result != null) {
+//       XFile file = result.xFiles.first;
+//       final csvString = await file.readAsString();
+//
+//       List<List<dynamic>> rowsAsListOfValues = const CsvToListConverter().convert(csvString, eol: '\n');
+//
+//       print(rowsAsListOfValues.length);
+//
+// List<BPRecord> records = [];
+//
+//       for (var i = 0; i < rowsAsListOfValues.length; i++) {
+//           var row = rowsAsListOfValues[i];
+//           print(row);
+//           DateTime fullDate = DateTime.parse(row[0]);
+//           records.add(BPRecord(date:fullDate, systolic: row[1], diastolic: row[2]));
+//       }
+//
+//       print(file.name);
+//       print(records);
+//       final box = GetStorage();
+//       //box.erase();
+//
+//       records.forEach((record) {
+//         box.write(record.date.toString(), record);
+//       });
+//       notifyListeners();
+//     } else {
+//       // User canceled the picker
+//     }
+//   }
 
   Future<void> saveFile() async {
     var box = GetStorage();

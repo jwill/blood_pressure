@@ -59,7 +59,7 @@ class SettingsView extends StatelessWidget {
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(
                   onPressed: (){
-                    controller.loadFile();
+                    //controller.loadFile();
                     Navigator.pop(context);
                   }, child: const Text("Load Data")),
                     ),

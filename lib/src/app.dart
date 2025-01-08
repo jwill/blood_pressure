@@ -4,6 +4,7 @@ import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:realm/realm.dart';
 
 import 'feature/blood_pressure_list_view.dart';
 import 'settings/settings_controller.dart';
@@ -13,10 +14,12 @@ import 'settings/settings_view.dart';
 class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
-    required this.settingsController
+    required this.settingsController,
+    required this.realm
   });
 
   final SettingsController settingsController;
+  final Realm realm;
 
   @override
   Widget build(BuildContext context) {
@@ -47,17 +50,9 @@ class MyApp extends StatelessWidget {
             Locale('en', ''), // English, no country code
           ],
 
-          // Use AppLocalizations to configure the correct application title
-          // depending on the user's locale.
-          //
-          // The appTitle is defined in .arb files found in the localization
-          // directory.
           onGenerateTitle: (BuildContext context) =>
               AppLocalizations.of(context)!.appTitle,
 
-          // Define a light and dark color theme. Then, read the user's
-          // preferred ThemeMode (light, dark, or system default) from the
-          // SettingsController to display the correct theme.
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
             useMaterial3: true
@@ -77,9 +72,9 @@ class MyApp extends StatelessWidget {
                   case BloodPressureItemDetailsView.routeName:
                     return BloodPressureItemDetailsView();
                   case BloodPressureTabView.routeName:
-                    return const BloodPressureTabView();
+                    return BloodPressureTabView(realm: realm,);
                   default:
-                    return BloodPressureListView();
+                    return BloodPressureListView(realm: realm,);
                 }
               },
             );

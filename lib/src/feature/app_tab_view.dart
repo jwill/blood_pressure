@@ -2,11 +2,14 @@ import 'package:blood_pressure_app/src/feature/blood_pressure_chart_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_list_view.dart';
 import 'package:blood_pressure_app/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
+import 'package:realm/realm.dart';
 
 class BloodPressureTabView extends StatefulWidget {
-  const BloodPressureTabView({super.key});
+  BloodPressureTabView({super.key, required this.realm});
 
   static const routeName = '/';
+  final Realm realm;
+
   @override
   State<BloodPressureTabView> createState() => _BloodPressureTabViewState();
 }
@@ -51,8 +54,8 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView> with Ticker
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          BloodPressureListView(),
-          BloodPressureChartView()
+          BloodPressureListView(realm: widget.realm,),
+          BloodPressureChartView(realm: widget.realm,)
 
       ]),
     ));

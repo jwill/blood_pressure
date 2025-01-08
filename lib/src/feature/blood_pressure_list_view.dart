@@ -6,27 +6,31 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:intl/intl.dart';
+import 'package:realm/realm.dart';
 import 'package:signals/signals.dart';
 import 'package:signals/signals_flutter.dart';
+
+import '../data/catalog.dart';
 
 
 /// Displays a list of SampleItems.
 class BloodPressureListView extends StatelessWidget {
    BloodPressureListView({
-    super.key,  
+    super.key,
+     required this.realm
   });
 
   static const routeName = '/b';
 
   final items = listSignal([]);
+  final Realm realm;
   final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
 
-    box.listen(() {
-      items.value = box.getValues().toList();
-    });
+    //TODO Signal watch
+    items.value = realm.all<BPRecord>().toList();
     return Scaffold(
       body: _buildList(context),
       floatingActionButton: FloatingActionButton(onPressed: () => {
@@ -53,9 +57,10 @@ class BloodPressureListView extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              var record = BPRecord(date: input.date.value, systolic: int.parse(input.systolic.value), diastolic: int.parse(input.diastolic.value));
-              items.add(record);
-              box.write(record.date.toString(), record); // put(record);
+              realm.write((){
+                var record = BPRecord(input.date.value, int.parse(input.systolic.value), int.parse(input.diastolic.value));
+                realm.add(record);
+              });
               Navigator.pop(context, 'OK');
             },
             child: const Text('OK'),
@@ -77,9 +82,6 @@ Color pickColorForBP(BPRecord record) {
 Widget _buildList(BuildContext context) {
   final textTheme = Theme.of(context).textTheme;
   return Watch((context) => ListView.builder(
-        // Providing a restorationId allows the ListView to restore the
-        // scroll position when a user leaves and returns to the app after it
-        // has been killed while running in the background.
         restorationId: 'bloodPressureItemListView',
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {

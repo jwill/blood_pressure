@@ -1,27 +1,29 @@
 import 'package:blood_pressure_app/main.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/data/catalog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:d_chart/d_chart.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:realm/realm.dart';
 
 
 /// Displays a list of SampleItems.
 class BloodPressureChartView extends StatelessWidget {
    BloodPressureChartView({
-    super.key,  
+    super.key,
+     required this.realm
   });
 
   static const routeName = '/b';
+  final Realm realm;
 
  // Box<BPRecord> bpBox = objectBox.store.box<BPRecord>();
- // List<BPRecord> items = bpBox.getAll(); //BPRecord.generateSampleData(45);
 
   @override
   Widget build(BuildContext context) {
-    final box = GetStorage();
-    var items = box.getValues();
-    print(items.toList());
+    List<BPRecord> items = realm.all<BPRecord>().toList();
+
 
     return _buildChart(context, items.toList());
   }
@@ -43,8 +45,8 @@ Widget _buildChart(BuildContext context, List items) {
   List<TimeData> diastolic =
   items.map((e) => TimeData(domain: e.date, measure: e.diastolic)).toList();
 
-  List<TimeData> baselineDiastolic = BPRecord.generateBaseline(items.length, BPRecord(date: DateTime.now(), systolic: 120, diastolic: 80)).map((e) => TimeData(domain: e.date, measure: e.diastolic)).toList();
-  List<TimeData> baselineSystolic = BPRecord.generateBaseline(items.length, BPRecord(date: DateTime.now(), systolic: 120, diastolic: 80)).map((e) => TimeData(domain: e.date, measure: e.systolic)).toList();
+  //List<TimeData> baselineDiastolic = BPRecord.generateBaseline(items.length, BPRecord(date: DateTime.now(), systolic: 120, diastolic: 80)).map((e) => TimeData(domain: e.date, measure: e.diastolic)).toList();
+  //List<TimeData> baselineSystolic = BPRecord.generateBaseline(items.length, BPRecord(date: DateTime.now(), systolic: 120, diastolic: 80)).map((e) => TimeData(domain: e.date, measure: e.systolic)).toList();
 
 
 
@@ -59,8 +61,8 @@ final timeGroupList = [
         color: colorScheme.tertiary,
         data: diastolic,
     ),
-    TimeGroup(id: '3', data: baselineSystolic),
-    TimeGroup(id: '4', data: baselineDiastolic)
+    //TimeGroup(id: '3', data: baselineSystolic),
+    //TimeGroup(id: '4', data: baselineDiastolic)
 ];
 
 return Padding(padding: const EdgeInsets.all(8.0), child: DChartLineT(

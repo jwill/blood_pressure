@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'settings_controller.dart';
 
@@ -58,26 +57,30 @@ class SettingsView extends StatelessWidget {
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(
-                  onPressed: (){
+                  onPressed: () {
                     controller.loadFile();
                     Navigator.pop(context);
-                  }, child: const Text("Load Data")),
-                    ),
-                    ConstrainedBox(
-                    constraints: const BoxConstraints(minWidth: double.infinity),
-                    child: FilledButton(
-                    style: FilledButton.styleFrom(backgroundColor: colorScheme.secondary),
-                    onPressed: controller.saveFile, child: const Text("Export Data")),
-                    ),
-                    const SizedBox(height: 64,),
-                    ConstrainedBox(
-                    constraints: const BoxConstraints(minWidth: double.infinity),
-                    child: FilledButton(
+                  },
+                  child: const Text("Load Data")),
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: double.infinity),
+              child: FilledButton(
+                  style: FilledButton.styleFrom(
+                      backgroundColor: colorScheme.secondary),
+                  onPressed: controller.saveFile,
+                  child: const Text("Export Data")),
+            ),
+            const SizedBox(
+              height: 64,
+            ),
+            ConstrainedBox(
+                constraints: const BoxConstraints(minWidth: double.infinity),
+                child: FilledButton(
                     style: FilledButton.styleFrom(
-                  backgroundColor: colorScheme.error),
-                    onPressed: () async {
-                    await GetStorage().erase();
-                    }, child: const Text("Clear Data")))
+                        backgroundColor: colorScheme.error),
+                    onPressed: () async {},
+                    child: const Text("Clear Data")))
           ],
         ),
       ),

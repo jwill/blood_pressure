@@ -1,4 +1,3 @@
-import 'package:blood_pressure_app/main.dart';
 import 'package:blood_pressure_app/src/feature/app_tab_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +10,7 @@ import 'settings/settings_view.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key,
-    required this.settingsController
-  });
+  const MyApp({super.key, required this.settingsController});
 
   final SettingsController settingsController;
 
@@ -59,9 +55,8 @@ class MyApp extends StatelessWidget {
           // preferred ThemeMode (light, dark, or system default) from the
           // SettingsController to display the correct theme.
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-            useMaterial3: true
-          ),
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+              useMaterial3: true),
           darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
 

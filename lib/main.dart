@@ -1,20 +1,24 @@
+import 'dart:convert';
 
+import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
-import 'package:path_provider/path_provider.dart';
-
-import 'package:path/path.dart' as p;
-import 'package:objectbox/objectbox.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await GetStorage.init();
+  databaseFactory = databaseFactoryFfi;
+  var db = await openDatabase('my_db.db');
+  final records = BPRecordSignal([], 'records');
+
+  await records.init();
+
+  //records.save(BPRecord.generateSampleData(200));
+  print(records.value);
 
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.

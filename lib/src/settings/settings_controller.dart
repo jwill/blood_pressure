@@ -1,17 +1,12 @@
 import 'dart:typed_data';
 
-import 'package:blood_pressure_app/main.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cross_file/cross_file.dart';
-import 'package:get_storage/get_storage.dart';
 import 'settings_service.dart';
-import 'package:excel/excel.dart';
-import 'package:intl/intl.dart';
 import 'package:csv/csv.dart';
 import 'dart:io' show File, Platform;
-
 
 /// A class that many Widgets can interact with to read user settings, update
 /// user settings, or listen to user settings changes.
@@ -66,27 +61,27 @@ class SettingsController with ChangeNotifier {
       XFile file = result.xFiles.first;
       final csvString = await file.readAsString();
 
-      List<List<dynamic>> rowsAsListOfValues = const CsvToListConverter().convert(csvString, eol: '\n');
+      List<List<dynamic>> rowsAsListOfValues =
+          const CsvToListConverter().convert(csvString, eol: '\n');
 
       print(rowsAsListOfValues.length);
 
-List<BPRecord> records = [];
+      List<BPRecord> records = [];
 
       for (var i = 0; i < rowsAsListOfValues.length; i++) {
-          var row = rowsAsListOfValues[i];
-          print(row);
-          DateTime fullDate = DateTime.parse(row[0]);
-          records.add(BPRecord(date:fullDate, systolic: row[1], diastolic: row[2]));
+        var row = rowsAsListOfValues[i];
+        print(row);
+        DateTime fullDate = DateTime.parse(row[0]);
+        records
+            .add(BPRecord(date: fullDate, systolic: row[1], diastolic: row[2]));
       }
 
       print(file.name);
       print(records);
-      final box = GetStorage();
-      //box.erase();
 
-      records.forEach((record) {
-        box.write(record.date.toString(), record);
-      });
+      for (var record in records) {
+        //box.write(record.date.toString(), record);
+      }
       notifyListeners();
     } else {
       // User canceled the picker
@@ -94,8 +89,7 @@ List<BPRecord> records = [];
   }
 
   Future<void> saveFile() async {
-    var box = GetStorage();
-    var records = box.getValues().toList();
+    var records = []; //box.getValues().toList();
     List<List> list = [];
     for (var element in records) {
       list.add([element.date.toString(), element.systolic, element.diastolic]);
@@ -107,7 +101,8 @@ List<BPRecord> records = [];
         dialogTitle: 'Please select an output file:',
         fileName: 'output.xlsx',
         bytes: Uint8List.fromList(res.codeUnits));
-    if (result != null && (Platform.isLinux || Platform.isMacOS || Platform.isWindows)) {
+    if (result != null &&
+        (Platform.isLinux || Platform.isMacOS || Platform.isWindows)) {
       // saveFile doesn't actually save on desktop
       var file = File(result);
       file.writeAsString(res);

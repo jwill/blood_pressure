@@ -20,8 +20,10 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
   @override
   void initState() {
     super.initState();
-    _systolic_controller = TextEditingController(text: widget.systolic.value.toString());
-    _diatolic_controller = TextEditingController(text: widget.diastolic.value.toString());
+    _systolic_controller =
+        TextEditingController(text: widget.systolic.value.toString());
+    _diatolic_controller =
+        TextEditingController(text: widget.diastolic.value.toString());
   }
 
   @override
@@ -55,7 +57,9 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
               },
               child: const Text("Edit Date"))
         ]),
-        const SizedBox(height: 8,),
+        const SizedBox(
+          height: 8,
+        ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Watch((context) {
             var displayTime = widget.date.value;
@@ -68,21 +72,26 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
           OutlinedButton(
               onPressed: () async {
                 showTimePicker(
-                    context: context, initialTime: TimeOfDay.now(),
-                    )
-                    .then((value) {
-                      widget.date.value = widget.date.value.copyWith(hour: value?.hour, minute: value?.minute);
-                    });
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                ).then((value) {
+                  widget.date.value = widget.date.value
+                      .copyWith(hour: value?.hour, minute: value?.minute);
+                });
               },
               child: const Text("Edit Time"))
         ]),
         TextField(
           controller: _systolic_controller,
-          onChanged: (value) {widget.systolic.value = value; },
+          onChanged: (value) {
+            widget.systolic.value = value;
+          },
         ),
         TextField(
           controller: _diatolic_controller,
-          onChanged: (value) {widget.diastolic.value = value; },
+          onChanged: (value) {
+            widget.diastolic.value = value;
+          },
         )
       ],
     );

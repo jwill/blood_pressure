@@ -8,13 +8,13 @@ import 'package:signals/signals_flutter.dart';
 
 /// Displays a list of SampleItems.
 class BloodPressureListView extends StatelessWidget {
-  BloodPressureListView({
+  BloodPressureListView(this.items, {
     super.key,
   });
 
   static const routeName = '/b';
 
-  final items = listSignal([]);
+  List<BPRecord> items;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class BloodPressureListView extends StatelessWidget {
                       date: input.date.value,
                       systolic: int.parse(input.systolic.value),
                       diastolic: int.parse(input.diastolic.value));
-                  items.add(record);
+                  this.items.add(record);
 
                   Navigator.pop(context, 'OK');
                 },

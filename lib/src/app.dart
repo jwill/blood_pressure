@@ -1,8 +1,10 @@
+import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/app_tab_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:signals/signals_flutter.dart';
 
 import 'feature/blood_pressure_list_view.dart';
 import 'settings/settings_controller.dart';
@@ -10,9 +12,10 @@ import 'settings/settings_view.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.settingsController});
+  const MyApp({super.key, required this.settingsController, required this.signal});
 
   final SettingsController settingsController;
+  final BPRecordSignal signal;
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +75,9 @@ class MyApp extends StatelessWidget {
                   case BloodPressureItemDetailsView.routeName:
                     return BloodPressureItemDetailsView();
                   case BloodPressureTabView.routeName:
-                    return const BloodPressureTabView();
+                    return BloodPressureTabView(this.signal);
                   default:
-                    return BloodPressureListView();
+                    return BloodPressureListView(this.signal.watch(context));
                 }
               },
             );

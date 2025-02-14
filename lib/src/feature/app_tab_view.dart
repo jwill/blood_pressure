@@ -1,12 +1,16 @@
+import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_chart_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_list_view.dart';
 import 'package:blood_pressure_app/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 
 class BloodPressureTabView extends StatefulWidget {
-  const BloodPressureTabView({super.key});
+  const BloodPressureTabView(this.signal, {super.key});
 
   static const routeName = '/';
+
+  final BPRecordSignal signal;
   @override
   State<BloodPressureTabView> createState() => _BloodPressureTabViewState();
 }
@@ -63,7 +67,7 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView>
                 ]),
           ),
           body: TabBarView(controller: _tabController, children: <Widget>[
-            BloodPressureListView(),
+            BloodPressureListView(widget.signal.value),
             BloodPressureChartView()
           ]),
         ));

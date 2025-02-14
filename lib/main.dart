@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:flutter/material.dart';
+import 'package:signals/signals_flutter.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'src/app.dart';
@@ -17,7 +18,7 @@ void main() async {
 
   await records.init();
 
-  //records.save(BPRecord.generateSampleData(200));
+  //records.save(BPRecord.generateSampleData(20));
   print(records.value);
 
   // Set up the SettingsController, which will glue user settings to multiple
@@ -31,5 +32,5 @@ void main() async {
   // Run the app and pass in the SettingsController. The app listens to the
   // SettingsController for changes, then passes it further down to the
   // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
+  runApp(MyApp(settingsController: settingsController, signal: records,));
 }

@@ -40,7 +40,7 @@ class BPRecord {
 
   @override
   String toString() {
-    return '$date - $systolic / $diastolic';
+    return '$date - $systolic / $diastolic - $notes';
   }
 
   static List<BPRecord> generateSampleData(int num) {

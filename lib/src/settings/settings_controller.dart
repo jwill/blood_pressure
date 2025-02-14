@@ -76,16 +76,14 @@ class SettingsController with ChangeNotifier {
         var row = rowsAsListOfValues[i];
         print(row);
         DateTime fullDate = DateTime.parse(row[0]);
+        var notes = row.length > 3 ? row[3] : "";
         records
-            .add(BPRecord(date: fullDate, systolic: row[1], diastolic: row[2]));
+            .add(BPRecord(date: fullDate, systolic: row[1], diastolic: row[2], notes: notes));
       }
 
-      print(file.name);
-      print(records);
-
-      for (var record in records) {
-        //box.write(record.date.toString(), record);
-      }
+      recordsSignal.value = records;
+      recordsSignal.save(records);
+      recordsSignal.notifyListeners();
       notifyListeners();
     } else {
       // User canceled the picker
@@ -102,7 +100,7 @@ class SettingsController with ChangeNotifier {
 
     String? result = await FilePicker.platform.saveFile(
         dialogTitle: 'Please select an output file:',
-        fileName: 'output.xlsx',
+        fileName: 'output.csv',
         bytes: Uint8List.fromList(res.codeUnits));
     if (result != null &&
         (Platform.isLinux || Platform.isMacOS || Platform.isWindows)) {

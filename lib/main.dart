@@ -15,9 +15,6 @@ void main() async {
 
   await records.init();
 
-  //records.save(BPRecord.generateSampleData(20));
-  print(records.value);
-
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.
   final settingsController = SettingsController(SettingsService(), records);

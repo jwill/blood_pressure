@@ -1,4 +1,5 @@
 import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_input.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +9,11 @@ import 'package:signals/signals_flutter.dart';
 
 /// Displays a list of SampleItems.
 class BloodPressureListView extends StatelessWidget {
-  BloodPressureListView(this.items, {
+  BloodPressureListView({
     super.key,
   });
 
   static const routeName = '/b';
-
-  List<BPRecord> items;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +26,7 @@ class BloodPressureListView extends StatelessWidget {
   }
 
   Future<void> _dialogBuilder(BuildContext context) {
+    final signal = SignalProvider.of<BPRecordSignal>(context);
     var input = BloodPressureInput();
     return showDialog(
         context: context,
@@ -51,7 +51,9 @@ class BloodPressureListView extends StatelessWidget {
                       date: input.date.value,
                       systolic: int.parse(input.systolic.value),
                       diastolic: int.parse(input.diastolic.value));
-                  this.items.add(record);
+
+                  signal?.value.add(record);
+                  signal?.save(signal.value);
 
                   Navigator.pop(context, 'OK');
                 },
@@ -74,15 +76,17 @@ class BloodPressureListView extends StatelessWidget {
   }
 
   Widget _buildList(BuildContext context) {
+    final signal = SignalProvider.of<BPRecordSignal>(context)!;
+
     final textTheme = Theme.of(context).textTheme;
     return Watch((context) => ListView.builder(
           // Providing a restorationId allows the ListView to restore the
           // scroll position when a user leaves and returns to the app after it
           // has been killed while running in the background.
           restorationId: 'bloodPressureItemListView',
-          itemCount: items.length,
+          itemCount: signal.value.length,
           itemBuilder: (BuildContext context, int index) {
-            final item = items[index];
+            final item = signal.value[index];
 
             return GestureDetector(
                 onTap: () {

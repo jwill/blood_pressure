@@ -1,9 +1,11 @@
 import 'dart:typed_data';
 
 import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cross_file/cross_file.dart';
+import 'package:signals/signals_flutter.dart';
 import 'settings_service.dart';
 import 'package:csv/csv.dart';
 import 'dart:io' show File, Platform;
@@ -14,7 +16,7 @@ import 'dart:io' show File, Platform;
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
 class SettingsController with ChangeNotifier {
-  SettingsController(this._settingsService);
+  SettingsController(this._settingsService, this.recordsSignal);
 
   // Make SettingsService a private variable so it is not used directly.
   final SettingsService _settingsService;
@@ -22,6 +24,8 @@ class SettingsController with ChangeNotifier {
   // Make ThemeMode a private variable so it is not updated directly without
   // also persisting the changes with the SettingsService.
   late ThemeMode _themeMode;
+
+  BPRecordSignal recordsSignal;
 
   // Allow Widgets to read the user's preferred ThemeMode.
   ThemeMode get themeMode => _themeMode;
@@ -89,13 +93,12 @@ class SettingsController with ChangeNotifier {
   }
 
   Future<void> saveFile() async {
-    var records = []; //box.getValues().toList();
+    var records = recordsSignal.value; //box.getValues().toList();
     List<List> list = [];
     for (var element in records) {
-      list.add([element.date.toString(), element.systolic, element.diastolic]);
+      list.add([element.date.toString(), element.systolic, element.diastolic, element.notes]);
     }
     final res = const ListToCsvConverter().convert(list);
-    print(res);
 
     String? result = await FilePicker.platform.saveFile(
         dialogTitle: 'Please select an output file:',

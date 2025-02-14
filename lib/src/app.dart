@@ -1,5 +1,5 @@
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
-import 'package:blood_pressure_app/src/feature/app_tab_view.dart';
+import 'package:blood_pressure_app/src/feature/blood_pressure_tab_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
     // Whenever the user updates their settings, the MaterialApp is rebuilt.
-    return ListenableBuilder(
+    return SignalProvider<BPRecordSignal>(
+        create: () => BPRecordSignal([], 'records'),
+        child: ListenableBuilder(
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
@@ -75,15 +77,15 @@ class MyApp extends StatelessWidget {
                   case BloodPressureItemDetailsView.routeName:
                     return BloodPressureItemDetailsView();
                   case BloodPressureTabView.routeName:
-                    return BloodPressureTabView(this.signal);
+                    return BloodPressureTabView();
                   default:
-                    return BloodPressureListView(this.signal.watch(context));
+                    return BloodPressureListView();
                 }
               },
             );
           },
         );
       },
-    );
+    ));
   }
 }

@@ -1,7 +1,9 @@
 import 'package:blood_pressure_app/src/data/bp_record.dart';
+import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:flutter/material.dart';
 
 import 'package:d_chart/d_chart.dart';
+import 'package:signals/signals_flutter.dart';
 
 /// Displays a list of SampleItems.
 class BloodPressureChartView extends StatelessWidget {
@@ -16,7 +18,8 @@ class BloodPressureChartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var items = []; //box.getValues();
+    final signal = SignalProvider.of<BPRecordSignal>(context)!;
+    var items = signal.value; //box.getValues();
     print(items.toList());
 
     return _buildChart(context, items.toList());

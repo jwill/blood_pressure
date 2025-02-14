@@ -22,10 +22,8 @@ dependencies:
 
   intl: any
   signals: ^6.0.2
-  sqflite: ^2.4.1
   file_picker: ^8.3.5
   signals_flutter: ^6.0.2
-  sqflite_common_ffi: ^2.3.4+4
   shared_preferences: ^2.5.2
 dev_dependencies:
   flutter_test:

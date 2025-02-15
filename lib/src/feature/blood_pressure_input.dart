@@ -6,6 +6,7 @@ class BloodPressureInput extends StatefulWidget {
   final date = signal(DateTime.now());
   final systolic = signal('120');
   final diastolic = signal('80');
+  final notes = signal('');
 
   BloodPressureInput({super.key});
 
@@ -16,6 +17,7 @@ class BloodPressureInput extends StatefulWidget {
 class _BloodPressureInputState extends State<BloodPressureInput> {
   late TextEditingController _systolic_controller;
   late TextEditingController _diatolic_controller;
+  late TextEditingController _notes_controller;
 
   @override
   void initState() {
@@ -24,12 +26,14 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
         TextEditingController(text: widget.systolic.value.toString());
     _diatolic_controller =
         TextEditingController(text: widget.diastolic.value.toString());
+    _notes_controller = TextEditingController(text: widget.notes.value.toString());
   }
 
   @override
   void dispose() {
     _systolic_controller.dispose();
     _diatolic_controller.dispose();
+    _notes_controller.dispose();
     super.dispose();
   }
 
@@ -91,6 +95,12 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
           controller: _diatolic_controller,
           onChanged: (value) {
             widget.diastolic.value = value;
+          },
+        ),
+        TextField(
+          controller: _notes_controller,
+          onChanged: (value) {
+            widget.notes.value = value;
           },
         )
       ],

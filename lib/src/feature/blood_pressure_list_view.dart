@@ -9,11 +9,11 @@ import 'package:signals/signals_flutter.dart';
 
 /// Displays a list of SampleItems.
 class BloodPressureListView extends StatelessWidget {
-  BloodPressureListView({
+  const BloodPressureListView({
     super.key,
   });
 
-  static const routeName = '/b';
+  static const routeName = '/list';
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +50,15 @@ class BloodPressureListView extends StatelessWidget {
                   var record = BPRecord(
                       date: input.date.value,
                       systolic: int.parse(input.systolic.value),
-                      diastolic: int.parse(input.diastolic.value));
+                      diastolic: int.parse(input.diastolic.value),
+                  notes: input.notes.value);
 
                   signal?.value.add(record);
+                  // Sort before saving
+                  signal?.value.sort((a, b) {
+                    return a.date.millisecondsSinceEpoch
+                        .compareTo(b.date.millisecondsSinceEpoch);
+                  });
                   signal?.save(signal.value);
 
                   Navigator.pop(context, 'OK');
@@ -80,13 +86,11 @@ class BloodPressureListView extends StatelessWidget {
 
     final textTheme = Theme.of(context).textTheme;
     return Watch((context) => ListView.builder(
-          // Providing a restorationId allows the ListView to restore the
-          // scroll position when a user leaves and returns to the app after it
-          // has been killed while running in the background.
           restorationId: 'bloodPressureItemListView',
           itemCount: signal.value.length,
           itemBuilder: (BuildContext context, int index) {
             final item = signal.value[index];
+            final data = item.notes.isNotEmpty ? "${item.systolic}/${item.diastolic} - ${item.notes}" :  "${item.systolic}/${item.diastolic}";
 
             return GestureDetector(
                 onTap: () {
@@ -95,7 +99,8 @@ class BloodPressureListView extends StatelessWidget {
                       arguments: <String, String>{
                         'date': item.date.toString(),
                         'systolic': item.systolic.toString(),
-                        'diastolic': item.diastolic.toString()
+                        'diastolic': item.diastolic.toString(),
+                        'notes': item.notes,
                       });
                 },
                 child: Padding(
@@ -128,7 +133,7 @@ class BloodPressureListView extends StatelessWidget {
                         const SizedBox(
                           width: 36,
                         ),
-                        Text("${item.systolic}/${item.diastolic}",
+                        Text(data,
                             style: textTheme.displaySmall)
                       ],
                     )));

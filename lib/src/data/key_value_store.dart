@@ -51,6 +51,5 @@ class SharedPreferencesStore implements KeyValueStore {
   Future<void> setItem(String key, String value) async {
     final prefs = await init();
     prefs.setString(key, value);
-    print('setting stuff');
   }
 }

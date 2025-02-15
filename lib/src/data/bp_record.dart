@@ -18,8 +18,12 @@ class BPRecord {
 
   List toList() => [date, systolic, diastolic];
 
-  Map<String, dynamic> toJson() =>
-      {"date": date.millisecondsSinceEpoch, "systolic": systolic, "diastolic": diastolic, "notes": notes};
+  Map<String, dynamic> toJson() => {
+        "date": date.millisecondsSinceEpoch,
+        "systolic": systolic,
+        "diastolic": diastolic,
+        "notes": notes
+      };
 
   factory BPRecord.fromJson(String json) {
     var record = jsonDecode(json);

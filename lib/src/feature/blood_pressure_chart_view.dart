@@ -1,9 +1,11 @@
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
+import 'package:blood_pressure_app/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:d_chart/d_chart.dart';
 import 'package:signals/signals_flutter.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 
 /// Displays a list of SampleItems.
 class BloodPressureChartView extends StatelessWidget {
@@ -13,16 +15,24 @@ class BloodPressureChartView extends StatelessWidget {
 
   static const routeName = '/b';
 
-  // Box<BPRecord> bpBox = objectBox.store.box<BPRecord>();
-  // List<BPRecord> items = bpBox.getAll(); //BPRecord.generateSampleData(45);
-
   @override
   Widget build(BuildContext context) {
     final signal = SignalProvider.of<BPRecordSignal>(context)!;
+    WidgetsToImageController controller = WidgetsToImageController();
+
     var items = signal.value; //box.getValues();
     print(items.toList());
 
-    return _buildChart(context, items.toList());
+    return Scaffold(
+        body:  WidgetsToImage(child: _buildChart(context, items.toList()),
+            controller: controller),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+          var bytes = await controller.capture();
+          SettingsController.saveImage(bytes!);
+      },
+          child: const Icon(Icons.photo)),
+    );
   }
 
   Color pickColorForBP(BPRecord record) {
@@ -65,8 +75,8 @@ class BloodPressureChartView extends StatelessWidget {
         color: colorScheme.tertiary,
         data: diastolic,
       ),
-      TimeGroup(id: '3', data: baselineSystolic),
-      TimeGroup(id: '4', data: baselineDiastolic)
+      // TimeGroup(id: '3', data: baselineSystolic),
+      // TimeGroup(id: '4', data: baselineDiastolic)
     ];
 
     return Padding(

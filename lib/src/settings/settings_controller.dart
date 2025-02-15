@@ -5,7 +5,6 @@ import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cross_file/cross_file.dart';
-import 'package:signals/signals_flutter.dart';
 import 'settings_service.dart';
 import 'package:csv/csv.dart';
 import 'dart:io' show File, Platform;
@@ -77,8 +76,8 @@ class SettingsController with ChangeNotifier {
         print(row);
         DateTime fullDate = DateTime.parse(row[0]);
         var notes = row.length > 3 ? row[3] : "";
-        records
-            .add(BPRecord(date: fullDate, systolic: row[1], diastolic: row[2], notes: notes));
+        records.add(BPRecord(
+            date: fullDate, systolic: row[1], diastolic: row[2], notes: notes));
       }
 
       recordsSignal.value = records;
@@ -94,7 +93,12 @@ class SettingsController with ChangeNotifier {
     var records = recordsSignal.value; //box.getValues().toList();
     List<List> list = [];
     for (var element in records) {
-      list.add([element.date.toString(), element.systolic, element.diastolic, element.notes]);
+      list.add([
+        element.date.toString(),
+        element.systolic,
+        element.diastolic,
+        element.notes
+      ]);
     }
     final res = const ListToCsvConverter().convert(list);
 
@@ -107,6 +111,19 @@ class SettingsController with ChangeNotifier {
       // saveFile doesn't actually save on desktop
       var file = File(result);
       file.writeAsString(res);
+    }
+  }
+
+  static Future<void> saveImage(Uint8List bytes) async {
+    String? result = await FilePicker.platform.saveFile(
+        dialogTitle: 'Please select an output file:',
+        fileName: 'output.png',
+        bytes: bytes);
+    if (result != null &&
+        (Platform.isLinux || Platform.isMacOS || Platform.isWindows)) {
+      // saveFile doesn't actually save on desktop
+      var file = File(result);
+      file.writeAsBytes(bytes);
     }
   }
 }

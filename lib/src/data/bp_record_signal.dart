@@ -23,6 +23,10 @@ class BPRecordSignal extends PersistedSignal<List<BPRecord>> {
     for (var item in list) {
       records.add(BPRecord.fromMap(item));
     }
+    records.sort((a, b) {
+      return a.date.millisecondsSinceEpoch
+          .compareTo(b.date.millisecondsSinceEpoch);
+    });
     return records;
   }
 }

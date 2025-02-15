@@ -1,10 +1,7 @@
-import 'package:blood_pressure_app/src/data/bp_record.dart';
-import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_chart_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_list_view.dart';
 import 'package:blood_pressure_app/src/settings/settings_view.dart';
 import 'package:flutter/material.dart';
-import 'package:signals/signals_flutter.dart';
 
 class BloodPressureTabView extends StatefulWidget {
   const BloodPressureTabView({super.key});

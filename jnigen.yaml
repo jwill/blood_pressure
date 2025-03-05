@@ -1,0 +1,24 @@
+output:
+  dart:
+    path: lib/health_connect/
+
+classes:
+  - 'androidx.health.connect.client.HealthConnectClient'
+  - 'androidx.health.connect.client.PermissionController'
+  - 'androidx.health.connect.client.units.Pressure'
+  - 'androidx.health.connect.client.permission.HealthPermission'
+  - 'androidx.health.connect.client.records.BloodPressureRecord'
+  - 'androidx.health.connect.client.testing.FakeHealthConnectClient'
+  - 'androidx.health.connect.client.testing.FakePermissionController'
+  - 'androidx.health.connect.client.records.metadata.Metadata'
+  - 'androidx.health.connect.client.records.metadata.Device'
+  - 'androidx.health.connect.client.response.InsertRecordsResponse'
+  - 'androidx.health.connect.client.time.TimeRangeFilter'
+  - 'androidx.health.connect.client.request.ReadRecordsRequest'
+  - 'androidx.health.connect.client.response.ReadRecordsResponse'
+  - 'androidx.health.connect.client.records.metadata.DataOrigin'
+
+maven_downloads:
+  source_deps:
+    - 'androidx.health.connect:connect-client:1.1.0-alpha12'
+    - 'androidx.health.connect:connect-testing:1.0.0-alpha02'

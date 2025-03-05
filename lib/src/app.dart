@@ -3,6 +3,10 @@ import 'dart:io';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/permission/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/metadata/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/request/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/time/_package.dart';
+import 'package:blood_pressure_app/jni_utils.dart';
 //import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_tab_view.dart';
@@ -41,22 +45,6 @@ class MyApp extends StatelessWidget {
 
   }
 
-  /*
-val requestPermission =
-    activity.registerForActivityResult(
-        PermissionController.createRequestPermissionResultContract()
-    ) { grantedPermissions: Set<String> ->
-        if (
-            grantedPermissions.contains(HealthPermission.getReadPermission(StepsRecord::class))
-        ) {
-            // Read or process steps related health records.
-        } else {
-            // user denied permission
-        }
-    }
-requestPermission.launch(setOf(HealthPermission.getReadPermission(StepsRecord::class)))
-   */
-
    Future<void> _checkHealthConnectPermissions()  async {
 
      try {
@@ -66,6 +54,20 @@ requestPermission.launch(setOf(HealthPermission.getReadPermission(StepsRecord::c
 
      }
    }
+
+   Future<JList<BloodPressureRecord>?> readBloodPressureRecords(DateTime start, DateTime end) async {
+    var startInstant = JInstantExt.ofEpochMilli(start.millisecondsSinceEpoch.toJLong());
+    var endInstant = JInstantExt.ofEpochMilli(end.millisecondsSinceEpoch.toJLong());
+    var ascendingOrder = false;
+    var pageSize = 10;
+    var request = ReadRecordsRequest(BloodPressureRecord.type.jClass,
+        TimeRangeFilter.between(startInstant, endInstant),
+        {DataOrigin(JString.fromString('dev.jwill'))}.toJSet(DataOrigin.type), ascendingOrder, pageSize,"".toJString(), 0, T: BloodPressureRecord.type);
+
+    var response = await healthConnectClient?.readRecords(request);
+    return response?.getRecords();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +101,9 @@ requestPermission.launch(setOf(HealthPermission.getReadPermission(StepsRecord::c
         print(onValue);
         print(onValue.containsAll(permissions));
       });
+
+      var y = readBloodPressureRecords(DateTime.now().subtract(Duration(days: 10)), DateTime.now().add(Duration(days: 10)));
+      print(y);
 
     }
 

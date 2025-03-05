@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/metadata/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/response/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/testing/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/units/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jni/_internal.dart';
 import 'package:jni/jni.dart';
+import 'package:logging/logging.dart';
 import 'package:signals/signals_flutter.dart';
 
 /// Displays a list of SampleItems.
@@ -30,7 +32,7 @@ class BloodPressureListView extends StatelessWidget {
   Widget build(BuildContext context) {
     hostContext =
     JObject.fromReference(Jni.getCachedApplicationContext());
-    var now = getInstant_now();
+    var now = JInstantExt.now();
     DateTime d = DateTime.now();
     var dd = d.timeZoneOffset;
     var zoneOffsetClass = JClass.forName('java.time.ZoneOffset');
@@ -46,7 +48,7 @@ class BloodPressureListView extends StatelessWidget {
   }
 
   void insertBloodPressure(HealthConnectClient client, BPRecord record) {
-    var now = getInstant_now();
+    var now = JInstantExt.now();
 
 
     var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
@@ -54,19 +56,18 @@ class BloodPressureListView extends StatelessWidget {
     // TODO read the actual time
     //var metadata = Metadata.manualEntry(null);
 
-    var deviceClass = JClass.forName('androidx/health/connect/client/records/metadata/Device');
     var device = Device(0, JString.fromString('blah'), JString.fromString('blah2'));
-    //var device = deviceClass.constructorId(r'(ILjava/lang/String;Ljava/lang/String);').call(deviceClass, Device.type,
-    //    [0, JString.fromString('Omron'), JString.fromString('Unknown')]);
 
     var metadata = Metadata.manualEntry$1(Metadata.RECORDING_METHOD_MANUAL_ENTRY.toString().toJString(), 0, device);
     var bp = BloodPressureRecord(
-      getInstant_now(), getZoneOffset(), metadata, systolic, diastolic, BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
+      JInstantExt.now(), getZoneOffset(), metadata, systolic, diastolic, BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
       BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
     );
 
+    client.insertRecords([bp].toJList(BloodPressureRecord.type)).then((InsertRecordsResponse onValue) {
+      print(onValue.getRecordIdsList());
+    });
 
-    print(bp);
 
 
   }

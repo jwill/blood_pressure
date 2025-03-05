@@ -102,8 +102,12 @@ class MyApp extends StatelessWidget {
         print(onValue.containsAll(permissions));
       });
 
-      var y = readBloodPressureRecords(DateTime.now().subtract(Duration(days: 10)), DateTime.now().add(Duration(days: 10)));
-      print(y);
+      platform.invokeMethod('m', []).then((onValue) {
+        print("result:$onValue");
+
+      });
+      //var y = readBloodPressureRecords(DateTime.now().subtract(Duration(days: 10)), DateTime.now().add(Duration(days: 10)));
+      //print(y);
 
     }
 

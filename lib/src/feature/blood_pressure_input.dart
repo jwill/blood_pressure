@@ -26,7 +26,8 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
         TextEditingController(text: widget.systolic.value.toString());
     _diatolic_controller =
         TextEditingController(text: widget.diastolic.value.toString());
-    _notes_controller = TextEditingController(text: widget.notes.value.toString());
+    _notes_controller =
+        TextEditingController(text: widget.notes.value.toString());
   }
 
   @override

@@ -24,13 +24,13 @@ class BloodPressureChartView extends StatelessWidget {
     print(items.toList());
 
     return Scaffold(
-        body:  WidgetsToImage(child: _buildChart(context, items.toList()),
-            controller: controller),
+      body: WidgetsToImage(
+          child: _buildChart(context, items.toList()), controller: controller),
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
-          var bytes = await controller.capture();
-          SettingsController.saveImage(bytes!);
-      },
+            var bytes = await controller.capture();
+            SettingsController.saveImage(bytes!);
+          },
           child: const Icon(Icons.photo)),
     );
   }

@@ -1,3 +1,11 @@
+import 'dart:io';
+
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/metadata/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/testing/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/units/_package.dart';
+import 'package:blood_pressure_app/jni_utils.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_input.dart';
@@ -5,24 +13,62 @@ import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:jni/_internal.dart';
+import 'package:jni/jni.dart';
 import 'package:signals/signals_flutter.dart';
 
 /// Displays a list of SampleItems.
 class BloodPressureListView extends StatelessWidget {
-  const BloodPressureListView({
+  BloodPressureListView({
     super.key,
   });
 
   static const routeName = '/list';
+  late JObject hostContext;
 
   @override
   Widget build(BuildContext context) {
+    hostContext =
+    JObject.fromReference(Jni.getCachedApplicationContext());
+    var now = getInstant_now();
+    DateTime d = DateTime.now();
+    var dd = d.timeZoneOffset;
+    var zoneOffsetClass = JClass.forName('java.time.ZoneOffset');
+    var ofHours = zoneOffsetClass.staticMethodId(r'ofHours', r'(I)Ljava/time/ZoneOffset;');
+    var zoneOffset = ofHours.call(zoneOffsetClass, JObject.type, [dd.inHours]);
+    print(zoneOffset);
     return Scaffold(
       body: _buildList(context),
       floatingActionButton: FloatingActionButton(
           onPressed: () => {_dialogBuilder(context)},
           child: const Icon(Icons.add)),
     );
+  }
+
+  void insertBloodPressure(HealthConnectClient client, BPRecord record) {
+    var now = getInstant_now();
+
+
+    var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
+    var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
+    // TODO read the actual time
+    //var metadata = Metadata.manualEntry(null);
+
+    var deviceClass = JClass.forName('androidx/health/connect/client/records/metadata/Device');
+    var device = Device(0, JString.fromString('blah'), JString.fromString('blah2'));
+    //var device = deviceClass.constructorId(r'(ILjava/lang/String;Ljava/lang/String);').call(deviceClass, Device.type,
+    //    [0, JString.fromString('Omron'), JString.fromString('Unknown')]);
+
+    var metadata = Metadata.manualEntry$1(Metadata.RECORDING_METHOD_MANUAL_ENTRY.toString().toJString(), 0, device);
+    var bp = BloodPressureRecord(
+      getInstant_now(), getZoneOffset(), metadata, systolic, diastolic, BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
+      BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
+    );
+
+
+    print(bp);
+
+
   }
 
   Future<void> _dialogBuilder(BuildContext context) {
@@ -51,7 +97,15 @@ class BloodPressureListView extends StatelessWidget {
                       date: input.date.value,
                       systolic: int.parse(input.systolic.value),
                       diastolic: int.parse(input.diastolic.value),
-                  notes: input.notes.value);
+                      notes: input.notes.value);
+
+                  // Use health connect if on Android
+                  if (Platform.isAndroid) {
+                    var client =
+                    HealthConnectClient.getOrCreate(hostContext, JString.fromString(""));
+                    insertBloodPressure(client, record);
+//insertBloodPressure(client, record)
+                  }
 
                   signal?.value.add(record);
                   // Sort before saving
@@ -90,7 +144,9 @@ class BloodPressureListView extends StatelessWidget {
           itemCount: signal.value.length,
           itemBuilder: (BuildContext context, int index) {
             final item = signal.value[index];
-            final data = item.notes.isNotEmpty ? "${item.systolic}/${item.diastolic} - ${item.notes}" :  "${item.systolic}/${item.diastolic}";
+            final data = item.notes.isNotEmpty
+                ? "${item.systolic}/${item.diastolic} - ${item.notes}"
+                : "${item.systolic}/${item.diastolic}";
 
             return GestureDetector(
                 onTap: () {
@@ -133,8 +189,7 @@ class BloodPressureListView extends StatelessWidget {
                         const SizedBox(
                           width: 36,
                         ),
-                        Text(data,
-                            style: textTheme.displaySmall)
+                        Text(data, style: textTheme.displaySmall)
                       ],
                     )));
           },

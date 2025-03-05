@@ -27,6 +27,10 @@ dependencies:
   shared_preferences: ^2.5.2
   community_charts_flutter: ^1.0.4
   widgets_to_image: ^1.0.0
+  jni: ^0.14.1
+  #jnigen: ^0.14.1
+  jnigen:
+    path: ../native-non-fork/pkgs/jnigen
 dev_dependencies:
   flutter_test:
     sdk: flutter

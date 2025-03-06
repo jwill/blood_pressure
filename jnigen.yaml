@@ -17,6 +17,7 @@ classes:
   - 'androidx.health.connect.client.request.ReadRecordsRequest'
   - 'androidx.health.connect.client.response.ReadRecordsResponse'
   - 'androidx.health.connect.client.records.metadata.DataOrigin'
+  - 'kotlin.jvm.JvmClassMappingKt'
 
 maven_downloads:
   source_deps:

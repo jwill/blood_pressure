@@ -31,3 +31,4 @@ local.properties
 output.csv
 /mvn_java
 /mvn_jar
+/android/.idea

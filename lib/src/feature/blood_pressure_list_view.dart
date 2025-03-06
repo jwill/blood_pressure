@@ -49,6 +49,7 @@ class BloodPressureListView extends StatelessWidget {
 
   void insertBloodPressure(HealthConnectClient client, BPRecord record) {
     var now = JInstantExt.now();
+    var millis = record.date.millisecondsSinceEpoch;
 
 
     var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
@@ -58,13 +59,15 @@ class BloodPressureListView extends StatelessWidget {
 
     var device = Device(0, JString.fromString('blah'), JString.fromString('blah2'));
 
-    var metadata = Metadata.manualEntry$1(Metadata.RECORDING_METHOD_MANUAL_ENTRY.toString().toJString(), 0, device);
+    var metadata = Metadata.manualEntry(device);
     var bp = BloodPressureRecord(
-      JInstantExt.now(), getZoneOffset(), metadata, systolic, diastolic, BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
+      JInstantExt.ofEpochMilli(millis.toJLong()), getZoneOffset(), metadata, systolic, diastolic, BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
       BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
     );
 
+    print(bp);
     client.insertRecords([bp].toJList(BloodPressureRecord.type)).then((InsertRecordsResponse onValue) {
+      print("insert");
       print(onValue.getRecordIdsList());
     });
 

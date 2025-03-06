@@ -5,7 +5,9 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/metadata/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/request/_package.dart';
+import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/response/ReadRecordsResponse.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/time/_package.dart';
+import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
 //import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
@@ -19,6 +21,7 @@ import 'package:jni/src/jobject.dart';
 import 'package:signals/signals_flutter.dart';
 import 'package:flutter/services.dart';
 
+import '../health_connect/androidx/health/connect/client/units/Pressure.dart';
 import 'feature/blood_pressure_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
@@ -37,9 +40,12 @@ class MyApp extends StatelessWidget {
   static const platform = MethodChannel('androidx.healthconnect');
 
   Future<bool?> hasAllPermissions(Set<JString> permissions) async {
+
+
     var perms = await healthConnectClient?.getPermissionController().getGrantedPermissions();
     return perms?.containsAll(permissions);
   }
+
 
   void requestPermission() {
 
@@ -47,7 +53,22 @@ class MyApp extends StatelessWidget {
 
    Future<void> _checkHealthConnectPermissions()  async {
 
+     var perms = await healthConnectClient?.getPermissionController().getGrantedPermissions();
+
+     print(perms);
+    var x = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,  T:BloodPressureRecord.type);
+    print("----");
+    print(x);
+
+    var PERMISSIONS = {
+      HealthPermission.getReadPermission(x),
+      HealthPermission.getWritePermission(x)
+    };
      try {
+       var requestPermissionActivityContract = PermissionController.createRequestPermissionResultContract$1();
+
+
+
        final result = await platform.invokeMethod('checkPermissions');
        healthConnectSignal.value = result;
      } on PlatformException catch(ex) {
@@ -55,17 +76,23 @@ class MyApp extends StatelessWidget {
      }
    }
 
-   Future<JList<BloodPressureRecord>?> readBloodPressureRecords(DateTime start, DateTime end) async {
-    var startInstant = JInstantExt.ofEpochMilli(start.millisecondsSinceEpoch.toJLong());
+   Future<ReadRecordsResponse<BloodPressureRecord>> readBloodPressureRecords(HealthConnectClient client, DateTime start, DateTime end) async {
+     var kClass = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,  T:BloodPressureRecord.type);
+
+
+     var startInstant = JInstantExt.ofEpochMilli(start.millisecondsSinceEpoch.toJLong());
     var endInstant = JInstantExt.ofEpochMilli(end.millisecondsSinceEpoch.toJLong());
     var ascendingOrder = false;
     var pageSize = 10;
-    var request = ReadRecordsRequest(BloodPressureRecord.type.jClass,
+    // Get package from properts or something for the data origin
+    var request = ReadRecordsRequest(kClass,
         TimeRangeFilter.between(startInstant, endInstant),
-        {DataOrigin(JString.fromString('dev.jwill'))}.toJSet(DataOrigin.type), ascendingOrder, pageSize,"".toJString(), 0, T: BloodPressureRecord.type);
+        {DataOrigin(JString.fromString('com.example.flutter_application_1'))}.toJSet(DataOrigin.type), ascendingOrder, pageSize,"0".toJString(), 0, T: BloodPressureRecord.type);
 
-    var response = await healthConnectClient?.readRecords(request);
-    return response?.getRecords();
+    print(healthConnectClient);
+    var response = client.readRecords(request);
+    print(response);
+    return response;
 
   }
 
@@ -95,19 +122,24 @@ class MyApp extends StatelessWidget {
       }
       print(availabilityStatus);
       var healthConnectClient =
-          HealthConnectClient.getOrCreate(context, JString.fromString(""));
+          HealthConnectClient.getOrCreate$1(context);
 
       healthConnectClient.getPermissionController().getGrantedPermissions().then((onValue){
+        print("perms");
         print(onValue);
         print(onValue.containsAll(permissions));
       });
 
-      platform.invokeMethod('m', []).then((onValue) {
-        print("result:$onValue");
+      //platform.invokeMethod('m', []).then((onValue) {
+      //  print("result:$onValue");
 
+      //});
+      var y = readBloodPressureRecords(healthConnectClient, DateTime.now().subtract(Duration(days: 10)), DateTime.now().add(Duration(days: 10)));
+      y.then((x){
+        print("records");
+        print(x.getPageToken());
+        print(x.getRecords());
       });
-      //var y = readBloodPressureRecords(DateTime.now().subtract(Duration(days: 10)), DateTime.now().add(Duration(days: 10)));
-      //print(y);
 
     }
 

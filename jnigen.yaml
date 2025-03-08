@@ -9,6 +9,7 @@ classes:
   - 'androidx.health.connect.client.permission.HealthPermission'
   - 'androidx.health.connect.client.records.BloodPressureRecord'
   - 'androidx.health.connect.client.testing.FakeHealthConnectClient'
+  - 'androidx.health.connect.client.PermissionController'
   - 'androidx.health.connect.client.testing.FakePermissionController'
   - 'androidx.health.connect.client.records.metadata.Metadata'
   - 'androidx.health.connect.client.records.metadata.Device'
@@ -18,6 +19,9 @@ classes:
   - 'androidx.health.connect.client.response.ReadRecordsResponse'
   - 'androidx.health.connect.client.records.metadata.DataOrigin'
   - 'kotlin.jvm.JvmClassMappingKt'
+  - 'kotlin.math.MathKt'
+  - 'kotlin.random.Random'
+  - 'kotlin.io.FilesKt'
 
 maven_downloads:
   source_deps:

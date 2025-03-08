@@ -32,3 +32,4 @@ output.csv
 /mvn_java
 /mvn_jar
 /android/.idea
+/android/app/.cxx

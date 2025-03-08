@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:blood_pressure_app/health_connect/kotlin/random/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
 import 'package:jni/jni.dart';
 import 'package:test/test.dart';
@@ -38,8 +39,9 @@ void run({required TestRunnerCallback testRunner}) {
   testRunner('ddd', (){
     var clazz = JClass.forName('kotlin/String');
     print(clazz);
-
-
+    print(Random.Default.nextDouble1(6.0));
+    print(Random.Default.nextDouble1(6.0));
+    print(Random.Default.nextDouble1(6.0));
 
   });
 }

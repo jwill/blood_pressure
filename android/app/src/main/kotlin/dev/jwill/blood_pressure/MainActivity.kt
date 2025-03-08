@@ -55,79 +55,8 @@ class MainActivity: FlutterFragmentActivity() {
 
                 result.success(true);
             }
-            if (call.method == "m") {
-                var before = Instant.now().minus(5, ChronoUnit.DAYS)
-                var after = Instant.now().plus(5, ChronoUnit.DAYS)
-                GlobalScope.launch() {
-                    var x = readBloodPressure(before, after)
-                    print(x)
-                    result.success(x[0].toJson())
-                }
-            }
         }
     }
-
-    fun BloodPressureRecord.toJson() : String {
-        var obj = JSONStringer()
-            .`object`()
-                .key("time").value(this.time.toEpochMilli())
-            .key("zoneOffset").value(this.zoneOffset)
-            .key("systolic").value(this.systolic)
-            .key("diastolic").value(this.diastolic)
-            .key("bodyPosition").value(this.bodyPosition)
-            .key("measurementLocation").value(this.measurementLocation)
-            .endObject()
-return obj.toString()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
-    suspend fun readBloodPressure(startTime: Instant, endTime: Instant): List<BloodPressureRecord> {
-        var ascendingOrder: Boolean = false
-        var pageSize = 10
-        var request = ReadRecordsRequest<BloodPressureRecord>(
-            timeRangeFilter = androidx.health.connect.client.time.TimeRangeFilter.between(startTime = startTime, endTime = endTime),
-            pageSize = pageSize,
-            pageToken = null
-        )
-        var client = HealthConnectClient.getOrCreate(MainActivity@ this as Context)
-        var response = client.readRecords(request);
-        println(response.records)
-        return response.records;
-
-    }
-
-    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
-    suspend fun readBloodPressure(start: Long, end: Long): List<BloodPressureRecord> {
-        var startTime = Instant.ofEpochMilli(start)
-        var endTime = Instant.ofEpochMilli(end)
-        var ascendingOrder: Boolean = false
-        var pageSize = 10
-        var request = ReadRecordsRequest<BloodPressureRecord>(
-            timeRangeFilter = androidx.health.connect.client.time.TimeRangeFilter.between(startTime = startTime, endTime = endTime),
-            pageSize = pageSize,
-            pageToken = null
-        )
-        var client = HealthConnectClient.getOrCreate(MainActivity@ this as Context)
-        var response = client.readRecords(request);
-        return response.records;
-
-    }
-
-            /*
-            Future<JList<BloodPressureRecord>?> readBloodPressureRecords(DateTime start, DateTime end) async {
-    var startInstant = JInstantExt.ofEpochMilli(start.millisecondsSinceEpoch.toJLong());
-    var endInstant = JInstantExt.ofEpochMilli(end.millisecondsSinceEpoch.toJLong());
-    var ascendingOrder = false;
-    var pageSize = 10;
-    var request = ReadRecordsRequest(BloodPressureRecord.type.jClass,
-        TimeRangeFilter.between(startInstant, endInstant),
-        {DataOrigin(JString.fromString('dev.jwill'))}.toJSet(DataOrigin.type), ascendingOrder, pageSize,"".toJString(), 0, T: BloodPressureRecord.type);
-
-    var response = await healthConnectClient?.readRecords(request);
-    return response?.getRecords();
-
-  }
-             */
 
     private fun hasRequiredPermissions(): Boolean {
         val granted = HealthConnectClient.getOrCreate(MainActivity@this).permissionController

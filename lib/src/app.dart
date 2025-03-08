@@ -8,6 +8,7 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/response/ReadRecordsResponse.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
+import 'package:blood_pressure_app/health_connect/kotlin/random/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
 //import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
@@ -60,12 +61,15 @@ class MyApp extends StatelessWidget {
     print("----");
     print(x);
 
+     print(Random.Default.nextDouble1(6.0));
+     print(Random.Default.nextDouble1(6.0));
+     print(Random.Default.nextDouble1(6.0));
+
     var PERMISSIONS = {
       HealthPermission.getReadPermission(x),
       HealthPermission.getWritePermission(x)
     };
      try {
-       var requestPermissionActivityContract = PermissionController.createRequestPermissionResultContract$1();
 
 
 
@@ -97,7 +101,7 @@ class MyApp extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext bcontext) {
     // Glue the SettingsController to the MaterialApp.
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
@@ -129,6 +133,8 @@ class MyApp extends StatelessWidget {
         print(onValue);
         print(onValue.containsAll(permissions));
       });
+
+
 
       //platform.invokeMethod('m', []).then((onValue) {
       //  print("result:$onValue");

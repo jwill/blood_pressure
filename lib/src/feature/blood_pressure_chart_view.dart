@@ -25,7 +25,7 @@ class BloodPressureChartView extends StatelessWidget {
 
     return Scaffold(
       body: WidgetsToImage(
-          child: _buildChart(context, items.toList()), controller: controller),
+          controller: controller, child: _buildChart(context, items.toList())),
       floatingActionButton: FloatingActionButton(
           onPressed: () async {
             var bytes = await controller.capture();

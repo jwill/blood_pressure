@@ -6,6 +6,7 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/response/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/testing/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/units/_package.dart';
+import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
@@ -32,13 +33,7 @@ class BloodPressureListView extends StatelessWidget {
   Widget build(BuildContext context) {
     hostContext =
     JObject.fromReference(Jni.getCachedApplicationContext());
-    var now = JInstantExt.now();
-    DateTime d = DateTime.now();
-    var dd = d.timeZoneOffset;
-    var zoneOffsetClass = JClass.forName('java.time.ZoneOffset');
-    var ofHours = zoneOffsetClass.staticMethodId(r'ofHours', r'(I)Ljava/time/ZoneOffset;');
-    var zoneOffset = ofHours.call(zoneOffsetClass, JObject.type, [dd.inHours]);
-    print(zoneOffset);
+
     return Scaffold(
       body: _buildList(context),
       floatingActionButton: FloatingActionButton(
@@ -48,9 +43,7 @@ class BloodPressureListView extends StatelessWidget {
   }
 
   void insertBloodPressure(HealthConnectClient client, BPRecord record) {
-    var now = JInstantExt.now();
     var millis = record.date.millisecondsSinceEpoch;
-
 
     var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
     var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
@@ -61,7 +54,9 @@ class BloodPressureListView extends StatelessWidget {
 
     var metadata = Metadata.manualEntry(device);
     var bp = BloodPressureRecord(
-      JInstantExt.ofEpochMilli(millis.toJLong()), getZoneOffset(), metadata, systolic, diastolic, BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
+      Instant.ofEpochMilli(millis)!,
+      getZoneOffset(), metadata, systolic, diastolic,
+      BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
       BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
     );
 
@@ -70,9 +65,6 @@ class BloodPressureListView extends StatelessWidget {
       print("insert");
       print(onValue.getRecordIdsList());
     });
-
-
-
   }
 
   Future<void> _dialogBuilder(BuildContext context) {

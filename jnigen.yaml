@@ -22,9 +22,11 @@ classes:
   - 'kotlin.math.MathKt'
   - 'kotlin.random.Random'
   - 'kotlin.io.FilesKt'
+  - 'java.time.Instant'
+  - 'java.time.ZoneOffset'
 
 maven_downloads:
   source_deps:
     - 'org.jetbrains.kotlin:kotlin-stdlib:2.1.10'
-    - 'androidx.health.connect:connect-client:1.1.0-alpha12'
-    - 'androidx.health.connect:connect-testing:1.0.0-alpha02'
+   # - 'androidx.health.connect:connect-client:1.1.0-alpha12'
+   # - 'androidx.health.connect:connect-testing:1.0.0-alpha02'

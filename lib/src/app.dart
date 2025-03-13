@@ -7,6 +7,7 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/request/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/response/ReadRecordsResponse.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/time/_package.dart';
+import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/random/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jni/jni.dart';
 import 'package:jni/src/jobject.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:signals/signals_flutter.dart';
 import 'package:flutter/services.dart';
 
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
 
   final SettingsController settingsController;
   final BPRecordSignal signal;
+  final Signal packageSignal = Signal("");
   HealthConnectClient? healthConnectClient;
   final requiredPermissions = JArray(JString.nullableType, 2);
   static const platform = MethodChannel('androidx.healthconnect');
@@ -82,16 +85,18 @@ class MyApp extends StatelessWidget {
 
    Future<ReadRecordsResponse<BloodPressureRecord>> readBloodPressureRecords(HealthConnectClient client, DateTime start, DateTime end) async {
      var kClass = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,  T:BloodPressureRecord.type);
-
-
-     var startInstant = JInstantExt.ofEpochMilli(start.millisecondsSinceEpoch.toJLong());
-    var endInstant = JInstantExt.ofEpochMilli(end.millisecondsSinceEpoch.toJLong());
+     var startInstant = Instant.ofEpochMilli(start.millisecondsSinceEpoch);
+    var endInstant = Instant.ofEpochMilli(end.millisecondsSinceEpoch);
     var ascendingOrder = false;
     var pageSize = 10;
+
+
+
     // Get package from properts or something for the data origin
+     print(packageSignal);
     var request = ReadRecordsRequest(kClass,
-        TimeRangeFilter.between(startInstant, endInstant),
-        {DataOrigin(JString.fromString('com.example.flutter_application_1'))}.toJSet(DataOrigin.type), ascendingOrder, pageSize,"0".toJString(), 0, T: BloodPressureRecord.type);
+        TimeRangeFilter.between(startInstant!, endInstant!),
+        {DataOrigin(JString.fromString(packageSignal.value))}.toJSet(DataOrigin.type), ascendingOrder, pageSize,"0".toJString(), 0, T: BloodPressureRecord.type);
 
     print(healthConnectClient);
     var response = client.readRecords(request);
@@ -107,6 +112,10 @@ class MyApp extends StatelessWidget {
     // The ListenableBuilder Widget listens to the SettingsController for changes.
     // Whenever the user updates their settings, the MaterialApp is rebuilt.
     if (Platform.isAndroid) {
+      PackageInfo.fromPlatform().then((PackageInfo info) {
+        packageSignal.value = info.packageName;
+      });
+
       JObject context =
           JObject.fromReference(Jni.getCachedApplicationContext());
 
@@ -134,12 +143,6 @@ class MyApp extends StatelessWidget {
         print(onValue.containsAll(permissions));
       });
 
-
-
-      //platform.invokeMethod('m', []).then((onValue) {
-      //  print("result:$onValue");
-
-      //});
       var y = readBloodPressureRecords(healthConnectClient, DateTime.now().subtract(Duration(days: 10)), DateTime.now().add(Duration(days: 10)));
       y.then((x){
         print("records");

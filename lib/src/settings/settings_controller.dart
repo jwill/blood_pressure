@@ -90,7 +90,7 @@ class SettingsController with ChangeNotifier {
   }
 
   Future<void> saveFile() async {
-    var records = recordsSignal.value; //box.getValues().toList();
+    var records = recordsSignal.value;
     List<List> list = [];
     for (var element in records) {
       list.add([

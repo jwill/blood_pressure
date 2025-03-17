@@ -1,3 +1,7 @@
+android_sdk_config:
+  add_gradle_deps: true
+  add_gradle_sources: true
+
 output:
   dart:
     path: lib/health_connect/
@@ -8,9 +12,7 @@ classes:
   - 'androidx.health.connect.client.units.Pressure'
   - 'androidx.health.connect.client.permission.HealthPermission'
   - 'androidx.health.connect.client.records.BloodPressureRecord'
-  - 'androidx.health.connect.client.testing.FakeHealthConnectClient'
   - 'androidx.health.connect.client.PermissionController'
-  - 'androidx.health.connect.client.testing.FakePermissionController'
   - 'androidx.health.connect.client.records.metadata.Metadata'
   - 'androidx.health.connect.client.records.metadata.Device'
   - 'androidx.health.connect.client.response.InsertRecordsResponse'
@@ -28,5 +30,3 @@ classes:
 maven_downloads:
   source_deps:
     - 'org.jetbrains.kotlin:kotlin-stdlib:2.1.10'
-   # - 'androidx.health.connect:connect-client:1.1.0-alpha12'
-   # - 'androidx.health.connect:connect-testing:1.0.0-alpha02'

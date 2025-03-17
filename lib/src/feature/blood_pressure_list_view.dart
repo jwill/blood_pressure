@@ -4,7 +4,6 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/metadata/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/response/_package.dart';
-import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/testing/_package.dart';
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/units/_package.dart';
 import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';

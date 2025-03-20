@@ -11,6 +11,7 @@ import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/random/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
+
 //import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_tab_view.dart';
@@ -33,8 +34,7 @@ final healthConnectSignal = signal(false);
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
-   MyApp(
-      {super.key, required this.settingsController, required this.signal});
+  MyApp({super.key, required this.settingsController, required this.signal});
 
   final SettingsController settingsController;
   final BPRecordSignal signal;
@@ -44,65 +44,66 @@ class MyApp extends StatelessWidget {
   static const platform = MethodChannel('androidx.healthconnect');
 
   Future<bool?> hasAllPermissions(Set<JString> permissions) async {
-
-
-    var perms = await healthConnectClient?.getPermissionController().getGrantedPermissions();
+    var perms = await healthConnectClient
+        ?.getPermissionController()
+        .getGrantedPermissions();
     return perms?.containsAll(permissions);
   }
 
+  void requestPermission() {}
 
-  void requestPermission() {
+  Future<void> _checkHealthConnectPermissions() async {
+    var perms = await healthConnectClient
+        ?.getPermissionController()
+        .getGrantedPermissions();
 
-  }
-
-   Future<void> _checkHealthConnectPermissions()  async {
-
-     var perms = await healthConnectClient?.getPermissionController().getGrantedPermissions();
-
-     print(perms);
-    var x = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,  T:BloodPressureRecord.type);
+    print(perms);
+    var x = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,
+        T: BloodPressureRecord.type);
     print("----");
     print(x);
 
-     print(Random.Default.nextDouble1(6.0));
-     print(Random.Default.nextDouble1(6.0));
-     print(Random.Default.nextDouble1(6.0));
+    print(Random.Default.nextDouble1(6.0));
+    print(Random.Default.nextDouble1(6.0));
+    print(Random.Default.nextDouble1(6.0));
 
     var PERMISSIONS = {
       HealthPermission.getReadPermission(x),
       HealthPermission.getWritePermission(x)
     };
-     try {
+    try {
+      final result = await platform.invokeMethod('checkPermissions');
+      healthConnectSignal.value = result;
+    } on PlatformException catch (ex) {}
+  }
 
-
-
-       final result = await platform.invokeMethod('checkPermissions');
-       healthConnectSignal.value = result;
-     } on PlatformException catch(ex) {
-
-     }
-   }
-
-   Future<ReadRecordsResponse<BloodPressureRecord>> readBloodPressureRecords(HealthConnectClient client, DateTime start, DateTime end) async {
-     var kClass = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,  T:BloodPressureRecord.type);
-     var startInstant = Instant.ofEpochMilli(start.millisecondsSinceEpoch);
+  Future<ReadRecordsResponse<BloodPressureRecord>> readBloodPressureRecords(
+      HealthConnectClient client, DateTime start, DateTime end) async {
+    var kClass = JvmClassMappingKt.getKotlinClass(
+        BloodPressureRecord.type.jClass,
+        T: BloodPressureRecord.type);
+    var startInstant = Instant.ofEpochMilli(start.millisecondsSinceEpoch);
     var endInstant = Instant.ofEpochMilli(end.millisecondsSinceEpoch);
     var ascendingOrder = false;
     var pageSize = 10;
 
-
-
     // Get package from properts or something for the data origin
-     print(packageSignal);
-    var request = ReadRecordsRequest(kClass,
+    print(packageSignal);
+    var request = ReadRecordsRequest(
+        kClass,
         TimeRangeFilter.between(startInstant!, endInstant!),
-        {DataOrigin(JString.fromString(packageSignal.value))}.toJSet(DataOrigin.type), ascendingOrder, pageSize,"0".toJString(), 0, T: BloodPressureRecord.type);
+        {DataOrigin(JString.fromString(packageSignal.value))}
+            .toJSet(DataOrigin.type),
+        ascendingOrder,
+        pageSize,
+        "0".toJString(),
+        0,
+        T: BloodPressureRecord.type);
 
     print(healthConnectClient);
     var response = client.readRecords(request);
     print(response);
     return response;
-
   }
 
   @override
@@ -123,33 +124,39 @@ class MyApp extends StatelessWidget {
         print(healthConnectSignal.value);
       });
 
-      final String healthConnectPackageName = "com.google.android.apps.healthdata";
+      final String healthConnectPackageName =
+          "com.google.android.apps.healthdata";
       var permissions = {
         'android.permission.health.READ_BLOOD_PRESSURE'.toJString(),
-        'android.permission.health.WRITE_BLOOD_PRESSURE'.toJString() }
-          .toJSet(JString.type);
+        'android.permission.health.WRITE_BLOOD_PRESSURE'.toJString()
+      }.toJSet(JString.type);
 
-      var availabilityStatus = HealthConnectClient.getSdkStatus(context, healthConnectPackageName.toJString());
-      if(availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
+      var availabilityStatus = HealthConnectClient.getSdkStatus(
+          context, healthConnectPackageName.toJString());
+      if (availabilityStatus == HealthConnectClient.SDK_UNAVAILABLE) {
         print("SDK Unavailable");
       }
       print(availabilityStatus);
-      var healthConnectClient =
-          HealthConnectClient.getOrCreate$1(context);
+      var healthConnectClient = HealthConnectClient.getOrCreate$1(context);
 
-      healthConnectClient.getPermissionController().getGrantedPermissions().then((onValue){
+      healthConnectClient
+          .getPermissionController()
+          .getGrantedPermissions()
+          .then((onValue) {
         print("perms");
         print(onValue);
         print(onValue.containsAll(permissions));
       });
 
-      var y = readBloodPressureRecords(healthConnectClient, DateTime.now().subtract(Duration(days: 10)), DateTime.now().add(Duration(days: 10)));
-      y.then((x){
+      var y = readBloodPressureRecords(
+          healthConnectClient,
+          DateTime.now().subtract(Duration(days: 10)),
+          DateTime.now().add(Duration(days: 10)));
+      y.then((x) {
         print("records");
         print(x.getPageToken());
         print(x.getRecords());
       });
-
     }
 
     return SignalProvider<BPRecordSignal>(

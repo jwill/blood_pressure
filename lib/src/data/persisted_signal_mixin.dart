@@ -45,6 +45,10 @@ mixin PersistedSignalMixin<T> on Signal<T> {
     await store.setItem(key, str);
   }
 
+  Future<void> clear() async {
+    await store.clear();
+  }
+
   T decode(String value) => jsonDecode(value);
 
   String encode(T value) => jsonEncode(value);

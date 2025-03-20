@@ -4,6 +4,7 @@ abstract class KeyValueStore {
   Future<void> setItem(String key, String value);
   Future<String?> getItem(String key);
   Future<void> removeItem(String key);
+  Future<void> clear();
 }
 
 class InMemoryStore implements KeyValueStore {
@@ -22,6 +23,11 @@ class InMemoryStore implements KeyValueStore {
   @override
   Future<void> setItem(String key, String value) async {
     _store[key] = value;
+  }
+
+  @override
+  Future<void> clear() async {
+    _store.clear();
   }
 }
 
@@ -51,5 +57,11 @@ class SharedPreferencesStore implements KeyValueStore {
   Future<void> setItem(String key, String value) async {
     final prefs = await init();
     prefs.setString(key, value);
+  }
+
+  @override
+  Future<void> clear() async {
+    final prefs = await init();
+    prefs.clear();
   }
 }

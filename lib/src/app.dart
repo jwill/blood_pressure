@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
   final BPRecordSignal signal;
   final Signal packageSignal = Signal("");
   HealthConnectClient? healthConnectClient;
-  final requiredPermissions = JArray(JString.nullableType, 2);
   static const platform = MethodChannel('androidx.healthconnect');
 
   Future<bool?> hasAllPermissions(Set<JString> permissions) async {

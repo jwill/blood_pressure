@@ -26,12 +26,14 @@ class BloodPressureListView extends StatelessWidget {
   });
 
   static const routeName = '/list';
-  late JObject hostContext;
+  late var hostContext;
 
   @override
   Widget build(BuildContext context) {
-    hostContext =
-    JObject.fromReference(Jni.getCachedApplicationContext());
+    if (Platform.isAndroid) {
+      hostContext =
+          JObject.fromReference(Jni.getCachedApplicationContext());
+    }
 
     return Scaffold(
       body: _buildList(context),
@@ -99,7 +101,6 @@ class BloodPressureListView extends StatelessWidget {
                     var client =
                     HealthConnectClient.getOrCreate(hostContext, JString.fromString(""));
                     insertBloodPressure(client, record);
-//insertBloodPressure(client, record)
                   }
 
                   signal?.value.add(record);

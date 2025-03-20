@@ -101,16 +101,21 @@ class SettingsController with ChangeNotifier {
       ]);
     }
     final res = const ListToCsvConverter().convert(list);
-
-    String? result = await FilePicker.platform.saveFile(
-        dialogTitle: 'Please select an output file:',
-        fileName: 'output.csv',
-        bytes: Uint8List.fromList(res.codeUnits));
-    if (result != null &&
-        (Platform.isLinux || Platform.isMacOS || Platform.isWindows)) {
-      // saveFile doesn't actually save on desktop
-      var file = File(result);
-      file.writeAsString(res);
+    String? result;
+    if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
+      result = await FilePicker.platform.saveFile(
+          dialogTitle: 'Please select an output file:',
+          fileName: 'output.csv');
+      if (result != null) {
+        // saveFile doesn't actually save on desktop
+        var file = File(result);
+        file.writeAsString(res);
+      }
+    } else {
+      result = await FilePicker.platform.saveFile(
+          dialogTitle: 'Please select an output file:',
+          fileName: 'output.csv',
+          bytes: Uint8List.fromList(res.codeUnits));
     }
   }
 
@@ -125,5 +130,11 @@ class SettingsController with ChangeNotifier {
       var file = File(result);
       file.writeAsBytes(bytes);
     }
+  }
+
+  Future<void> clearRecords() async{
+    recordsSignal.clear();
+    recordsSignal.save([]);
+    recordsSignal.notifyListeners();
   }
 }

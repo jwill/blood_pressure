@@ -63,6 +63,7 @@ class SettingsView extends StatelessWidget {
                   },
                   child: const Text("Load Data")),
             ),
+            SizedBox(height: 16,),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(
@@ -79,7 +80,9 @@ class SettingsView extends StatelessWidget {
                 child: FilledButton(
                     style: FilledButton.styleFrom(
                         backgroundColor: colorScheme.error),
-                    onPressed: () async {},
+                    onPressed: () async {
+                      controller.clearRecords();
+                    },
                     child: const Text("Clear Data")))
           ],
         ),

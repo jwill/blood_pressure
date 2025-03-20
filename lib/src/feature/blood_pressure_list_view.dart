@@ -31,8 +31,7 @@ class BloodPressureListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isAndroid) {
-      hostContext =
-          JObject.fromReference(Jni.getCachedApplicationContext());
+      hostContext = JObject.fromReference(Jni.getCachedApplicationContext());
     }
 
     return Scaffold(
@@ -51,18 +50,24 @@ class BloodPressureListView extends StatelessWidget {
     // TODO read the actual time
     //var metadata = Metadata.manualEntry(null);
 
-    var device = Device(0, JString.fromString('blah'), JString.fromString('blah2'));
+    var device =
+        Device(0, JString.fromString('blah'), JString.fromString('blah2'));
 
     var metadata = Metadata.manualEntry(device);
     var bp = BloodPressureRecord(
       Instant.ofEpochMilli(millis)!,
-      getZoneOffset(), metadata, systolic, diastolic,
+      getZoneOffset(),
+      metadata,
+      systolic,
+      diastolic,
       BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
       BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
     );
 
     print(bp);
-    client.insertRecords([bp].toJList(BloodPressureRecord.type)).then((InsertRecordsResponse onValue) {
+    client
+        .insertRecords([bp].toJList(BloodPressureRecord.type))
+        .then((InsertRecordsResponse onValue) {
       print("insert");
       print(onValue.getRecordIdsList());
     });
@@ -98,8 +103,8 @@ class BloodPressureListView extends StatelessWidget {
 
                   // Use health connect if on Android
                   if (Platform.isAndroid) {
-                    var client =
-                    HealthConnectClient.getOrCreate(hostContext, JString.fromString(""));
+                    var client = HealthConnectClient.getOrCreate(
+                        hostContext, JString.fromString(""));
                     insertBloodPressure(client, record);
                   }
 

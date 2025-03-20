@@ -63,7 +63,9 @@ class SettingsView extends StatelessWidget {
                   },
                   child: const Text("Load Data")),
             ),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(

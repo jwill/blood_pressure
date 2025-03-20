@@ -1,5 +1,3 @@
-
-
 import 'dart:ffi';
 
 import 'package:blood_pressure_app/health_connect/java/time/_package.dart';

@@ -9,15 +9,14 @@ import 'package:jni/src/build_util/build_util.dart';
 
 typedef TestCaseCallback = void Function();
 typedef TestRunnerCallback = void
-Function(String description, TestCaseCallback test, {Object? skip});
+    Function(String description, TestCaseCallback test, {Object? skip});
 
 final currentDir = Directory.current.uri;
 final dllSuffix =
-Platform.isWindows ? 'dll' : (Platform.isMacOS ? 'dylib' : 'so');
+    Platform.isWindows ? 'dll' : (Platform.isMacOS ? 'dylib' : 'so');
 final dllPrefix = Platform.isWindows ? '' : 'lib';
 final dllPath =
-currentDir.resolve('build/jni_libs/${dllPrefix}dartjni.$dllSuffix');
-
+    currentDir.resolve('build/jni_libs/${dllPrefix}dartjni.$dllSuffix');
 
 void spawnJvm() {
   Jni.spawnIfNotExists(

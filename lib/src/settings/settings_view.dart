@@ -16,6 +16,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -30,7 +31,7 @@ class SettingsView extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Text("Brightness"),
+                Text("Brightness", style: textTheme.bodyLarge,),
                 const Spacer(),
                 DropdownButton<ThemeMode>(
                   // Read the selected themeMode from the controller
@@ -54,6 +55,9 @@ class SettingsView extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 8,
+            ),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(
@@ -64,7 +68,7 @@ class SettingsView extends StatelessWidget {
                   child: const Text("Load Data")),
             ),
             SizedBox(
-              height: 16,
+              height: 8,
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
@@ -75,7 +79,7 @@ class SettingsView extends StatelessWidget {
                   child: const Text("Export Data")),
             ),
             const SizedBox(
-              height: 64,
+              height: 32,
             ),
             ConstrainedBox(
                 constraints: const BoxConstraints(minWidth: double.infinity),

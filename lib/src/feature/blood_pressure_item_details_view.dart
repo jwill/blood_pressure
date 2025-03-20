@@ -39,10 +39,16 @@ class BloodPressureItemDetailsView extends StatelessWidget {
                 Text(record['diastolic'])
               ],
             ),
+            SizedBox(
+              height: 8,
+            ),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(
                   onPressed: () {}, child: const Text("Edit Item")),
+            ),
+            SizedBox(
+              height: 8,
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),

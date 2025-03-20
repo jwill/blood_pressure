@@ -9,10 +9,7 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
-import 'package:blood_pressure_app/health_connect/kotlin/random/_package.dart';
-import 'package:blood_pressure_app/jni_utils.dart';
 
-//import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_tab_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
@@ -20,12 +17,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jni/jni.dart';
-import 'package:jni/src/jobject.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:signals/signals_flutter.dart';
 import 'package:flutter/services.dart';
 
-import '../health_connect/androidx/health/connect/client/units/Pressure.dart';
 import 'feature/blood_pressure_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
@@ -62,10 +57,6 @@ class MyApp extends StatelessWidget {
     print("----");
     print(x);
 
-    print(Random.Default.nextDouble1(6.0));
-    print(Random.Default.nextDouble1(6.0));
-    print(Random.Default.nextDouble1(6.0));
-
     var PERMISSIONS = {
       HealthPermission.getReadPermission(x),
       HealthPermission.getWritePermission(x)
@@ -86,7 +77,7 @@ class MyApp extends StatelessWidget {
     var ascendingOrder = false;
     var pageSize = 10;
 
-    // Get package from properts or something for the data origin
+    // Get package from property or something for the data origin
     print(packageSignal);
     var request = ReadRecordsRequest(
         kClass,

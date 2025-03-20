@@ -21,9 +21,6 @@ classes:
   - 'androidx.health.connect.client.response.ReadRecordsResponse'
   - 'androidx.health.connect.client.records.metadata.DataOrigin'
   - 'kotlin.jvm.JvmClassMappingKt'
-  - 'kotlin.math.MathKt'
-  - 'kotlin.random.Random'
-  - 'kotlin.io.FilesKt'
   - 'java.time.Instant'
   - 'java.time.ZoneOffset'
 

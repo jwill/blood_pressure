@@ -132,8 +132,9 @@ class BloodPressureListView extends StatelessWidget {
       return Colors.yellow;
     } else if (record.systolic >= 140 || record.diastolic >= 90) {
       return Colors.red;
-    } else
+    } else {
       return Colors.orange;
+    }
   }
 
   Widget _buildList(BuildContext context) {

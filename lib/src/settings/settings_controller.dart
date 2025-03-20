@@ -104,8 +104,7 @@ class SettingsController with ChangeNotifier {
     String? result;
     if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
       result = await FilePicker.platform.saveFile(
-          dialogTitle: 'Please select an output file:',
-          fileName: 'output.csv');
+          dialogTitle: 'Please select an output file:', fileName: 'output.csv');
       if (result != null) {
         // saveFile doesn't actually save on desktop
         var file = File(result);
@@ -120,19 +119,24 @@ class SettingsController with ChangeNotifier {
   }
 
   static Future<void> saveImage(Uint8List bytes) async {
-    String? result = await FilePicker.platform.saveFile(
-        dialogTitle: 'Please select an output file:',
-        fileName: 'output.png',
-        bytes: bytes);
-    if (result != null &&
-        (Platform.isLinux || Platform.isMacOS || Platform.isWindows)) {
-      // saveFile doesn't actually save on desktop
-      var file = File(result);
-      file.writeAsBytes(bytes);
+    String? result;
+    if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
+      result = await FilePicker.platform.saveFile(
+          dialogTitle: 'Please select an output file:', fileName: 'output.png');
+      if (result != null) {
+        // saveFile doesn't actually save on desktop
+        var file = File(result);
+        file.writeAsBytes(bytes);
+      }
+    } else {
+      result = await FilePicker.platform.saveFile(
+          dialogTitle: 'Please select an output file:',
+          fileName: 'output.png',
+          bytes: bytes);
     }
   }
 
-  Future<void> clearRecords() async{
+  Future<void> clearRecords() async {
     recordsSignal.clear();
     recordsSignal.save([]);
     recordsSignal.notifyListeners();

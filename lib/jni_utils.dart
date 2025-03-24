@@ -9,3 +9,9 @@ ZoneOffset getZoneOffset() {
   var dd = d.timeZoneOffset.inHours;
   return ZoneOffset.ofHours(dd)!;
 }
+
+extension TimeUtils on DateTime {
+  Instant toInstant() {
+    return Instant.ofEpochMilli(millisecondsSinceEpoch)!;
+  }
+}

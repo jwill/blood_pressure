@@ -47,13 +47,8 @@ class BloodPressureListView extends StatelessWidget {
 
     var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
     var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
-    // TODO read the actual time
-    //var metadata = Metadata.manualEntry(null);
 
-    var device =
-        Device(0, JString.fromString('blah'), JString.fromString('blah2'));
-
-    var metadata = Metadata.manualEntry(device);
+    var metadata = Metadata.manualEntry$2();
     var bp = BloodPressureRecord(
       Instant.ofEpochMilli(millis)!,
       getZoneOffset(),
@@ -64,11 +59,9 @@ class BloodPressureListView extends StatelessWidget {
       BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
     );
 
-    print(bp);
     client
         .insertRecords([bp].toJList(BloodPressureRecord.type))
         .then((InsertRecordsResponse onValue) {
-      print("insert");
       print(onValue.getRecordIdsList());
     });
   }

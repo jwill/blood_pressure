@@ -14,15 +14,15 @@ classes:
   - 'androidx.health.connect.client.records.BloodPressureRecord'
   - 'androidx.health.connect.client.PermissionController'
   - 'androidx.health.connect.client.records.metadata.Metadata'
-  - 'androidx.health.connect.client.records.metadata.Device'
+  - 'androidx.health.connect.client.records.metadata.DataOrigin'
   - 'androidx.health.connect.client.response.InsertRecordsResponse'
   - 'androidx.health.connect.client.time.TimeRangeFilter'
   - 'androidx.health.connect.client.request.ReadRecordsRequest'
   - 'androidx.health.connect.client.response.ReadRecordsResponse'
-  - 'androidx.health.connect.client.records.metadata.DataOrigin'
   - 'kotlin.jvm.JvmClassMappingKt'
   - 'java.time.Instant'
   - 'java.time.ZoneOffset'
+  - 'java.time.ZonedDateTime'
 
 maven_downloads:
   source_deps:

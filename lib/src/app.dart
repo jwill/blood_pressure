@@ -9,12 +9,12 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
+import 'package:blood_pressure_app/jni_utils.dart';
 
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_tab_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jni/jni.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -51,11 +51,8 @@ class MyApp extends StatelessWidget {
         ?.getPermissionController()
         .getGrantedPermissions();
 
-    print(perms);
     var x = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,
         T: BloodPressureRecord.type);
-    print("----");
-    print(x);
 
     var PERMISSIONS = {
       HealthPermission.getReadPermission(x),
@@ -72,27 +69,21 @@ class MyApp extends StatelessWidget {
     var kClass = JvmClassMappingKt.getKotlinClass(
         BloodPressureRecord.type.jClass,
         T: BloodPressureRecord.type);
-    var startInstant = Instant.ofEpochMilli(start.millisecondsSinceEpoch);
-    var endInstant = Instant.ofEpochMilli(end.millisecondsSinceEpoch);
     var ascendingOrder = false;
     var pageSize = 10;
 
     // Get package from property or something for the data origin
-    print(packageSignal);
     var request = ReadRecordsRequest(
         kClass,
-        TimeRangeFilter.between(startInstant!, endInstant!),
-        {DataOrigin(JString.fromString(packageSignal.value))}
-            .toJSet(DataOrigin.type),
+        TimeRangeFilter.between(start.toInstant(), end.toInstant()),
+        <DataOrigin>[].toJSet(DataOrigin.type),
         ascendingOrder,
         pageSize,
         "0".toJString(),
         0,
         T: BloodPressureRecord.type);
 
-    print(healthConnectClient);
     var response = client.readRecords(request);
-    print(response);
     return response;
   }
 
@@ -156,18 +147,6 @@ class MyApp extends StatelessWidget {
           builder: (BuildContext context, Widget? child) {
             return MaterialApp(
               restorationScopeId: 'app',
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const [
-                Locale('en', ''), // English, no country code
-              ],
-
-              onGenerateTitle: (BuildContext context) =>
-                  AppLocalizations.of(context)!.appTitle,
 
               theme: ThemeData(
                   colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),

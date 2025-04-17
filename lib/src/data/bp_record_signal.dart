@@ -12,13 +12,14 @@ class BPRecordSignal extends PersistedSignal<List<BPRecord>> {
         );
 
   @override
-  String encode(List<BPRecord> list) {
-    return jsonEncode(list);
+  String encode(List<BPRecord> value) {
+    return jsonEncode(value);
   }
 
   @override
   List<BPRecord> decode(String value) {
     List<dynamic> list = jsonDecode(value);
+    print(value);
     List<BPRecord> records = [];
     for (var item in list) {
       records.add(BPRecord.fromMap(item));

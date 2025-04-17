@@ -9,15 +9,17 @@ import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
-import 'package:blood_pressure_app/src/feature/blood_pressure_input.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:intl/intl.dart';
 import 'package:jni/_internal.dart';
 import 'package:jni/jni.dart';
 import 'package:logging/logging.dart';
 import 'package:signals/signals_flutter.dart';
+
+import 'blood_pressure_input.dart';
 
 /// Displays a list of SampleItems.
 class BloodPressureListView extends StatelessWidget {
@@ -73,7 +75,7 @@ class BloodPressureListView extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Add New Reading'),
+            title: const Text('New Reading'),
             content: SingleChildScrollView(
               child: Column(
                 children: [input],
@@ -130,10 +132,137 @@ class BloodPressureListView extends StatelessWidget {
     }
   }
 
+  Widget _buildItem(BuildContext context, BPRecord item) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+    final data = item.notes.isNotEmpty
+        ? "${item.systolic}/${item.diastolic} - ${item.notes}"
+        : "${item.systolic}/${item.diastolic}";
+    return GestureDetector(
+        onTap: () {
+          Navigator.restorablePushNamed(
+              context, BloodPressureItemDetailsView.routeName,
+              arguments: <String, String>{
+                'date': item.date.toString(),
+                'systolic': item.systolic.toString(),
+                'diastolic': item.diastolic.toString(),
+                'notes': item.notes,
+              });
+        },
+        child: Card(
+            color: Colors.white,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    bottomLeft: Radius.circular(40),
+                    topRight: Radius.circular(24),
+                    bottomRight: Radius.circular(24))),
+            child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 8,
+                      height: 8,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.event),
+                            Text(DateFormat.jm().format(item.date))
+                          ],
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.schedule),
+                            Text(DateFormat('dd MMM').format(item.date))
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Container(
+                        alignment: Alignment.center,
+                        height: 56,
+                        width: 264,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(24))),
+                        child: Baseline(
+                          baseline: 24,
+                          baselineType: TextBaseline.alphabetic,
+                          child: Text(
+                            "${item.systolic} / ${item.diastolic}",
+                            style: GoogleFonts.concertOne().copyWith(
+                                fontSize: textTheme.titleLarge?.fontSize),
+                          ),
+                        )),
+                  ],
+                ))));
+  }
+
+  Widget _buildItem2(BuildContext context, BPRecord item) {
+    final textTheme = Theme.of(context).textTheme;
+    final data = item.notes.isNotEmpty
+        ? "${item.systolic}/${item.diastolic} - ${item.notes}"
+        : "${item.systolic}/${item.diastolic}";
+    return GestureDetector(
+        onTap: () {
+          Navigator.restorablePushNamed(
+              context, BloodPressureItemDetailsView.routeName,
+              arguments: <String, String>{
+                'date': item.date.toString(),
+                'systolic': item.systolic.toString(),
+                'diastolic': item.diastolic.toString(),
+                'notes': item.notes,
+              });
+        },
+        child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Container(
+                  height: 36,
+                  width: 36,
+                  decoration: BoxDecoration(
+                    color: pickColorForBP(item),
+                    borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  DateFormat('dd MMM').format(item.date),
+                  style: textTheme.titleLarge,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  DateFormat('HH:mm').format(item.date),
+                  style: textTheme.titleLarge,
+                ),
+                const SizedBox(
+                  width: 36,
+                ),
+                Text(data, style: textTheme.displaySmall)
+              ],
+            )));
+  }
+
   Widget _buildList(BuildContext context) {
     final signal = SignalProvider.of<BPRecordSignal>(context)!;
 
-    final textTheme = Theme.of(context).textTheme;
     return Watch((context) => ListView.builder(
           restorationId: 'bloodPressureItemListView',
           itemCount: signal.value.length,
@@ -143,50 +272,7 @@ class BloodPressureListView extends StatelessWidget {
                 ? "${item.systolic}/${item.diastolic} - ${item.notes}"
                 : "${item.systolic}/${item.diastolic}";
 
-            return GestureDetector(
-                onTap: () {
-                  Navigator.restorablePushNamed(
-                      context, BloodPressureItemDetailsView.routeName,
-                      arguments: <String, String>{
-                        'date': item.date.toString(),
-                        'systolic': item.systolic.toString(),
-                        'diastolic': item.diastolic.toString(),
-                        'notes': item.notes,
-                      });
-                },
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 36,
-                          width: 36,
-                          decoration: BoxDecoration(
-                            color: pickColorForBP(item),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(24.0)),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          DateFormat('dd MMM').format(item.date),
-                          style: textTheme.titleLarge,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          DateFormat('HH:mm').format(item.date),
-                          style: textTheme.titleLarge,
-                        ),
-                        const SizedBox(
-                          width: 36,
-                        ),
-                        Text(data, style: textTheme.displaySmall)
-                      ],
-                    )));
+            return _buildItem(context, item);
           },
         ));
   }

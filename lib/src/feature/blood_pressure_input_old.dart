@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:signals/signals_flutter.dart';
 
-class BloodPressureInput extends StatefulWidget {
+class BloodPressureInput2 extends StatefulWidget {
   final date = signal(DateTime.now());
-  final systolic = signal('');
-  final diastolic = signal('');
+  final systolic = signal('120');
+  final diastolic = signal('80');
   final notes = signal('');
 
-  BloodPressureInput({super.key});
+  BloodPressureInput2({super.key});
 
   @override
-  State<BloodPressureInput> createState() => _BloodPressureInputState();
+  State<BloodPressureInput2> createState() => _BloodPressureInputState();
 }
 
-class _BloodPressureInputState extends State<BloodPressureInput> {
+class _BloodPressureInputState extends State<BloodPressureInput2> {
   late TextEditingController _systolic_controller;
   late TextEditingController _diatolic_controller;
   late TextEditingController _notes_controller;
@@ -41,19 +40,18 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
 
   @override
   Widget build(BuildContext context) {
-    final concertOne = GoogleFonts.concertOne();
     return Column(
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Watch((context) {
             var displayDate = widget.date.value;
             final display = DateFormat.yMd().format(displayDate);
-            return Text(display, style: concertOne,);
+            return Text(display);
           }),
           const SizedBox(
             width: 8,
           ),
-      IconButton.filled(
+          OutlinedButton(
               onPressed: () async {
                 showDatePicker(
                         context: context,
@@ -62,7 +60,7 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
                         currentDate: DateTime.now())
                     .then((value) => widget.date.value = value!);
               },
-      icon: Icon(Icons.edit),)
+              child: const Text("Edit Date"))
         ]),
         const SizedBox(
           height: 8,
@@ -71,12 +69,12 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
           Watch((context) {
             var displayTime = widget.date.value;
             final display = DateFormat.Hm().format(displayTime);
-            return Text(display, style: concertOne,);
+            return Text(display);
           }),
           const SizedBox(
             width: 8,
           ),
-          IconButton.filled(
+          OutlinedButton(
               onPressed: () async {
                 showTimePicker(
                   context: context,
@@ -86,28 +84,15 @@ class _BloodPressureInputState extends State<BloodPressureInput> {
                       .copyWith(hour: value?.hour, minute: value?.minute);
                 });
               },
-              icon: Icon(Icons.edit),)
+              child: const Text("Edit Time"))
         ]),
         TextField(
-          decoration: InputDecoration(
-              border: OutlineInputBorder(),
-            labelText: "Top number (systolic)",
-            labelStyle: concertOne,
-          ),
-          style: concertOne,
           controller: _systolic_controller,
           onChanged: (value) {
             widget.systolic.value = value;
           },
         ),
         TextField(
-          decoration: InputDecoration(
-            fillColor: Theme.of(context).colorScheme.surfaceContainerLowest,
-            border: OutlineInputBorder(),
-            labelText: "Bottom number (diastolic)",
-            labelStyle: concertOne,
-          ),
-          style: concertOne,
           controller: _diatolic_controller,
           onChanged: (value) {
             widget.diastolic.value = value;

@@ -10,6 +10,7 @@ import 'package:blood_pressure_app/health_connect/androidx/health/connect/client
 import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
 import 'package:blood_pressure_app/health_connect/kotlin/jvm/_package.dart';
 import 'package:blood_pressure_app/jni_utils.dart';
+import 'package:blood_pressure_app/src/color_schemes.g.dart';
 
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_tab_view.dart';
@@ -42,6 +43,10 @@ class MyApp extends StatelessWidget {
         ?.getPermissionController()
         .getGrantedPermissions();
     return perms?.containsAll(permissions);
+  }
+
+  static int? argbFromHex(String hex) {
+    return int.tryParse(hex.replaceAll('#', ''), radix: 16);
   }
 
   void requestPermission() {}
@@ -147,13 +152,10 @@ class MyApp extends StatelessWidget {
           builder: (BuildContext context, Widget? child) {
             return MaterialApp(
               restorationScopeId: 'app',
-
-              theme: ThemeData(
-                  colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-                  useMaterial3: true),
-              darkTheme: ThemeData.dark(),
+              theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+              darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
               themeMode: settingsController.themeMode,
-
+                debugShowCheckedModeBanner: false,
               // Define a function to handle named routes in order to support
               // Flutter web url navigation and deep linking.
               onGenerateRoute: (RouteSettings routeSettings) {

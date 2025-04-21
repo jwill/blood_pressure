@@ -60,6 +60,7 @@ class BloodPressureItemDetailsView extends StatelessWidget {
                       elem.date == DateTime.parse(record["date"])
                     );
                     signal.save(signal.value);
+                    signal.set(signal.value, force: true);
                     Navigator.pop(context);
                   },
                   child: const Text("Delete Item")),

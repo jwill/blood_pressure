@@ -45,15 +45,19 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView>
                   },
                   icon: const Icon(Icons.settings))
             ],
-            bottom: TabBar(
+            bottom: PreferredSize(preferredSize: Size.fromHeight(175.0), child: Column(children:[
+              Padding(
+                padding: EdgeInsets.only(bottom: 16.0),
+                child: Text("Blood\n pressure tracking", style: textTheme.headlineLarge?.copyWith(fontFamily: GoogleFonts.corben().fontFamily),),),
+              TabBar(
                 controller: _tabController,
-                labelStyle: textTheme.titleLarge,
+                labelStyle: textTheme.titleSmall,
                 labelColor: colorScheme.primary,
                 tabs: <Widget>[
                   Tab(
                     //text: "My Data",
                     icon: Icon(Icons.favorite, size: 24.0),
-                    text: "My Data",
+                    text: "My data",
                   ),
                   Tab(
                     text: "Chart",
@@ -62,13 +66,12 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView>
                       size: 28.0,
                     ),
                   ),
-                ]),
+                ])]))
           ),
-          body:
-            TabBarView(controller: _tabController, children: <Widget>[
+          body:TabBarView(controller: _tabController, children: <Widget>[
             BloodPressureListView(),
             BloodPressureChartView()
-          ]),
-        ));
+            ]),)
+        );
   }
 }

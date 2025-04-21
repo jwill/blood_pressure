@@ -87,6 +87,8 @@ print(widget.systolic.value);
             .compareTo(b.date.millisecondsSinceEpoch);
       });
       signal?.save(signal.value);
+      // Force immediate update
+      signal?.set(signal.value, force: true);
 
       Navigator.pop(context, 'OK');
     }

@@ -23,7 +23,7 @@ import 'package:signals/signals_flutter.dart';
 import 'blood_pressure_input.dart';
 
 /// Displays a list of SampleItems.
-class BloodPressureListView extends StatelessWidget {
+class BloodPressureListView extends StatefulWidget {
   BloodPressureListView({
     super.key,
   });
@@ -32,9 +32,14 @@ class BloodPressureListView extends StatelessWidget {
   late var hostContext;
 
   @override
+  State<BloodPressureListView> createState() => _BloodPressureListViewState();
+}
+
+class _BloodPressureListViewState extends State<BloodPressureListView> {
+  @override
   Widget build(BuildContext context) {
     if (Platform.isAndroid) {
-      hostContext = JObject.fromReference(Jni.getCachedApplicationContext());
+      widget.hostContext = JObject.fromReference(Jni.getCachedApplicationContext());
     }
 
     final colorScheme = Theme.of(context).colorScheme;
@@ -201,4 +206,6 @@ class BloodPressureListView extends StatelessWidget {
           },
         ));
   }
+
+
 }

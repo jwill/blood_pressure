@@ -15,9 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:intl/intl.dart';
-import 'package:jni/_internal.dart';
 import 'package:jni/jni.dart';
-import 'package:logging/logging.dart';
 import 'package:signals/signals_flutter.dart';
 
 import 'blood_pressure_input.dart';
@@ -171,7 +169,7 @@ class _BloodPressureListViewState extends State<BloodPressureListView> {
                     Container(
                         alignment: Alignment.center,
                         height: 56,
-                        width: 264,
+                        width: 284,
                         decoration: BoxDecoration(
                             color: pickColorForBP(item),
                             borderRadius:

@@ -25,7 +25,7 @@ if (flutterVersionName == null) {
 android {
     namespace "dev.jwill.blood_pressure"
     compileSdkVersion 35
-    ndkVersion flutter.ndkVersion
+    ndkVersion "27.0.12077973"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -46,6 +46,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 26
+        compileSdkVersion 36
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -65,6 +66,6 @@ flutter {
 }
 
 dependencies {
-    implementation "androidx.health.connect:connect-client:1.1.0-alpha12"
+    implementation "androidx.health.connect:connect-client:1.1.0-rc01"
     implementation "org.jetbrains.kotlin:kotlin-reflect:2.1.10"
 }

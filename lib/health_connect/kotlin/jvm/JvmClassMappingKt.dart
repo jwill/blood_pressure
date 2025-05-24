@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -68,7 +69,7 @@ class JvmClassMappingKt extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final java.lang.Class getJavaClass(kotlin.reflect.KClass kClass)`
+  /// from: `static public final java.lang.Class<T> getJavaClass(kotlin.reflect.KClass<T> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject getJavaClass<$T extends jni$_.JObject?>(
     jni$_.JObject kClass, {
@@ -96,7 +97,7 @@ class JvmClassMappingKt extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final java.lang.Class getJavaPrimitiveType(kotlin.reflect.KClass kClass)`
+  /// from: `static public final java.lang.Class<T> getJavaPrimitiveType(kotlin.reflect.KClass<T> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject? getJavaPrimitiveType<$T extends jni$_.JObject?>(
     jni$_.JObject kClass, {
@@ -124,7 +125,7 @@ class JvmClassMappingKt extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final java.lang.Class getJavaObjectType(kotlin.reflect.KClass kClass)`
+  /// from: `static public final java.lang.Class<T> getJavaObjectType(kotlin.reflect.KClass<T> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject getJavaObjectType<$T extends jni$_.JObject?>(
     jni$_.JObject kClass, {
@@ -152,7 +153,7 @@ class JvmClassMappingKt extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final kotlin.reflect.KClass getKotlinClass(java.lang.Class class)`
+  /// from: `static public final kotlin.reflect.KClass<T> getKotlinClass(java.lang.Class<T> class)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject getKotlinClass<$T extends jni$_.JObject?>(
     jni$_.JObject class$, {
@@ -180,7 +181,7 @@ class JvmClassMappingKt extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final java.lang.Class getJavaClass(T object)`
+  /// from: `static public final java.lang.Class<T> getJavaClass(T object)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject getJavaClass$1<$T extends jni$_.JObject?>(
     $T object, {
@@ -209,7 +210,7 @@ class JvmClassMappingKt extends jni$_.JObject {
               jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
                   jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final java.lang.Class getRuntimeClassOfKClassInstance(kotlin.reflect.KClass kClass)`
+  /// from: `static public final java.lang.Class<kotlin.reflect.KClass<T>> getRuntimeClassOfKClassInstance(kotlin.reflect.KClass<T> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject
       getRuntimeClassOfKClassInstance<$T extends jni$_.JObject?>(
@@ -266,7 +267,7 @@ class JvmClassMappingKt extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final kotlin.reflect.KClass getAnnotationClass(T annotation)`
+  /// from: `static public final kotlin.reflect.KClass<? extends T> getAnnotationClass(T annotation)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject getAnnotationClass<$T extends jni$_.JObject?>(
     $T annotation, {

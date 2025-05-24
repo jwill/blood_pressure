@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -908,7 +909,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Ljava/util/Map;',
   );
 
-  /// from: `static public final java.util.Map MEASUREMENT_LOCATION_STRING_TO_INT_MAP`
+  /// from: `static public final java.util.Map<java.lang.String, java.lang.Integer> MEASUREMENT_LOCATION_STRING_TO_INT_MAP`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JMap<jni$_.JString?, jni$_.JInteger?>
       get MEASUREMENT_LOCATION_STRING_TO_INT_MAP =>
@@ -923,7 +924,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Ljava/util/Map;',
   );
 
-  /// from: `static public final java.util.Map MEASUREMENT_LOCATION_INT_TO_STRING_MAP`
+  /// from: `static public final java.util.Map<java.lang.Integer, java.lang.String> MEASUREMENT_LOCATION_INT_TO_STRING_MAP`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JMap<jni$_.JInteger?, jni$_.JString?>
       get MEASUREMENT_LOCATION_INT_TO_STRING_MAP =>
@@ -937,7 +938,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Ljava/util/Map;',
   );
 
-  /// from: `static public final java.util.Map BODY_POSITION_STRING_TO_INT_MAP`
+  /// from: `static public final java.util.Map<java.lang.String, java.lang.Integer> BODY_POSITION_STRING_TO_INT_MAP`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JMap<jni$_.JString?, jni$_.JInteger?>
       get BODY_POSITION_STRING_TO_INT_MAP =>
@@ -951,7 +952,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Ljava/util/Map;',
   );
 
-  /// from: `static public final java.util.Map BODY_POSITION_INT_TO_STRING_MAP`
+  /// from: `static public final java.util.Map<java.lang.Integer, java.lang.String> BODY_POSITION_INT_TO_STRING_MAP`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JMap<jni$_.JInteger?, jni$_.JString?>
       get BODY_POSITION_INT_TO_STRING_MAP =>
@@ -965,7 +966,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Landroidx/health/connect/client/aggregate/AggregateMetric;',
   );
 
-  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric SYSTOLIC_AVG`
+  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric<androidx.health.connect.client.units.Pressure> SYSTOLIC_AVG`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject get SYSTOLIC_AVG =>
       _id_SYSTOLIC_AVG.get(_class, const jni$_.JObjectType());
@@ -975,7 +976,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Landroidx/health/connect/client/aggregate/AggregateMetric;',
   );
 
-  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric SYSTOLIC_MIN`
+  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric<androidx.health.connect.client.units.Pressure> SYSTOLIC_MIN`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject get SYSTOLIC_MIN =>
       _id_SYSTOLIC_MIN.get(_class, const jni$_.JObjectType());
@@ -985,7 +986,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Landroidx/health/connect/client/aggregate/AggregateMetric;',
   );
 
-  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric SYSTOLIC_MAX`
+  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric<androidx.health.connect.client.units.Pressure> SYSTOLIC_MAX`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject get SYSTOLIC_MAX =>
       _id_SYSTOLIC_MAX.get(_class, const jni$_.JObjectType());
@@ -995,7 +996,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Landroidx/health/connect/client/aggregate/AggregateMetric;',
   );
 
-  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric DIASTOLIC_AVG`
+  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric<androidx.health.connect.client.units.Pressure> DIASTOLIC_AVG`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject get DIASTOLIC_AVG =>
       _id_DIASTOLIC_AVG.get(_class, const jni$_.JObjectType());
@@ -1005,7 +1006,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Landroidx/health/connect/client/aggregate/AggregateMetric;',
   );
 
-  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric DIASTOLIC_MIN`
+  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric<androidx.health.connect.client.units.Pressure> DIASTOLIC_MIN`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject get DIASTOLIC_MIN =>
       _id_DIASTOLIC_MIN.get(_class, const jni$_.JObjectType());
@@ -1015,7 +1016,7 @@ class BloodPressureRecord extends jni$_.JObject {
     r'Landroidx/health/connect/client/aggregate/AggregateMetric;',
   );
 
-  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric DIASTOLIC_MAX`
+  /// from: `static public final androidx.health.connect.client.aggregate.AggregateMetric<androidx.health.connect.client.units.Pressure> DIASTOLIC_MAX`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject get DIASTOLIC_MAX =>
       _id_DIASTOLIC_MAX.get(_class, const jni$_.JObjectType());

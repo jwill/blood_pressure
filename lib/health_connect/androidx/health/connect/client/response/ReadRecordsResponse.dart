@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -93,7 +94,7 @@ class ReadRecordsResponse<$T extends jni$_.JObject> extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public void <init>(java.util.List list, java.lang.String string)`
+  /// from: `public void <init>(java.util.List<? extends T> list, java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
   factory ReadRecordsResponse(
     jni$_.JList<$T> list,
@@ -129,7 +130,7 @@ class ReadRecordsResponse<$T extends jni$_.JObject> extends jni$_.JObject {
             jni$_.JMethodIDPtr,
           )>();
 
-  /// from: `public final java.util.List getRecords()`
+  /// from: `public final java.util.List<T> getRecords()`
   /// The returned object must be released after use, by calling the [release] method.
   jni$_.JList<$T> getRecords() {
     return _getRecords(reference.pointer, _id_getRecords as jni$_.JMethodIDPtr)

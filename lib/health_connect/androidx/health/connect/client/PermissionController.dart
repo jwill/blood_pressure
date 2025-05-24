@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -71,7 +72,7 @@ class PermissionController$Companion extends jni$_.JObject {
               jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
                   jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public final androidx.activity.result.contract.ActivityResultContract createRequestPermissionResultContract(java.lang.String string)`
+  /// from: `public final androidx.activity.result.contract.ActivityResultContract<java.util.Set<java.lang.String>, java.util.Set<java.lang.String>> createRequestPermissionResultContract(java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
   jni$_.JObject createRequestPermissionResultContract(
     jni$_.JString string,
@@ -103,7 +104,7 @@ class PermissionController$Companion extends jni$_.JObject {
                 jni$_.JMethodIDPtr,
               )>();
 
-  /// from: `public final androidx.activity.result.contract.ActivityResultContract createRequestPermissionResultContract()`
+  /// from: `public final androidx.activity.result.contract.ActivityResultContract<java.util.Set<java.lang.String>, java.util.Set<java.lang.String>> createRequestPermissionResultContract()`
   /// The returned object must be released after use, by calling the [release] method.
   jni$_.JObject createRequestPermissionResultContract$1() {
     return _createRequestPermissionResultContract$1(reference.pointer,
@@ -236,7 +237,7 @@ class PermissionController extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object getGrantedPermissions(kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object getGrantedPermissions(kotlin.coroutines.Continuation<? super java.util.Set> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JSet<jni$_.JString>> getGrantedPermissions() async {
     final $p = jni$_.ReceivePort();
@@ -251,8 +252,9 @@ class PermissionController extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -262,8 +264,10 @@ class PermissionController extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JSetType<jni$_.JString>(jni$_.JStringType()),
-        releaseOriginal: true);
+    return $o.as<jni$_.JSet<jni$_.JString>>(
+      const jni$_.JSetType<jni$_.JString>(jni$_.JStringType()),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_revokeAllPermissions = _class.instanceMethodId(
@@ -282,7 +286,7 @@ class PermissionController extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object revokeAllPermissions(kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object revokeAllPermissions(kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JObject> revokeAllPermissions() async {
     final $p = jni$_.ReceivePort();
@@ -297,8 +301,9 @@ class PermissionController extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -308,7 +313,10 @@ class PermissionController extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JObjectType(), releaseOriginal: true);
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_createRequestPermissionResultContract =
@@ -329,7 +337,7 @@ class PermissionController extends jni$_.JObject {
               jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
                   jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public androidx.activity.result.contract.ActivityResultContract createRequestPermissionResultContract(java.lang.String string)`
+  /// from: `static public androidx.activity.result.contract.ActivityResultContract<java.util.Set<java.lang.String>, java.util.Set<java.lang.String>> createRequestPermissionResultContract(java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject createRequestPermissionResultContract(
     jni$_.JString string,
@@ -361,7 +369,7 @@ class PermissionController extends jni$_.JObject {
                 jni$_.JMethodIDPtr,
               )>();
 
-  /// from: `static public androidx.activity.result.contract.ActivityResultContract createRequestPermissionResultContract()`
+  /// from: `static public androidx.activity.result.contract.ActivityResultContract<java.util.Set<java.lang.String>, java.util.Set<java.lang.String>> createRequestPermissionResultContract()`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JObject createRequestPermissionResultContract$1() {
     return _createRequestPermissionResultContract$1(_class.reference.pointer,

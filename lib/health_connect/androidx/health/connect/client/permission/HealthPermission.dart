@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -96,7 +97,7 @@ class HealthPermission$Companion extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public final java.lang.String getReadPermission(kotlin.reflect.KClass kClass)`
+  /// from: `public final java.lang.String getReadPermission(kotlin.reflect.KClass<? extends androidx.health.connect.client.records.Record> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   jni$_.JString getReadPermission$1(
     jni$_.JObject kClass,
@@ -150,7 +151,7 @@ class HealthPermission$Companion extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public final java.lang.String getWritePermission(kotlin.reflect.KClass kClass)`
+  /// from: `public final java.lang.String getWritePermission(kotlin.reflect.KClass<? extends androidx.health.connect.client.records.Record> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   jni$_.JString getWritePermission$1(
     jni$_.JObject kClass,
@@ -340,6 +341,159 @@ class HealthPermission extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JString get PERMISSION_READ_HEALTH_DATA_HISTORY =>
       _id_PERMISSION_READ_HEALTH_DATA_HISTORY.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_WRITE_MEDICAL_DATA = _class.staticFieldId(
+    r'PERMISSION_WRITE_MEDICAL_DATA',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_WRITE_MEDICAL_DATA`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_WRITE_MEDICAL_DATA =>
+      _id_PERMISSION_WRITE_MEDICAL_DATA.get(_class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString
+      get PERMISSION_READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES =>
+          _id_PERMISSION_READ_MEDICAL_DATA_ALLERGIES_INTOLERANCES.get(
+              _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_CONDITIONS =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_CONDITIONS',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_CONDITIONS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_CONDITIONS =>
+      _id_PERMISSION_READ_MEDICAL_DATA_CONDITIONS.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_LABORATORY_RESULTS =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_LABORATORY_RESULTS',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_LABORATORY_RESULTS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_LABORATORY_RESULTS =>
+      _id_PERMISSION_READ_MEDICAL_DATA_LABORATORY_RESULTS.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_MEDICATIONS =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_MEDICATIONS',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_MEDICATIONS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_MEDICATIONS =>
+      _id_PERMISSION_READ_MEDICAL_DATA_MEDICATIONS.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_PERSONAL_DETAILS =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_PERSONAL_DETAILS',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_PERSONAL_DETAILS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_PERSONAL_DETAILS =>
+      _id_PERMISSION_READ_MEDICAL_DATA_PERSONAL_DETAILS.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_PRACTITIONER_DETAILS =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_PRACTITIONER_DETAILS',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_PRACTITIONER_DETAILS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_PRACTITIONER_DETAILS =>
+      _id_PERMISSION_READ_MEDICAL_DATA_PRACTITIONER_DETAILS.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_PREGNANCY =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_PREGNANCY',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_PREGNANCY`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_PREGNANCY =>
+      _id_PERMISSION_READ_MEDICAL_DATA_PREGNANCY.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_PROCEDURES =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_PROCEDURES',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_PROCEDURES`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_PROCEDURES =>
+      _id_PERMISSION_READ_MEDICAL_DATA_PROCEDURES.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_SOCIAL_HISTORY =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_SOCIAL_HISTORY',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_SOCIAL_HISTORY`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_SOCIAL_HISTORY =>
+      _id_PERMISSION_READ_MEDICAL_DATA_SOCIAL_HISTORY.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_VACCINES = _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_VACCINES',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_VACCINES`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_VACCINES =>
+      _id_PERMISSION_READ_MEDICAL_DATA_VACCINES.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_VISITS = _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_VISITS',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_VISITS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_VISITS =>
+      _id_PERMISSION_READ_MEDICAL_DATA_VISITS.get(
+          _class, const jni$_.JStringType());
+
+  static final _id_PERMISSION_READ_MEDICAL_DATA_VITAL_SIGNS =
+      _class.staticFieldId(
+    r'PERMISSION_READ_MEDICAL_DATA_VITAL_SIGNS',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String PERMISSION_READ_MEDICAL_DATA_VITAL_SIGNS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JString get PERMISSION_READ_MEDICAL_DATA_VITAL_SIGNS =>
+      _id_PERMISSION_READ_MEDICAL_DATA_VITAL_SIGNS.get(
           _class, const jni$_.JStringType());
 
   static final _id_READ_ACTIVE_CALORIES_BURNED = _class.staticFieldId(
@@ -1122,12 +1276,27 @@ class HealthPermission extends jni$_.JObject {
   static jni$_.JString get WRITE_PERMISSION_PREFIX =>
       _id_WRITE_PERMISSION_PREFIX.get(_class, const jni$_.JStringType());
 
+  static final _id_ALL_PERSONAL_HEALTH_RECORD_PERMISSIONS =
+      _class.staticFieldId(
+    r'ALL_PERSONAL_HEALTH_RECORD_PERMISSIONS',
+    r'Ljava/util/List;',
+  );
+
+  /// from: `static public final java.util.List<java.lang.String> ALL_PERSONAL_HEALTH_RECORD_PERMISSIONS`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JList<jni$_.JString?>
+      get ALL_PERSONAL_HEALTH_RECORD_PERMISSIONS =>
+          _id_ALL_PERSONAL_HEALTH_RECORD_PERMISSIONS.get(
+              _class,
+              const jni$_.JListType<jni$_.JString?>(
+                  jni$_.JStringNullableType()));
+
   static final _id_ALL_PERMISSIONS = _class.staticFieldId(
     r'ALL_PERMISSIONS',
     r'Ljava/util/List;',
   );
 
-  /// from: `static public final java.util.List ALL_PERMISSIONS`
+  /// from: `static public final java.util.List<java.lang.String> ALL_PERMISSIONS`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JList<jni$_.JString?> get ALL_PERMISSIONS =>
       _id_ALL_PERMISSIONS.get(_class,
@@ -1173,7 +1342,7 @@ class HealthPermission extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final java.lang.String getReadPermission(kotlin.reflect.KClass kClass)`
+  /// from: `static public final java.lang.String getReadPermission(kotlin.reflect.KClass<? extends androidx.health.connect.client.records.Record> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JString getReadPermission(
     jni$_.JObject kClass,
@@ -1200,7 +1369,7 @@ class HealthPermission extends jni$_.JObject {
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `static public final java.lang.String getWritePermission(kotlin.reflect.KClass kClass)`
+  /// from: `static public final java.lang.String getWritePermission(kotlin.reflect.KClass<? extends androidx.health.connect.client.records.Record> kClass)`
   /// The returned object must be released after use, by calling the [release] method.
   static jni$_.JString getWritePermission(
     jni$_.JObject kClass,

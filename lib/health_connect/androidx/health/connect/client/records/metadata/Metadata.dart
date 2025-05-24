@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -38,8 +39,6 @@ import 'package:jni/jni.dart' as jni$_;
 import '../../../../../../java/time/Instant.dart' as instant$_;
 
 import 'DataOrigin.dart' as dataorigin$_;
-
-import 'Device.dart' as device$_;
 
 /// from: `androidx.health.connect.client.records.metadata.Metadata$Companion$RecordingMethod`
 class Metadata$Companion$RecordingMethod extends jni$_.JObject {
@@ -264,7 +263,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata activelyRecorded(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata activelyRecorded(
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$device = device.reference;
     return _activelyRecorded(reference.pointer,
@@ -299,7 +298,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata activelyRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string, long j)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata activelyRecorded$1(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
     int j,
   ) {
@@ -340,7 +339,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   Metadata activelyRecordedWithId(
     jni$_.JString string,
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$string = string.reference;
     final _$device = device.reference;
@@ -371,7 +370,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata autoRecorded(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata autoRecorded(
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$device = device.reference;
     return _autoRecorded(reference.pointer,
@@ -406,7 +405,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata autoRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string, long j)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata autoRecorded$1(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
     int j,
   ) {
@@ -447,7 +446,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   Metadata autoRecordedWithId(
     jni$_.JString string,
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$string = string.reference;
     final _$device = device.reference;
@@ -478,7 +477,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata manualEntry(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata manualEntry(
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$device = device?.reference ?? jni$_.jNullReference;
     return _manualEntry(reference.pointer,
@@ -515,7 +514,7 @@ class Metadata$Companion extends jni$_.JObject {
   Metadata manualEntry$1(
     jni$_.JString string,
     int j,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -554,7 +553,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   Metadata manualEntryWithId(
     jni$_.JString string,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -585,7 +584,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata unknownRecordingMethod(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata unknownRecordingMethod(
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$device = device?.reference ?? jni$_.jNullReference;
     return _unknownRecordingMethod(reference.pointer,
@@ -622,7 +621,7 @@ class Metadata$Companion extends jni$_.JObject {
   Metadata unknownRecordingMethod$1(
     jni$_.JString string,
     int j,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -662,7 +661,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   Metadata unknownRecordingMethodWithId(
     jni$_.JString string,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -699,7 +698,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata activelyRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata activelyRecorded$2(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
   ) {
     final _$device = device.reference;
@@ -737,7 +736,7 @@ class Metadata$Companion extends jni$_.JObject {
   /// from: `public final androidx.health.connect.client.records.metadata.Metadata autoRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
   Metadata autoRecorded$2(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
   ) {
     final _$device = device.reference;
@@ -1170,7 +1169,7 @@ class Metadata extends jni$_.JObject {
     instant$_.Instant instant,
     jni$_.JString? string1,
     int j,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$dataOrigin = dataOrigin.reference;
@@ -1234,7 +1233,7 @@ class Metadata extends jni$_.JObject {
     instant$_.Instant? instant,
     jni$_.JString? string1,
     int j,
-    device$_.Device? device,
+    jni$_.JObject? device,
     int i1,
     jni$_.JObject? defaultConstructorMarker,
   ) {
@@ -1426,9 +1425,9 @@ class Metadata extends jni$_.JObject {
 
   /// from: `public final androidx.health.connect.client.records.metadata.Device getDevice()`
   /// The returned object must be released after use, by calling the [release] method.
-  device$_.Device? getDevice() {
+  jni$_.JObject? getDevice() {
     return _getDevice(reference.pointer, _id_getDevice as jni$_.JMethodIDPtr)
-        .object<device$_.Device?>(const device$_.$Device$NullableType());
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
   }
 
   static final _id_equals = _class.instanceMethodId(
@@ -1523,7 +1522,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata activelyRecorded(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata activelyRecorded(
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$device = device.reference;
     return _activelyRecorded(_class.reference.pointer,
@@ -1558,7 +1557,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata activelyRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string, long j)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata activelyRecorded$1(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
     int j,
   ) {
@@ -1599,7 +1598,7 @@ class Metadata extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata activelyRecordedWithId(
     jni$_.JString string,
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$string = string.reference;
     final _$device = device.reference;
@@ -1630,7 +1629,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata autoRecorded(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata autoRecorded(
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$device = device.reference;
     return _autoRecorded(_class.reference.pointer,
@@ -1665,7 +1664,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata autoRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string, long j)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata autoRecorded$1(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
     int j,
   ) {
@@ -1706,7 +1705,7 @@ class Metadata extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata autoRecordedWithId(
     jni$_.JString string,
-    device$_.Device device,
+    jni$_.JObject device,
   ) {
     final _$string = string.reference;
     final _$device = device.reference;
@@ -1737,7 +1736,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata manualEntry(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata manualEntry(
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$device = device?.reference ?? jni$_.jNullReference;
     return _manualEntry(_class.reference.pointer,
@@ -1774,7 +1773,7 @@ class Metadata extends jni$_.JObject {
   static Metadata manualEntry$1(
     jni$_.JString string,
     int j,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -1813,7 +1812,7 @@ class Metadata extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata manualEntryWithId(
     jni$_.JString string,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -1844,7 +1843,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata unknownRecordingMethod(androidx.health.connect.client.records.metadata.Device device)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata unknownRecordingMethod(
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$device = device?.reference ?? jni$_.jNullReference;
     return _unknownRecordingMethod(_class.reference.pointer,
@@ -1881,7 +1880,7 @@ class Metadata extends jni$_.JObject {
   static Metadata unknownRecordingMethod$1(
     jni$_.JString string,
     int j,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -1921,7 +1920,7 @@ class Metadata extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata unknownRecordingMethodWithId(
     jni$_.JString string,
-    device$_.Device? device,
+    jni$_.JObject? device,
   ) {
     final _$string = string.reference;
     final _$device = device?.reference ?? jni$_.jNullReference;
@@ -1958,7 +1957,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata activelyRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata activelyRecorded$2(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
   ) {
     final _$device = device.reference;
@@ -1996,7 +1995,7 @@ class Metadata extends jni$_.JObject {
   /// from: `static public final androidx.health.connect.client.records.metadata.Metadata autoRecorded(androidx.health.connect.client.records.metadata.Device device, java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
   static Metadata autoRecorded$2(
-    device$_.Device device,
+    jni$_.JObject device,
     jni$_.JString string,
   ) {
     final _$device = device.reference;

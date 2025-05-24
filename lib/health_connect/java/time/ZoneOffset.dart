@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -81,6 +82,286 @@ class ZoneOffset extends jni$_.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   static ZoneOffset? get UTC =>
       _id_UTC.get(_class, const $ZoneOffset$NullableType());
+
+  static final _id_adjustInto = _class.instanceMethodId(
+    r'adjustInto',
+    r'(Ljava/time/temporal/Temporal;)Ljava/time/temporal/Temporal;',
+  );
+
+  static final _adjustInto = jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.time.temporal.Temporal adjustInto(java.time.temporal.Temporal temporal)`
+  /// The returned object must be released after use, by calling the [release] method.
+  jni$_.JObject? adjustInto(
+    jni$_.JObject? temporal,
+  ) {
+    final _$temporal = temporal?.reference ?? jni$_.jNullReference;
+    return _adjustInto(reference.pointer, _id_adjustInto as jni$_.JMethodIDPtr,
+            _$temporal.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_compareTo = _class.instanceMethodId(
+    r'compareTo',
+    r'(Ljava/time/ZoneOffset;)I',
+  );
+
+  static final _compareTo = jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+          'globalEnv_CallIntMethod')
+      .asFunction<
+          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public int compareTo(java.time.ZoneOffset zoneOffset)`
+  int compareTo(
+    ZoneOffset? zoneOffset,
+  ) {
+    final _$zoneOffset = zoneOffset?.reference ?? jni$_.jNullReference;
+    return _compareTo(reference.pointer, _id_compareTo as jni$_.JMethodIDPtr,
+            _$zoneOffset.pointer)
+        .integer;
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    jni$_.JObject? object,
+  ) {
+    final _$object = object?.reference ?? jni$_.jNullReference;
+    return _equals(reference.pointer, _id_equals as jni$_.JMethodIDPtr,
+            _$object.pointer)
+        .boolean;
+  }
+
+  static final _id_from = _class.staticMethodId(
+    r'from',
+    r'(Ljava/time/temporal/TemporalAccessor;)Ljava/time/ZoneOffset;',
+  );
+
+  static final _from = jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.time.ZoneOffset from(java.time.temporal.TemporalAccessor temporalAccessor)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static ZoneOffset? from(
+    jni$_.JObject? temporalAccessor,
+  ) {
+    final _$temporalAccessor =
+        temporalAccessor?.reference ?? jni$_.jNullReference;
+    return _from(_class.reference.pointer, _id_from as jni$_.JMethodIDPtr,
+            _$temporalAccessor.pointer)
+        .object<ZoneOffset?>(const $ZoneOffset$NullableType());
+  }
+
+  static final _id_get = _class.instanceMethodId(
+    r'get',
+    r'(Ljava/time/temporal/TemporalField;)I',
+  );
+
+  static final _get = jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+          'globalEnv_CallIntMethod')
+      .asFunction<
+          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public int get(java.time.temporal.TemporalField temporalField)`
+  int get(
+    jni$_.JObject? temporalField,
+  ) {
+    final _$temporalField = temporalField?.reference ?? jni$_.jNullReference;
+    return _get(reference.pointer, _id_get as jni$_.JMethodIDPtr,
+            _$temporalField.pointer)
+        .integer;
+  }
+
+  static final _id_getId = _class.instanceMethodId(
+    r'getId',
+    r'()Ljava/lang/String;',
+  );
+
+  static final _getId = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+            jni$_.Pointer<jni$_.Void>,
+            jni$_.JMethodIDPtr,
+          )>();
+
+  /// from: `public java.lang.String getId()`
+  /// The returned object must be released after use, by calling the [release] method.
+  jni$_.JString? getId() {
+    return _getId(reference.pointer, _id_getId as jni$_.JMethodIDPtr)
+        .object<jni$_.JString?>(const jni$_.JStringNullableType());
+  }
+
+  static final _id_getLong = _class.instanceMethodId(
+    r'getLong',
+    r'(Ljava/time/temporal/TemporalField;)J',
+  );
+
+  static final _getLong = jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+          'globalEnv_CallLongMethod')
+      .asFunction<
+          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public long getLong(java.time.temporal.TemporalField temporalField)`
+  int getLong(
+    jni$_.JObject? temporalField,
+  ) {
+    final _$temporalField = temporalField?.reference ?? jni$_.jNullReference;
+    return _getLong(reference.pointer, _id_getLong as jni$_.JMethodIDPtr,
+            _$temporalField.pointer)
+        .long;
+  }
+
+  static final _id_getRules = _class.instanceMethodId(
+    r'getRules',
+    r'()Ljava/time/zone/ZoneRules;',
+  );
+
+  static final _getRules = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+            jni$_.Pointer<jni$_.Void>,
+            jni$_.JMethodIDPtr,
+          )>();
+
+  /// from: `public java.time.zone.ZoneRules getRules()`
+  /// The returned object must be released after use, by calling the [release] method.
+  jni$_.JObject? getRules() {
+    return _getRules(reference.pointer, _id_getRules as jni$_.JMethodIDPtr)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_getTotalSeconds = _class.instanceMethodId(
+    r'getTotalSeconds',
+    r'()I',
+  );
+
+  static final _getTotalSeconds = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+            jni$_.Pointer<jni$_.Void>,
+            jni$_.JMethodIDPtr,
+          )>();
+
+  /// from: `public int getTotalSeconds()`
+  int getTotalSeconds() {
+    return _getTotalSeconds(
+            reference.pointer, _id_getTotalSeconds as jni$_.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                jni$_.Pointer<jni$_.Void>,
+                jni$_.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+            jni$_.Pointer<jni$_.Void>,
+            jni$_.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as jni$_.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_isSupported = _class.instanceMethodId(
+    r'isSupported',
+    r'(Ljava/time/temporal/TemporalField;)Z',
+  );
+
+  static final _isSupported = jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public boolean isSupported(java.time.temporal.TemporalField temporalField)`
+  bool isSupported(
+    jni$_.JObject? temporalField,
+  ) {
+    final _$temporalField = temporalField?.reference ?? jni$_.jNullReference;
+    return _isSupported(reference.pointer,
+            _id_isSupported as jni$_.JMethodIDPtr, _$temporalField.pointer)
+        .boolean;
+  }
 
   static final _id_of = _class.staticMethodId(
     r'of',
@@ -188,34 +469,6 @@ class ZoneOffset extends jni$_.JObject {
         .object<ZoneOffset?>(const $ZoneOffset$NullableType());
   }
 
-  static final _id_from = _class.staticMethodId(
-    r'from',
-    r'(Ljava/time/temporal/TemporalAccessor;)Ljava/time/ZoneOffset;',
-  );
-
-  static final _from = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public java.time.ZoneOffset from(java.time.temporal.TemporalAccessor temporalAccessor)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static ZoneOffset? from(
-    jni$_.JObject? temporalAccessor,
-  ) {
-    final _$temporalAccessor =
-        temporalAccessor?.reference ?? jni$_.jNullReference;
-    return _from(_class.reference.pointer, _id_from as jni$_.JMethodIDPtr,
-            _$temporalAccessor.pointer)
-        .object<ZoneOffset?>(const $ZoneOffset$NullableType());
-  }
-
   static final _id_ofTotalSeconds = _class.staticMethodId(
     r'ofTotalSeconds',
     r'(I)Ljava/time/ZoneOffset;',
@@ -240,102 +493,32 @@ class ZoneOffset extends jni$_.JObject {
         .object<ZoneOffset?>(const $ZoneOffset$NullableType());
   }
 
-  static final _id_getTotalSeconds = _class.instanceMethodId(
-    r'getTotalSeconds',
-    r'()I',
+  static final _id_query = _class.instanceMethodId(
+    r'query',
+    r'(Ljava/time/temporal/TemporalQuery;)Ljava/lang/Object;',
   );
 
-  static final _getTotalSeconds = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
-              jni$_.JniResult Function(
-                jni$_.Pointer<jni$_.Void>,
-                jni$_.JMethodIDPtr,
-              )>>('globalEnv_CallIntMethod')
-      .asFunction<
-          jni$_.JniResult Function(
-            jni$_.Pointer<jni$_.Void>,
-            jni$_.JMethodIDPtr,
-          )>();
-
-  /// from: `public int getTotalSeconds()`
-  int getTotalSeconds() {
-    return _getTotalSeconds(
-            reference.pointer, _id_getTotalSeconds as jni$_.JMethodIDPtr)
-        .integer;
-  }
-
-  static final _id_getId = _class.instanceMethodId(
-    r'getId',
-    r'()Ljava/lang/String;',
-  );
-
-  static final _getId = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
-              jni$_.JniResult Function(
-                jni$_.Pointer<jni$_.Void>,
-                jni$_.JMethodIDPtr,
-              )>>('globalEnv_CallObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(
-            jni$_.Pointer<jni$_.Void>,
-            jni$_.JMethodIDPtr,
-          )>();
-
-  /// from: `public java.lang.String getId()`
-  /// The returned object must be released after use, by calling the [release] method.
-  jni$_.JString? getId() {
-    return _getId(reference.pointer, _id_getId as jni$_.JMethodIDPtr)
-        .object<jni$_.JString?>(const jni$_.JStringNullableType());
-  }
-
-  static final _id_getRules = _class.instanceMethodId(
-    r'getRules',
-    r'()Ljava/time/zone/ZoneRules;',
-  );
-
-  static final _getRules = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
-              jni$_.JniResult Function(
-                jni$_.Pointer<jni$_.Void>,
-                jni$_.JMethodIDPtr,
-              )>>('globalEnv_CallObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(
-            jni$_.Pointer<jni$_.Void>,
-            jni$_.JMethodIDPtr,
-          )>();
-
-  /// from: `public java.time.zone.ZoneRules getRules()`
-  /// The returned object must be released after use, by calling the [release] method.
-  jni$_.JObject? getRules() {
-    return _getRules(reference.pointer, _id_getRules as jni$_.JMethodIDPtr)
-        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
-  }
-
-  static final _id_isSupported = _class.instanceMethodId(
-    r'isSupported',
-    r'(Ljava/time/temporal/TemporalField;)Z',
-  );
-
-  static final _isSupported = jni$_.ProtectedJniExtensions.lookup<
+  static final _query = jni$_.ProtectedJniExtensions.lookup<
               jni$_.NativeFunction<
                   jni$_.JniResult Function(
                       jni$_.Pointer<jni$_.Void>,
                       jni$_.JMethodIDPtr,
                       jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallBooleanMethod')
+          'globalEnv_CallObjectMethod')
       .asFunction<
           jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
               jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public boolean isSupported(java.time.temporal.TemporalField temporalField)`
-  bool isSupported(
-    jni$_.JObject? temporalField,
-  ) {
-    final _$temporalField = temporalField?.reference ?? jni$_.jNullReference;
-    return _isSupported(reference.pointer,
-            _id_isSupported as jni$_.JMethodIDPtr, _$temporalField.pointer)
-        .boolean;
+  /// from: `public R query(java.time.temporal.TemporalQuery<R> temporalQuery)`
+  /// The returned object must be released after use, by calling the [release] method.
+  $R? query<$R extends jni$_.JObject?>(
+    jni$_.JObject? temporalQuery, {
+    required jni$_.JObjType<$R> R,
+  }) {
+    final _$temporalQuery = temporalQuery?.reference ?? jni$_.jNullReference;
+    return _query(reference.pointer, _id_query as jni$_.JMethodIDPtr,
+            _$temporalQuery.pointer)
+        .object<$R?>(R.nullableType);
   }
 
   static final _id_range = _class.instanceMethodId(
@@ -363,188 +546,6 @@ class ZoneOffset extends jni$_.JObject {
     return _range(reference.pointer, _id_range as jni$_.JMethodIDPtr,
             _$temporalField.pointer)
         .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
-  }
-
-  static final _id_get = _class.instanceMethodId(
-    r'get',
-    r'(Ljava/time/temporal/TemporalField;)I',
-  );
-
-  static final _get = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallIntMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `public int get(java.time.temporal.TemporalField temporalField)`
-  int get(
-    jni$_.JObject? temporalField,
-  ) {
-    final _$temporalField = temporalField?.reference ?? jni$_.jNullReference;
-    return _get(reference.pointer, _id_get as jni$_.JMethodIDPtr,
-            _$temporalField.pointer)
-        .integer;
-  }
-
-  static final _id_getLong = _class.instanceMethodId(
-    r'getLong',
-    r'(Ljava/time/temporal/TemporalField;)J',
-  );
-
-  static final _getLong = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallLongMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `public long getLong(java.time.temporal.TemporalField temporalField)`
-  int getLong(
-    jni$_.JObject? temporalField,
-  ) {
-    final _$temporalField = temporalField?.reference ?? jni$_.jNullReference;
-    return _getLong(reference.pointer, _id_getLong as jni$_.JMethodIDPtr,
-            _$temporalField.pointer)
-        .long;
-  }
-
-  static final _id_query = _class.instanceMethodId(
-    r'query',
-    r'(Ljava/time/temporal/TemporalQuery;)Ljava/lang/Object;',
-  );
-
-  static final _query = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `public R query(java.time.temporal.TemporalQuery temporalQuery)`
-  /// The returned object must be released after use, by calling the [release] method.
-  $R? query<$R extends jni$_.JObject?>(
-    jni$_.JObject? temporalQuery, {
-    required jni$_.JObjType<$R> R,
-  }) {
-    final _$temporalQuery = temporalQuery?.reference ?? jni$_.jNullReference;
-    return _query(reference.pointer, _id_query as jni$_.JMethodIDPtr,
-            _$temporalQuery.pointer)
-        .object<$R?>(R.nullableType);
-  }
-
-  static final _id_adjustInto = _class.instanceMethodId(
-    r'adjustInto',
-    r'(Ljava/time/temporal/Temporal;)Ljava/time/temporal/Temporal;',
-  );
-
-  static final _adjustInto = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `public java.time.temporal.Temporal adjustInto(java.time.temporal.Temporal temporal)`
-  /// The returned object must be released after use, by calling the [release] method.
-  jni$_.JObject? adjustInto(
-    jni$_.JObject? temporal,
-  ) {
-    final _$temporal = temporal?.reference ?? jni$_.jNullReference;
-    return _adjustInto(reference.pointer, _id_adjustInto as jni$_.JMethodIDPtr,
-            _$temporal.pointer)
-        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
-  }
-
-  static final _id_compareTo = _class.instanceMethodId(
-    r'compareTo',
-    r'(Ljava/time/ZoneOffset;)I',
-  );
-
-  static final _compareTo = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallIntMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `public int compareTo(java.time.ZoneOffset zoneOffset)`
-  int compareTo(
-    ZoneOffset? zoneOffset,
-  ) {
-    final _$zoneOffset = zoneOffset?.reference ?? jni$_.jNullReference;
-    return _compareTo(reference.pointer, _id_compareTo as jni$_.JMethodIDPtr,
-            _$zoneOffset.pointer)
-        .integer;
-  }
-
-  static final _id_equals = _class.instanceMethodId(
-    r'equals',
-    r'(Ljava/lang/Object;)Z',
-  );
-
-  static final _equals = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallBooleanMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `public boolean equals(java.lang.Object object)`
-  bool equals(
-    jni$_.JObject? object,
-  ) {
-    final _$object = object?.reference ?? jni$_.jNullReference;
-    return _equals(reference.pointer, _id_equals as jni$_.JMethodIDPtr,
-            _$object.pointer)
-        .boolean;
-  }
-
-  static final _id_hashCode$1 = _class.instanceMethodId(
-    r'hashCode',
-    r'()I',
-  );
-
-  static final _hashCode$1 = jni$_.ProtectedJniExtensions.lookup<
-          jni$_.NativeFunction<
-              jni$_.JniResult Function(
-                jni$_.Pointer<jni$_.Void>,
-                jni$_.JMethodIDPtr,
-              )>>('globalEnv_CallIntMethod')
-      .asFunction<
-          jni$_.JniResult Function(
-            jni$_.Pointer<jni$_.Void>,
-            jni$_.JMethodIDPtr,
-          )>();
-
-  /// from: `public int hashCode()`
-  int hashCode$1() {
-    return _hashCode$1(reference.pointer, _id_hashCode$1 as jni$_.JMethodIDPtr)
-        .integer;
   }
 
   static final _id_toString$1 = _class.instanceMethodId(

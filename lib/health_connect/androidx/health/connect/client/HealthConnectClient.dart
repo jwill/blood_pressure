@@ -5,6 +5,7 @@
 // ignore_for_file: camel_case_extensions
 // ignore_for_file: camel_case_types
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: comment_references
 // ignore_for_file: doc_directive_unknown
 // ignore_for_file: file_names
 // ignore_for_file: inference_failure_on_untyped_parameter
@@ -633,6 +634,397 @@ class HealthConnectClient$DefaultImpls extends jni$_.JObject {
             _$healthConnectClient.pointer)
         .object<jni$_.JObject>(const jni$_.JObjectType());
   }
+
+  static final _id_upsertMedicalResources = _class.staticMethodId(
+    r'upsertMedicalResources',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _upsertMedicalResources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object upsertMedicalResources(androidx.health.connect.client.HealthConnectClient healthConnectClient, java.util.List<androidx.health.connect.client.request.UpsertMedicalResourceRequest> list, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? upsertMedicalResources(
+    HealthConnectClient healthConnectClient,
+    jni$_.JList<jni$_.JObject?> list,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$list = list.reference;
+    final _$continuation = continuation.reference;
+    return _upsertMedicalResources(
+            _class.reference.pointer,
+            _id_upsertMedicalResources as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_readMedicalResources = _class.staticMethodId(
+    r'readMedicalResources',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Landroidx/health/connect/client/request/ReadMedicalResourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _readMedicalResources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object readMedicalResources(androidx.health.connect.client.HealthConnectClient healthConnectClient, androidx.health.connect.client.request.ReadMedicalResourcesRequest readMedicalResourcesRequest, kotlin.coroutines.Continuation<? super androidx.health.connect.client.response.ReadMedicalResourcesResponse> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? readMedicalResources(
+    HealthConnectClient healthConnectClient,
+    jni$_.JObject readMedicalResourcesRequest,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$readMedicalResourcesRequest = readMedicalResourcesRequest.reference;
+    final _$continuation = continuation.reference;
+    return _readMedicalResources(
+            _class.reference.pointer,
+            _id_readMedicalResources as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$readMedicalResourcesRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_readMedicalResources$1 = _class.staticMethodId(
+    r'readMedicalResources',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _readMedicalResources$1 = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object readMedicalResources(androidx.health.connect.client.HealthConnectClient healthConnectClient, java.util.List<androidx.health.connect.client.records.MedicalResourceId> list, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? readMedicalResources$1(
+    HealthConnectClient healthConnectClient,
+    jni$_.JList<jni$_.JObject?> list,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$list = list.reference;
+    final _$continuation = continuation.reference;
+    return _readMedicalResources$1(
+            _class.reference.pointer,
+            _id_readMedicalResources$1 as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_deleteMedicalResources = _class.staticMethodId(
+    r'deleteMedicalResources',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _deleteMedicalResources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object deleteMedicalResources(androidx.health.connect.client.HealthConnectClient healthConnectClient, java.util.List<androidx.health.connect.client.records.MedicalResourceId> list, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? deleteMedicalResources(
+    HealthConnectClient healthConnectClient,
+    jni$_.JList<jni$_.JObject?> list,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$list = list.reference;
+    final _$continuation = continuation.reference;
+    return _deleteMedicalResources(
+            _class.reference.pointer,
+            _id_deleteMedicalResources as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_deleteMedicalResources$1 = _class.staticMethodId(
+    r'deleteMedicalResources',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Landroidx/health/connect/client/request/DeleteMedicalResourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _deleteMedicalResources$1 = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object deleteMedicalResources(androidx.health.connect.client.HealthConnectClient healthConnectClient, androidx.health.connect.client.request.DeleteMedicalResourcesRequest deleteMedicalResourcesRequest, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? deleteMedicalResources$1(
+    HealthConnectClient healthConnectClient,
+    jni$_.JObject deleteMedicalResourcesRequest,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$deleteMedicalResourcesRequest =
+        deleteMedicalResourcesRequest.reference;
+    final _$continuation = continuation.reference;
+    return _deleteMedicalResources$1(
+            _class.reference.pointer,
+            _id_deleteMedicalResources$1 as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$deleteMedicalResourcesRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_createMedicalDataSource = _class.staticMethodId(
+    r'createMedicalDataSource',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Landroidx/health/connect/client/request/CreateMedicalDataSourceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _createMedicalDataSource = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object createMedicalDataSource(androidx.health.connect.client.HealthConnectClient healthConnectClient, androidx.health.connect.client.request.CreateMedicalDataSourceRequest createMedicalDataSourceRequest, kotlin.coroutines.Continuation<? super androidx.health.connect.client.records.MedicalDataSource> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? createMedicalDataSource(
+    HealthConnectClient healthConnectClient,
+    jni$_.JObject createMedicalDataSourceRequest,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$createMedicalDataSourceRequest =
+        createMedicalDataSourceRequest.reference;
+    final _$continuation = continuation.reference;
+    return _createMedicalDataSource(
+            _class.reference.pointer,
+            _id_createMedicalDataSource as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$createMedicalDataSourceRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_deleteMedicalDataSourceWithData = _class.staticMethodId(
+    r'deleteMedicalDataSourceWithData',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _deleteMedicalDataSourceWithData =
+      jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<
+                          (
+                            jni$_.Pointer<jni$_.Void>,
+                            jni$_.Pointer<jni$_.Void>,
+                            jni$_.Pointer<jni$_.Void>
+                          )>)>>('globalEnv_CallStaticObjectMethod')
+          .asFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object deleteMedicalDataSourceWithData(androidx.health.connect.client.HealthConnectClient healthConnectClient, java.lang.String string, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? deleteMedicalDataSourceWithData(
+    HealthConnectClient healthConnectClient,
+    jni$_.JString string,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$string = string.reference;
+    final _$continuation = continuation.reference;
+    return _deleteMedicalDataSourceWithData(
+            _class.reference.pointer,
+            _id_deleteMedicalDataSourceWithData as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$string.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_getMedicalDataSources = _class.staticMethodId(
+    r'getMedicalDataSources',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Landroidx/health/connect/client/request/GetMedicalDataSourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _getMedicalDataSources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object getMedicalDataSources(androidx.health.connect.client.HealthConnectClient healthConnectClient, androidx.health.connect.client.request.GetMedicalDataSourcesRequest getMedicalDataSourcesRequest, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? getMedicalDataSources(
+    HealthConnectClient healthConnectClient,
+    jni$_.JObject getMedicalDataSourcesRequest,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$getMedicalDataSourcesRequest =
+        getMedicalDataSourcesRequest.reference;
+    final _$continuation = continuation.reference;
+    return _getMedicalDataSources(
+            _class.reference.pointer,
+            _id_getMedicalDataSources as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$getMedicalDataSourcesRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
+
+  static final _id_getMedicalDataSources$1 = _class.staticMethodId(
+    r'getMedicalDataSources',
+    r'(Landroidx/health/connect/client/HealthConnectClient;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _getMedicalDataSources$1 = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `static public java.lang.Object getMedicalDataSources(androidx.health.connect.client.HealthConnectClient healthConnectClient, java.util.List<java.lang.String> list, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static jni$_.JObject? getMedicalDataSources$1(
+    HealthConnectClient healthConnectClient,
+    jni$_.JList<jni$_.JString?> list,
+    jni$_.JObject continuation,
+  ) {
+    final _$healthConnectClient = healthConnectClient.reference;
+    final _$list = list.reference;
+    final _$continuation = continuation.reference;
+    return _getMedicalDataSources$1(
+            _class.reference.pointer,
+            _id_getMedicalDataSources$1 as jni$_.JMethodIDPtr,
+            _$healthConnectClient.pointer,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
+  }
 }
 
 final class $HealthConnectClient$DefaultImpls$NullableType
@@ -847,7 +1239,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object insertRecords(java.util.List list, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object insertRecords(java.util.List<? extends androidx.health.connect.client.records.Record> list, kotlin.coroutines.Continuation<? super androidx.health.connect.client.response.InsertRecordsResponse> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<insertrecordsresponse$_.InsertRecordsResponse> insertRecords(
     jni$_.JList<jni$_.JObject?> list,
@@ -865,8 +1257,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -876,8 +1269,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const insertrecordsresponse$_.$InsertRecordsResponse$Type(),
-        releaseOriginal: true);
+    return $o.as<insertrecordsresponse$_.InsertRecordsResponse>(
+      const insertrecordsresponse$_.$InsertRecordsResponse$Type(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_updateRecords = _class.instanceMethodId(
@@ -902,7 +1297,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object updateRecords(java.util.List list, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object updateRecords(java.util.List<? extends androidx.health.connect.client.records.Record> list, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JObject> updateRecords(
     jni$_.JList<jni$_.JObject?> list,
@@ -920,8 +1315,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -931,7 +1327,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JObjectType(), releaseOriginal: true);
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_deleteRecords = _class.instanceMethodId(
@@ -960,7 +1359,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object deleteRecords(kotlin.reflect.KClass kClass, java.util.List list, java.util.List list1, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object deleteRecords(kotlin.reflect.KClass<? extends androidx.health.connect.client.records.Record> kClass, java.util.List<java.lang.String> list, java.util.List<java.lang.String> list1, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JObject> deleteRecords(
     jni$_.JObject kClass,
@@ -984,8 +1383,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -995,7 +1395,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JObjectType(), releaseOriginal: true);
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_deleteRecords$1 = _class.instanceMethodId(
@@ -1022,7 +1425,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object deleteRecords(kotlin.reflect.KClass kClass, androidx.health.connect.client.time.TimeRangeFilter timeRangeFilter, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object deleteRecords(kotlin.reflect.KClass<? extends androidx.health.connect.client.records.Record> kClass, androidx.health.connect.client.time.TimeRangeFilter timeRangeFilter, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JObject> deleteRecords$1(
     jni$_.JObject kClass,
@@ -1043,8 +1446,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1054,7 +1458,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JObjectType(), releaseOriginal: true);
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_readRecord = _class.instanceMethodId(
@@ -1081,7 +1488,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object readRecord(kotlin.reflect.KClass kClass, java.lang.String string, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object readRecord(kotlin.reflect.KClass<T> kClass, java.lang.String string, kotlin.coroutines.Continuation<? super androidx.health.connect.client.response.ReadRecordResponse> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JObject> readRecord<$T extends jni$_.JObject>(
     jni$_.JObject kClass,
@@ -1103,8 +1510,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1114,7 +1522,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JObjectType(), releaseOriginal: true);
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_readRecords = _class.instanceMethodId(
@@ -1139,7 +1550,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object readRecords(androidx.health.connect.client.request.ReadRecordsRequest readRecordsRequest, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object readRecords(androidx.health.connect.client.request.ReadRecordsRequest<T> readRecordsRequest, kotlin.coroutines.Continuation<? super androidx.health.connect.client.response.ReadRecordsResponse> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<readrecordsresponse$_.ReadRecordsResponse<$T>>
       readRecords<$T extends jni$_.JObject>(
@@ -1164,8 +1575,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1175,8 +1587,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(readrecordsresponse$_.$ReadRecordsResponse$Type<$T>(T),
-        releaseOriginal: true);
+    return $o.as<readrecordsresponse$_.ReadRecordsResponse<$T>>(
+      readrecordsresponse$_.$ReadRecordsResponse$Type<$T>(T),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_aggregate = _class.instanceMethodId(
@@ -1201,7 +1615,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object aggregate(androidx.health.connect.client.request.AggregateRequest aggregateRequest, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object aggregate(androidx.health.connect.client.request.AggregateRequest aggregateRequest, kotlin.coroutines.Continuation<? super androidx.health.connect.client.aggregate.AggregationResult> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JObject> aggregate(
     jni$_.JObject aggregateRequest,
@@ -1219,8 +1633,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1230,7 +1645,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JObjectType(), releaseOriginal: true);
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_aggregateGroupByDuration = _class.instanceMethodId(
@@ -1255,7 +1673,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object aggregateGroupByDuration(androidx.health.connect.client.request.AggregateGroupByDurationRequest aggregateGroupByDurationRequest, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object aggregateGroupByDuration(androidx.health.connect.client.request.AggregateGroupByDurationRequest aggregateGroupByDurationRequest, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JList<jni$_.JObject>> aggregateGroupByDuration(
     jni$_.JObject aggregateGroupByDurationRequest,
@@ -1274,8 +1692,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1285,8 +1704,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
-        releaseOriginal: true);
+    return $o.as<jni$_.JList<jni$_.JObject>>(
+      const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_aggregateGroupByPeriod = _class.instanceMethodId(
@@ -1311,7 +1732,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object aggregateGroupByPeriod(androidx.health.connect.client.request.AggregateGroupByPeriodRequest aggregateGroupByPeriodRequest, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object aggregateGroupByPeriod(androidx.health.connect.client.request.AggregateGroupByPeriodRequest aggregateGroupByPeriodRequest, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JList<jni$_.JObject>> aggregateGroupByPeriod(
     jni$_.JObject aggregateGroupByPeriodRequest,
@@ -1330,8 +1751,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1341,8 +1763,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
-        releaseOriginal: true);
+    return $o.as<jni$_.JList<jni$_.JObject>>(
+      const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_getChangesToken = _class.instanceMethodId(
@@ -1367,7 +1791,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object getChangesToken(androidx.health.connect.client.request.ChangesTokenRequest changesTokenRequest, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object getChangesToken(androidx.health.connect.client.request.ChangesTokenRequest changesTokenRequest, kotlin.coroutines.Continuation<? super java.lang.String> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JString> getChangesToken(
     jni$_.JObject changesTokenRequest,
@@ -1385,8 +1809,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1396,7 +1821,10 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JStringType(), releaseOriginal: true);
+    return $o.as<jni$_.JString>(
+      const jni$_.JStringType(),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_getChanges = _class.instanceMethodId(
@@ -1421,7 +1849,7 @@ class HealthConnectClient extends jni$_.JObject {
               jni$_.Pointer<jni$_.Void>,
               jni$_.Pointer<jni$_.Void>)>();
 
-  /// from: `public abstract java.lang.Object getChanges(java.lang.String string, kotlin.coroutines.Continuation continuation)`
+  /// from: `public abstract java.lang.Object getChanges(java.lang.String string, kotlin.coroutines.Continuation<? super androidx.health.connect.client.response.ChangesResponse> continuation)`
   /// The returned object must be released after use, by calling the [release] method.
   core$_.Future<jni$_.JObject> getChanges(
     jni$_.JString string,
@@ -1439,8 +1867,9 @@ class HealthConnectClient extends jni$_.JObject {
     final jni$_.JObject $o;
     if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
       $r.release();
+      final $a = await $p.first;
       $o = jni$_.JObject.fromReference(
-          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress(await $p.first)));
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
       if ($o.isInstanceOf(jni$_.result$FailureClass)) {
         final $e =
             jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
@@ -1450,7 +1879,536 @@ class HealthConnectClient extends jni$_.JObject {
     } else {
       $o = $r;
     }
-    return $o.as(const jni$_.JObjectType(), releaseOriginal: true);
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_upsertMedicalResources = _class.instanceMethodId(
+    r'upsertMedicalResources',
+    r'(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _upsertMedicalResources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object upsertMedicalResources(java.util.List<androidx.health.connect.client.request.UpsertMedicalResourceRequest> list, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JList<jni$_.JObject>> upsertMedicalResources(
+    jni$_.JList<jni$_.JObject?> list,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$list = list.reference;
+    final $r = _upsertMedicalResources(
+            reference.pointer,
+            _id_upsertMedicalResources as jni$_.JMethodIDPtr,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JList<jni$_.JObject>>(
+      const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_readMedicalResources = _class.instanceMethodId(
+    r'readMedicalResources',
+    r'(Landroidx/health/connect/client/request/ReadMedicalResourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _readMedicalResources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object readMedicalResources(androidx.health.connect.client.request.ReadMedicalResourcesRequest readMedicalResourcesRequest, kotlin.coroutines.Continuation<? super androidx.health.connect.client.response.ReadMedicalResourcesResponse> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JObject> readMedicalResources(
+    jni$_.JObject readMedicalResourcesRequest,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$readMedicalResourcesRequest = readMedicalResourcesRequest.reference;
+    final $r = _readMedicalResources(
+            reference.pointer,
+            _id_readMedicalResources as jni$_.JMethodIDPtr,
+            _$readMedicalResourcesRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_readMedicalResources$1 = _class.instanceMethodId(
+    r'readMedicalResources',
+    r'(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _readMedicalResources$1 = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object readMedicalResources(java.util.List<androidx.health.connect.client.records.MedicalResourceId> list, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JList<jni$_.JObject>> readMedicalResources$1(
+    jni$_.JList<jni$_.JObject?> list,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$list = list.reference;
+    final $r = _readMedicalResources$1(
+            reference.pointer,
+            _id_readMedicalResources$1 as jni$_.JMethodIDPtr,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JList<jni$_.JObject>>(
+      const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_deleteMedicalResources = _class.instanceMethodId(
+    r'deleteMedicalResources',
+    r'(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _deleteMedicalResources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object deleteMedicalResources(java.util.List<androidx.health.connect.client.records.MedicalResourceId> list, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JObject> deleteMedicalResources(
+    jni$_.JList<jni$_.JObject?> list,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$list = list.reference;
+    final $r = _deleteMedicalResources(
+            reference.pointer,
+            _id_deleteMedicalResources as jni$_.JMethodIDPtr,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_deleteMedicalResources$1 = _class.instanceMethodId(
+    r'deleteMedicalResources',
+    r'(Landroidx/health/connect/client/request/DeleteMedicalResourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _deleteMedicalResources$1 = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object deleteMedicalResources(androidx.health.connect.client.request.DeleteMedicalResourcesRequest deleteMedicalResourcesRequest, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JObject> deleteMedicalResources$1(
+    jni$_.JObject deleteMedicalResourcesRequest,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$deleteMedicalResourcesRequest =
+        deleteMedicalResourcesRequest.reference;
+    final $r = _deleteMedicalResources$1(
+            reference.pointer,
+            _id_deleteMedicalResources$1 as jni$_.JMethodIDPtr,
+            _$deleteMedicalResourcesRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_createMedicalDataSource = _class.instanceMethodId(
+    r'createMedicalDataSource',
+    r'(Landroidx/health/connect/client/request/CreateMedicalDataSourceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _createMedicalDataSource = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object createMedicalDataSource(androidx.health.connect.client.request.CreateMedicalDataSourceRequest createMedicalDataSourceRequest, kotlin.coroutines.Continuation<? super androidx.health.connect.client.records.MedicalDataSource> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JObject> createMedicalDataSource(
+    jni$_.JObject createMedicalDataSourceRequest,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$createMedicalDataSourceRequest =
+        createMedicalDataSourceRequest.reference;
+    final $r = _createMedicalDataSource(
+            reference.pointer,
+            _id_createMedicalDataSource as jni$_.JMethodIDPtr,
+            _$createMedicalDataSourceRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_deleteMedicalDataSourceWithData = _class.instanceMethodId(
+    r'deleteMedicalDataSourceWithData',
+    r'(Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _deleteMedicalDataSourceWithData =
+      jni$_.ProtectedJniExtensions.lookup<
+              jni$_.NativeFunction<
+                  jni$_.JniResult Function(
+                      jni$_.Pointer<jni$_.Void>,
+                      jni$_.JMethodIDPtr,
+                      jni$_.VarArgs<
+                          (
+                            jni$_.Pointer<jni$_.Void>,
+                            jni$_.Pointer<jni$_.Void>
+                          )>)>>('globalEnv_CallObjectMethod')
+          .asFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object deleteMedicalDataSourceWithData(java.lang.String string, kotlin.coroutines.Continuation<? super kotlin.Unit> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JObject> deleteMedicalDataSourceWithData(
+    jni$_.JString string,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$string = string.reference;
+    final $r = _deleteMedicalDataSourceWithData(
+            reference.pointer,
+            _id_deleteMedicalDataSourceWithData as jni$_.JMethodIDPtr,
+            _$string.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JObject>(
+      const jni$_.JObjectType(),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_getMedicalDataSources = _class.instanceMethodId(
+    r'getMedicalDataSources',
+    r'(Landroidx/health/connect/client/request/GetMedicalDataSourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _getMedicalDataSources = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object getMedicalDataSources(androidx.health.connect.client.request.GetMedicalDataSourcesRequest getMedicalDataSourcesRequest, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JList<jni$_.JObject>> getMedicalDataSources(
+    jni$_.JObject getMedicalDataSourcesRequest,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$getMedicalDataSourcesRequest =
+        getMedicalDataSourcesRequest.reference;
+    final $r = _getMedicalDataSources(
+            reference.pointer,
+            _id_getMedicalDataSources as jni$_.JMethodIDPtr,
+            _$getMedicalDataSourcesRequest.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JList<jni$_.JObject>>(
+      const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
+      releaseOriginal: true,
+    );
+  }
+
+  static final _id_getMedicalDataSources$1 = _class.instanceMethodId(
+    r'getMedicalDataSources',
+    r'(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;',
+  );
+
+  static final _getMedicalDataSources$1 = jni$_.ProtectedJniExtensions.lookup<
+          jni$_.NativeFunction<
+              jni$_.JniResult Function(
+                  jni$_.Pointer<jni$_.Void>,
+                  jni$_.JMethodIDPtr,
+                  jni$_.VarArgs<
+                      (
+                        jni$_.Pointer<jni$_.Void>,
+                        jni$_.Pointer<jni$_.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          jni$_.JniResult Function(
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.JMethodIDPtr,
+              jni$_.Pointer<jni$_.Void>,
+              jni$_.Pointer<jni$_.Void>)>();
+
+  /// from: `public java.lang.Object getMedicalDataSources(java.util.List<java.lang.String> list, kotlin.coroutines.Continuation<? super java.util.List> continuation)`
+  /// The returned object must be released after use, by calling the [release] method.
+  core$_.Future<jni$_.JList<jni$_.JObject>> getMedicalDataSources$1(
+    jni$_.JList<jni$_.JString?> list,
+  ) async {
+    final $p = jni$_.ReceivePort();
+    final _$continuation = jni$_.ProtectedJniExtensions.newPortContinuation($p);
+    final _$list = list.reference;
+    final $r = _getMedicalDataSources$1(
+            reference.pointer,
+            _id_getMedicalDataSources$1 as jni$_.JMethodIDPtr,
+            _$list.pointer,
+            _$continuation.pointer)
+        .object<jni$_.JObject>(const jni$_.JObjectType());
+    _$continuation.release();
+    final jni$_.JObject $o;
+    if ($r.isInstanceOf(jni$_.coroutineSingletonsClass)) {
+      $r.release();
+      final $a = await $p.first;
+      $o = jni$_.JObject.fromReference(
+          jni$_.JGlobalReference(jni$_.JObjectPtr.fromAddress($a)));
+      if ($o.isInstanceOf(jni$_.result$FailureClass)) {
+        final $e =
+            jni$_.failureExceptionField.get($o, const jni$_.JObjectType());
+        $o.release();
+        jni$_.Jni.throwException($e.reference.toPointer());
+      }
+    } else {
+      $o = $r;
+    }
+    return $o.as<jni$_.JList<jni$_.JObject>>(
+      const jni$_.JListType<jni$_.JObject>(jni$_.JObjectType()),
+      releaseOriginal: true,
+    );
   }
 
   static final _id_getHealthConnectSettingsAction = _class.staticMethodId(
@@ -1876,6 +2834,126 @@ class HealthConnectClient extends jni$_.JObject {
                 .toPointer() ??
             jni$_.nullptr;
       }
+      if ($d ==
+          r'upsertMedicalResources(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.upsertMedicalResources(
+          $a![0]!.as(
+              const jni$_.JListType<jni$_.JObject?>(
+                  jni$_.JObjectNullableType()),
+              releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'readMedicalResources(Landroidx/health/connect/client/request/ReadMedicalResourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.readMedicalResources(
+          $a![0]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'readMedicalResources(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.readMedicalResources$1(
+          $a![0]!.as(
+              const jni$_.JListType<jni$_.JObject?>(
+                  jni$_.JObjectNullableType()),
+              releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'deleteMedicalResources(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.deleteMedicalResources(
+          $a![0]!.as(
+              const jni$_.JListType<jni$_.JObject?>(
+                  jni$_.JObjectNullableType()),
+              releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'deleteMedicalResources(Landroidx/health/connect/client/request/DeleteMedicalResourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.deleteMedicalResources$1(
+          $a![0]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'createMedicalDataSource(Landroidx/health/connect/client/request/CreateMedicalDataSourceRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.createMedicalDataSource(
+          $a![0]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'deleteMedicalDataSourceWithData(Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.deleteMedicalDataSourceWithData(
+          $a![0]!.as(const jni$_.JStringType(), releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'getMedicalDataSources(Landroidx/health/connect/client/request/GetMedicalDataSourcesRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.getMedicalDataSources(
+          $a![0]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
+      if ($d ==
+          r'getMedicalDataSources(Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.getMedicalDataSources$1(
+          $a![0]!.as(
+              const jni$_.JListType<jni$_.JString?>(
+                  jni$_.JStringNullableType()),
+              releaseOriginal: true),
+          $a![1]!.as(const jni$_.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as jni$_.JObject?)
+                ?.as(const jni$_.JObjectType())
+                .reference
+                .toPointer() ??
+            jni$_.nullptr;
+      }
       if ($d == r'getHealthConnectSettingsAction()Ljava/lang/String;') {
         final $r = _$impls[$p]!.getHealthConnectSettingsAction();
         return ($r as jni$_.JObject?)
@@ -2031,6 +3109,34 @@ abstract base mixin class $HealthConnectClient {
     required jni$_.JObject Function(
             jni$_.JString string, jni$_.JObject continuation)
         getChanges,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+        upsertMedicalResources,
+    required jni$_.JObject Function(jni$_.JObject readMedicalResourcesRequest,
+            jni$_.JObject continuation)
+        readMedicalResources,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+        readMedicalResources$1,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+        deleteMedicalResources,
+    required jni$_.JObject Function(jni$_.JObject deleteMedicalResourcesRequest,
+            jni$_.JObject continuation)
+        deleteMedicalResources$1,
+    required jni$_.JObject Function(
+            jni$_.JObject createMedicalDataSourceRequest,
+            jni$_.JObject continuation)
+        createMedicalDataSource,
+    required jni$_.JObject Function(
+            jni$_.JString string, jni$_.JObject continuation)
+        deleteMedicalDataSourceWithData,
+    required jni$_.JObject Function(jni$_.JObject getMedicalDataSourcesRequest,
+            jni$_.JObject continuation)
+        getMedicalDataSources,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JString?> list, jni$_.JObject continuation)
+        getMedicalDataSources$1,
     required jni$_.JString Function() getHealthConnectSettingsAction,
     required int Function(jni$_.JObject context, jni$_.JString string)
         getSdkStatus,
@@ -2075,6 +3181,24 @@ abstract base mixin class $HealthConnectClient {
   jni$_.JObject getChangesToken(
       jni$_.JObject changesTokenRequest, jni$_.JObject continuation);
   jni$_.JObject getChanges(jni$_.JString string, jni$_.JObject continuation);
+  jni$_.JObject upsertMedicalResources(
+      jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation);
+  jni$_.JObject readMedicalResources(
+      jni$_.JObject readMedicalResourcesRequest, jni$_.JObject continuation);
+  jni$_.JObject readMedicalResources$1(
+      jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation);
+  jni$_.JObject deleteMedicalResources(
+      jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation);
+  jni$_.JObject deleteMedicalResources$1(
+      jni$_.JObject deleteMedicalResourcesRequest, jni$_.JObject continuation);
+  jni$_.JObject createMedicalDataSource(
+      jni$_.JObject createMedicalDataSourceRequest, jni$_.JObject continuation);
+  jni$_.JObject deleteMedicalDataSourceWithData(
+      jni$_.JString string, jni$_.JObject continuation);
+  jni$_.JObject getMedicalDataSources(
+      jni$_.JObject getMedicalDataSourcesRequest, jni$_.JObject continuation);
+  jni$_.JObject getMedicalDataSources$1(
+      jni$_.JList<jni$_.JString?> list, jni$_.JObject continuation);
   jni$_.JString getHealthConnectSettingsAction();
   int getSdkStatus(jni$_.JObject context, jni$_.JString string);
   HealthConnectClient getOrCreate(jni$_.JObject context, jni$_.JString string);
@@ -2131,6 +3255,34 @@ final class _$HealthConnectClient with $HealthConnectClient {
     required jni$_.JObject Function(
             jni$_.JString string, jni$_.JObject continuation)
         getChanges,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+        upsertMedicalResources,
+    required jni$_.JObject Function(jni$_.JObject readMedicalResourcesRequest,
+            jni$_.JObject continuation)
+        readMedicalResources,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+        readMedicalResources$1,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+        deleteMedicalResources,
+    required jni$_.JObject Function(jni$_.JObject deleteMedicalResourcesRequest,
+            jni$_.JObject continuation)
+        deleteMedicalResources$1,
+    required jni$_.JObject Function(
+            jni$_.JObject createMedicalDataSourceRequest,
+            jni$_.JObject continuation)
+        createMedicalDataSource,
+    required jni$_.JObject Function(
+            jni$_.JString string, jni$_.JObject continuation)
+        deleteMedicalDataSourceWithData,
+    required jni$_.JObject Function(jni$_.JObject getMedicalDataSourcesRequest,
+            jni$_.JObject continuation)
+        getMedicalDataSources,
+    required jni$_.JObject Function(
+            jni$_.JList<jni$_.JString?> list, jni$_.JObject continuation)
+        getMedicalDataSources$1,
     required jni$_.JString Function() getHealthConnectSettingsAction,
     required int Function(jni$_.JObject context, jni$_.JString string)
         getSdkStatus,
@@ -2156,6 +3308,15 @@ final class _$HealthConnectClient with $HealthConnectClient {
         _aggregateGroupByPeriod = aggregateGroupByPeriod,
         _getChangesToken = getChangesToken,
         _getChanges = getChanges,
+        _upsertMedicalResources = upsertMedicalResources,
+        _readMedicalResources = readMedicalResources,
+        _readMedicalResources$1 = readMedicalResources$1,
+        _deleteMedicalResources = deleteMedicalResources,
+        _deleteMedicalResources$1 = deleteMedicalResources$1,
+        _createMedicalDataSource = createMedicalDataSource,
+        _deleteMedicalDataSourceWithData = deleteMedicalDataSourceWithData,
+        _getMedicalDataSources = getMedicalDataSources,
+        _getMedicalDataSources$1 = getMedicalDataSources$1,
         _getHealthConnectSettingsAction = getHealthConnectSettingsAction,
         _getSdkStatus = getSdkStatus,
         _getOrCreate = getOrCreate,
@@ -2199,6 +3360,29 @@ final class _$HealthConnectClient with $HealthConnectClient {
       _getChangesToken;
   final jni$_.JObject Function(jni$_.JString string, jni$_.JObject continuation)
       _getChanges;
+  final jni$_.JObject Function(
+          jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+      _upsertMedicalResources;
+  final jni$_.JObject Function(
+          jni$_.JObject readMedicalResourcesRequest, jni$_.JObject continuation)
+      _readMedicalResources;
+  final jni$_.JObject Function(
+          jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+      _readMedicalResources$1;
+  final jni$_.JObject Function(
+          jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation)
+      _deleteMedicalResources;
+  final jni$_.JObject Function(jni$_.JObject deleteMedicalResourcesRequest,
+      jni$_.JObject continuation) _deleteMedicalResources$1;
+  final jni$_.JObject Function(jni$_.JObject createMedicalDataSourceRequest,
+      jni$_.JObject continuation) _createMedicalDataSource;
+  final jni$_.JObject Function(jni$_.JString string, jni$_.JObject continuation)
+      _deleteMedicalDataSourceWithData;
+  final jni$_.JObject Function(jni$_.JObject getMedicalDataSourcesRequest,
+      jni$_.JObject continuation) _getMedicalDataSources;
+  final jni$_.JObject Function(
+          jni$_.JList<jni$_.JString?> list, jni$_.JObject continuation)
+      _getMedicalDataSources$1;
   final jni$_.JString Function() _getHealthConnectSettingsAction;
   final int Function(jni$_.JObject context, jni$_.JString string) _getSdkStatus;
   final HealthConnectClient Function(
@@ -2278,6 +3462,54 @@ final class _$HealthConnectClient with $HealthConnectClient {
 
   jni$_.JObject getChanges(jni$_.JString string, jni$_.JObject continuation) {
     return _getChanges(string, continuation);
+  }
+
+  jni$_.JObject upsertMedicalResources(
+      jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation) {
+    return _upsertMedicalResources(list, continuation);
+  }
+
+  jni$_.JObject readMedicalResources(
+      jni$_.JObject readMedicalResourcesRequest, jni$_.JObject continuation) {
+    return _readMedicalResources(readMedicalResourcesRequest, continuation);
+  }
+
+  jni$_.JObject readMedicalResources$1(
+      jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation) {
+    return _readMedicalResources$1(list, continuation);
+  }
+
+  jni$_.JObject deleteMedicalResources(
+      jni$_.JList<jni$_.JObject?> list, jni$_.JObject continuation) {
+    return _deleteMedicalResources(list, continuation);
+  }
+
+  jni$_.JObject deleteMedicalResources$1(
+      jni$_.JObject deleteMedicalResourcesRequest, jni$_.JObject continuation) {
+    return _deleteMedicalResources$1(
+        deleteMedicalResourcesRequest, continuation);
+  }
+
+  jni$_.JObject createMedicalDataSource(
+      jni$_.JObject createMedicalDataSourceRequest,
+      jni$_.JObject continuation) {
+    return _createMedicalDataSource(
+        createMedicalDataSourceRequest, continuation);
+  }
+
+  jni$_.JObject deleteMedicalDataSourceWithData(
+      jni$_.JString string, jni$_.JObject continuation) {
+    return _deleteMedicalDataSourceWithData(string, continuation);
+  }
+
+  jni$_.JObject getMedicalDataSources(
+      jni$_.JObject getMedicalDataSourcesRequest, jni$_.JObject continuation) {
+    return _getMedicalDataSources(getMedicalDataSourcesRequest, continuation);
+  }
+
+  jni$_.JObject getMedicalDataSources$1(
+      jni$_.JList<jni$_.JString?> list, jni$_.JObject continuation) {
+    return _getMedicalDataSources$1(list, continuation);
   }
 
   jni$_.JString getHealthConnectSettingsAction() {

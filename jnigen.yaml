@@ -23,7 +23,3 @@ classes:
   - 'java.time.Instant'
   - 'java.time.ZoneOffset'
   - 'java.time.ZonedDateTime'
-
-maven_downloads:
-  source_deps:
-    - 'org.jetbrains.kotlin:kotlin-stdlib:2.1.10'

@@ -37,6 +37,9 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView>
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            flexibleSpace: Padding(
+              padding: EdgeInsets.only(bottom: 16.0, top: 64.0, left: 16.0),
+              child: Text("Blood\n pressure tracking", style: textTheme.headlineLarge?.copyWith(fontFamily: GoogleFonts.corben().fontFamily),),),
             actions: [
               IconButton(
                   onPressed: () {
@@ -45,10 +48,7 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView>
                   },
                   icon: const Icon(Icons.settings))
             ],
-            bottom: PreferredSize(preferredSize: Size.fromHeight(175.0), child: Column(children:[
-              Padding(
-                padding: EdgeInsets.only(bottom: 16.0),
-                child: Text("Blood\n pressure tracking", style: textTheme.headlineLarge?.copyWith(fontFamily: GoogleFonts.corben().fontFamily),),),
+            bottom: PreferredSize(preferredSize: Size.fromHeight(125.0), child: Column(children:[
               TabBar(
                 controller: _tabController,
                 labelStyle: textTheme.titleSmall,

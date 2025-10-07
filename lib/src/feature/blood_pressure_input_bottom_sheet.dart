@@ -4,6 +4,7 @@ import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:jni/_internal.dart';
 import 'package:jni/jni.dart';
 import 'package:signals/signals_flutter.dart';
 
@@ -100,6 +101,7 @@ void insertBloodPressure(HealthConnectClient client, BPRecord record) {
   var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
 
   var metadata = Metadata.manualEntry$2();
+
   var bp = BloodPressureRecord(
     Instant.ofEpochMilli(millis)!,
     getZoneOffset(),
@@ -115,6 +117,14 @@ void insertBloodPressure(HealthConnectClient client, BPRecord record) {
       .then((InsertRecordsResponse onValue) {
     print(onValue.getRecordIdsList());
   });
+
+  // Proactively release JObjects
+  // https://github.com/dart-lang/native/blob/main/pkgs/jnigen/doc/lifecycle.md#eagerly-releasing-references-manually-recommended-for-packages
+  systolic.release();
+  diastolic.release();
+  metadata.release();
+  bp.release();
+  
 }
 
 

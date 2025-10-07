@@ -56,29 +56,29 @@ class _BloodPressureListViewState extends State<BloodPressureListView> {
     );
   }
 
-  void insertBloodPressure(HealthConnectClient client, BPRecord record) {
-    var millis = record.date.millisecondsSinceEpoch;
-
-    var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
-    var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
-
-    var metadata = Metadata.manualEntry$2();
-    var bp = BloodPressureRecord(
-      Instant.ofEpochMilli(millis)!,
-      getZoneOffset(),
-      metadata,
-      systolic,
-      diastolic,
-      BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
-      BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
-    );
-
-    client
-        .insertRecords([bp].toJList(BloodPressureRecord.type))
-        .then((InsertRecordsResponse onValue) {
-      print(onValue.getRecordIdsList());
-    });
-  }
+  // void insertBloodPressure(HealthConnectClient client, BPRecord record) {
+  //   var millis = record.date.millisecondsSinceEpoch;
+  //
+  //   var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
+  //   var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
+  //
+  //   var metadata = Metadata.manualEntry$2();
+  //   var bp = BloodPressureRecord(
+  //     Instant.ofEpochMilli(millis)!,
+  //     getZoneOffset(),
+  //     metadata,
+  //     systolic,
+  //     diastolic,
+  //     BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
+  //     BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
+  //   );
+  //
+  //   client
+  //       .insertRecords([bp].toJList(BloodPressureRecord.type))
+  //       .then((InsertRecordsResponse onValue) {
+  //     print(onValue.getRecordIdsList());
+  //   });
+  // }
 
 
   Color pickColorForBP(BPRecord record) {

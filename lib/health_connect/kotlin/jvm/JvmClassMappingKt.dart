@@ -36,322 +36,230 @@ import 'dart:core' as core$_;
 import 'package:jni/_internal.dart' as jni$_;
 import 'package:jni/jni.dart' as jni$_;
 
-/// from: `kotlin.jvm.JvmClassMappingKt`
-class JvmClassMappingKt extends jni$_.JObject {
-  @jni$_.internal
-  @core$_.override
-  final jni$_.JObjType<JvmClassMappingKt> $type;
+final _JvmClassMappingKtClass =
+    jni$_.JClass.forName(r'kotlin/jvm/JvmClassMappingKt');
 
-  @jni$_.internal
-  JvmClassMappingKt.fromReference(
-    jni$_.JReference reference,
-  )   : $type = type,
-        super.fromReference(reference);
+final _id_getJavaClass = _JvmClassMappingKtClass.staticMethodId(
+  r'getJavaClass',
+  r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
+);
 
-  static final _class = jni$_.JClass.forName(r'kotlin/jvm/JvmClassMappingKt');
+final _getJavaClass = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticObjectMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
 
-  /// The type which includes information such as the signature of this class.
-  static const nullableType = $JvmClassMappingKt$NullableType();
-  static const type = $JvmClassMappingKt$Type();
-  static final _id_getJavaClass = _class.staticMethodId(
-    r'getJavaClass',
-    r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
-  );
-
-  static final _getJavaClass = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public final java.lang.Class<T> getJavaClass(kotlin.reflect.KClass<T> kClass)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject getJavaClass<$T extends jni$_.JObject?>(
-    jni$_.JObject kClass, {
-    required jni$_.JObjType<$T> T,
-  }) {
-    final _$kClass = kClass.reference;
-    return _getJavaClass(_class.reference.pointer,
-            _id_getJavaClass as jni$_.JMethodIDPtr, _$kClass.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
-  }
-
-  static final _id_getJavaPrimitiveType = _class.staticMethodId(
-    r'getJavaPrimitiveType',
-    r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
-  );
-
-  static final _getJavaPrimitiveType = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public final java.lang.Class<T> getJavaPrimitiveType(kotlin.reflect.KClass<T> kClass)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject? getJavaPrimitiveType<$T extends jni$_.JObject?>(
-    jni$_.JObject kClass, {
-    required jni$_.JObjType<$T> T,
-  }) {
-    final _$kClass = kClass.reference;
-    return _getJavaPrimitiveType(_class.reference.pointer,
-            _id_getJavaPrimitiveType as jni$_.JMethodIDPtr, _$kClass.pointer)
-        .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
-  }
-
-  static final _id_getJavaObjectType = _class.staticMethodId(
-    r'getJavaObjectType',
-    r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
-  );
-
-  static final _getJavaObjectType = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public final java.lang.Class<T> getJavaObjectType(kotlin.reflect.KClass<T> kClass)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject getJavaObjectType<$T extends jni$_.JObject?>(
-    jni$_.JObject kClass, {
-    required jni$_.JObjType<$T> T,
-  }) {
-    final _$kClass = kClass.reference;
-    return _getJavaObjectType(_class.reference.pointer,
-            _id_getJavaObjectType as jni$_.JMethodIDPtr, _$kClass.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
-  }
-
-  static final _id_getKotlinClass = _class.staticMethodId(
-    r'getKotlinClass',
-    r'(Ljava/lang/Class;)Lkotlin/reflect/KClass;',
-  );
-
-  static final _getKotlinClass = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public final kotlin.reflect.KClass<T> getKotlinClass(java.lang.Class<T> class)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject getKotlinClass<$T extends jni$_.JObject?>(
-    jni$_.JObject class$, {
-    required jni$_.JObjType<$T> T,
-  }) {
-    final _$class$ = class$.reference;
-    return _getKotlinClass(_class.reference.pointer,
-            _id_getKotlinClass as jni$_.JMethodIDPtr, _$class$.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
-  }
-
-  static final _id_getJavaClass$1 = _class.staticMethodId(
-    r'getJavaClass',
-    r'(Ljava/lang/Object;)Ljava/lang/Class;',
-  );
-
-  static final _getJavaClass$1 = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public final java.lang.Class<T> getJavaClass(T object)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject getJavaClass$1<$T extends jni$_.JObject?>(
-    $T object, {
-    required jni$_.JObjType<$T> T,
-  }) {
-    final _$object = object?.reference ?? jni$_.jNullReference;
-    return _getJavaClass$1(_class.reference.pointer,
-            _id_getJavaClass$1 as jni$_.JMethodIDPtr, _$object.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
-  }
-
-  static final _id_getRuntimeClassOfKClassInstance = _class.staticMethodId(
-    r'getRuntimeClassOfKClassInstance',
-    r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
-  );
-
-  static final _getRuntimeClassOfKClassInstance =
-      jni$_.ProtectedJniExtensions.lookup<
-                  jni$_.NativeFunction<
-                      jni$_.JniResult Function(
-                          jni$_.Pointer<jni$_.Void>,
-                          jni$_.JMethodIDPtr,
-                          jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-              'globalEnv_CallStaticObjectMethod')
-          .asFunction<
-              jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-                  jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public final java.lang.Class<kotlin.reflect.KClass<T>> getRuntimeClassOfKClassInstance(kotlin.reflect.KClass<T> kClass)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject
-      getRuntimeClassOfKClassInstance<$T extends jni$_.JObject?>(
-    jni$_.JObject kClass, {
-    required jni$_.JObjType<$T> T,
-  }) {
-    final _$kClass = kClass.reference;
-    return _getRuntimeClassOfKClassInstance(
-            _class.reference.pointer,
-            _id_getRuntimeClassOfKClassInstance as jni$_.JMethodIDPtr,
-            _$kClass.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
-  }
-
-  static final _id_isArrayOf = _class.staticMethodId(
-    r'isArrayOf',
-    r'([Ljava/lang/Object;)Z',
-  );
-
-  static final _isArrayOf = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticBooleanMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `synthetic static public final boolean isArrayOf(java.lang.Object[] objects)`
-  static bool isArrayOf(
-    jni$_.JArray<jni$_.JObject?>? objects,
-  ) {
-    final _$objects = objects?.reference ?? jni$_.jNullReference;
-    return _isArrayOf(_class.reference.pointer,
-            _id_isArrayOf as jni$_.JMethodIDPtr, _$objects.pointer)
-        .boolean;
-  }
-
-  static final _id_getAnnotationClass = _class.staticMethodId(
-    r'getAnnotationClass',
-    r'(Ljava/lang/annotation/Annotation;)Lkotlin/reflect/KClass;',
-  );
-
-  static final _getAnnotationClass = jni$_.ProtectedJniExtensions.lookup<
-              jni$_.NativeFunction<
-                  jni$_.JniResult Function(
-                      jni$_.Pointer<jni$_.Void>,
-                      jni$_.JMethodIDPtr,
-                      jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
-          'globalEnv_CallStaticObjectMethod')
-      .asFunction<
-          jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>,
-              jni$_.JMethodIDPtr, jni$_.Pointer<jni$_.Void>)>();
-
-  /// from: `static public final kotlin.reflect.KClass<? extends T> getAnnotationClass(T annotation)`
-  /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject getAnnotationClass<$T extends jni$_.JObject?>(
-    $T annotation, {
-    required jni$_.JObjType<$T> T,
-  }) {
-    final _$annotation = annotation?.reference ?? jni$_.jNullReference;
-    return _getAnnotationClass(_class.reference.pointer,
-            _id_getAnnotationClass as jni$_.JMethodIDPtr, _$annotation.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
-  }
+/// from: `static public final java.lang.Class<T> getJavaClass(kotlin.reflect.KClass<T> kClass)`
+/// The returned object must be released after use, by calling the [release] method.
+jni$_.JObject getJavaClass<$T extends jni$_.JObject?>(
+  jni$_.JObject kClass, {
+  required jni$_.JObjType<$T> T,
+}) {
+  final _$kClass = kClass.reference;
+  return _getJavaClass(_JvmClassMappingKtClass.reference.pointer,
+          _id_getJavaClass as jni$_.JMethodIDPtr, _$kClass.pointer)
+      .object<jni$_.JObject>(const jni$_.JObjectType());
 }
 
-final class $JvmClassMappingKt$NullableType
-    extends jni$_.JObjType<JvmClassMappingKt?> {
-  @jni$_.internal
-  const $JvmClassMappingKt$NullableType();
+final _id_getJavaPrimitiveType = _JvmClassMappingKtClass.staticMethodId(
+  r'getJavaPrimitiveType',
+  r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
+);
 
-  @jni$_.internal
-  @core$_.override
-  String get signature => r'Lkotlin/jvm/JvmClassMappingKt;';
+final _getJavaPrimitiveType = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticObjectMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
 
-  @jni$_.internal
-  @core$_.override
-  JvmClassMappingKt? fromReference(jni$_.JReference reference) =>
-      reference.isNull
-          ? null
-          : JvmClassMappingKt.fromReference(
-              reference,
-            );
-  @jni$_.internal
-  @core$_.override
-  jni$_.JObjType get superType => const jni$_.JObjectNullableType();
-
-  @jni$_.internal
-  @core$_.override
-  jni$_.JObjType<JvmClassMappingKt?> get nullableType => this;
-
-  @jni$_.internal
-  @core$_.override
-  final superCount = 1;
-
-  @core$_.override
-  int get hashCode => ($JvmClassMappingKt$NullableType).hashCode;
-
-  @core$_.override
-  bool operator ==(Object other) {
-    return other.runtimeType == ($JvmClassMappingKt$NullableType) &&
-        other is $JvmClassMappingKt$NullableType;
-  }
+/// from: `static public final java.lang.Class<T> getJavaPrimitiveType(kotlin.reflect.KClass<T> kClass)`
+/// The returned object must be released after use, by calling the [release] method.
+jni$_.JObject? getJavaPrimitiveType<$T extends jni$_.JObject?>(
+  jni$_.JObject kClass, {
+  required jni$_.JObjType<$T> T,
+}) {
+  final _$kClass = kClass.reference;
+  return _getJavaPrimitiveType(_JvmClassMappingKtClass.reference.pointer,
+          _id_getJavaPrimitiveType as jni$_.JMethodIDPtr, _$kClass.pointer)
+      .object<jni$_.JObject?>(const jni$_.JObjectNullableType());
 }
 
-final class $JvmClassMappingKt$Type extends jni$_.JObjType<JvmClassMappingKt> {
-  @jni$_.internal
-  const $JvmClassMappingKt$Type();
+final _id_getJavaObjectType = _JvmClassMappingKtClass.staticMethodId(
+  r'getJavaObjectType',
+  r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
+);
 
-  @jni$_.internal
-  @core$_.override
-  String get signature => r'Lkotlin/jvm/JvmClassMappingKt;';
+final _getJavaObjectType = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticObjectMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
 
-  @jni$_.internal
-  @core$_.override
-  JvmClassMappingKt fromReference(jni$_.JReference reference) =>
-      JvmClassMappingKt.fromReference(
-        reference,
-      );
-  @jni$_.internal
-  @core$_.override
-  jni$_.JObjType get superType => const jni$_.JObjectNullableType();
+/// from: `static public final java.lang.Class<T> getJavaObjectType(kotlin.reflect.KClass<T> kClass)`
+/// The returned object must be released after use, by calling the [release] method.
+jni$_.JObject getJavaObjectType<$T extends jni$_.JObject?>(
+  jni$_.JObject kClass, {
+  required jni$_.JObjType<$T> T,
+}) {
+  final _$kClass = kClass.reference;
+  return _getJavaObjectType(_JvmClassMappingKtClass.reference.pointer,
+          _id_getJavaObjectType as jni$_.JMethodIDPtr, _$kClass.pointer)
+      .object<jni$_.JObject>(const jni$_.JObjectType());
+}
 
-  @jni$_.internal
-  @core$_.override
-  jni$_.JObjType<JvmClassMappingKt?> get nullableType =>
-      const $JvmClassMappingKt$NullableType();
+final _id_getKotlinClass = _JvmClassMappingKtClass.staticMethodId(
+  r'getKotlinClass',
+  r'(Ljava/lang/Class;)Lkotlin/reflect/KClass;',
+);
 
-  @jni$_.internal
-  @core$_.override
-  final superCount = 1;
+final _getKotlinClass = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticObjectMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
 
-  @core$_.override
-  int get hashCode => ($JvmClassMappingKt$Type).hashCode;
+/// from: `static public final kotlin.reflect.KClass<T> getKotlinClass(java.lang.Class<T> class)`
+/// The returned object must be released after use, by calling the [release] method.
+jni$_.JObject getKotlinClass<$T extends jni$_.JObject?>(
+  jni$_.JObject class$, {
+  required jni$_.JObjType<$T> T,
+}) {
+  final _$class$ = class$.reference;
+  return _getKotlinClass(_JvmClassMappingKtClass.reference.pointer,
+          _id_getKotlinClass as jni$_.JMethodIDPtr, _$class$.pointer)
+      .object<jni$_.JObject>(const jni$_.JObjectType());
+}
 
-  @core$_.override
-  bool operator ==(Object other) {
-    return other.runtimeType == ($JvmClassMappingKt$Type) &&
-        other is $JvmClassMappingKt$Type;
-  }
+final _id_getJavaClass$1 = _JvmClassMappingKtClass.staticMethodId(
+  r'getJavaClass',
+  r'(Ljava/lang/Object;)Ljava/lang/Class;',
+);
+
+final _getJavaClass$1 = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticObjectMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
+
+/// from: `static public final java.lang.Class<T> getJavaClass(T object)`
+/// The returned object must be released after use, by calling the [release] method.
+jni$_.JObject getJavaClass$1<$T extends jni$_.JObject?>(
+  $T object, {
+  required jni$_.JObjType<$T> T,
+}) {
+  final _$object = object?.reference ?? jni$_.jNullReference;
+  return _getJavaClass$1(_JvmClassMappingKtClass.reference.pointer,
+          _id_getJavaClass$1 as jni$_.JMethodIDPtr, _$object.pointer)
+      .object<jni$_.JObject>(const jni$_.JObjectType());
+}
+
+final _id_getRuntimeClassOfKClassInstance =
+    _JvmClassMappingKtClass.staticMethodId(
+  r'getRuntimeClassOfKClassInstance',
+  r'(Lkotlin/reflect/KClass;)Ljava/lang/Class;',
+);
+
+final _getRuntimeClassOfKClassInstance = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticObjectMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
+
+/// from: `static public final java.lang.Class<kotlin.reflect.KClass<T>> getRuntimeClassOfKClassInstance(kotlin.reflect.KClass<T> kClass)`
+/// The returned object must be released after use, by calling the [release] method.
+jni$_.JObject getRuntimeClassOfKClassInstance<$T extends jni$_.JObject?>(
+  jni$_.JObject kClass, {
+  required jni$_.JObjType<$T> T,
+}) {
+  final _$kClass = kClass.reference;
+  return _getRuntimeClassOfKClassInstance(
+          _JvmClassMappingKtClass.reference.pointer,
+          _id_getRuntimeClassOfKClassInstance as jni$_.JMethodIDPtr,
+          _$kClass.pointer)
+      .object<jni$_.JObject>(const jni$_.JObjectType());
+}
+
+final _id_isArrayOf = _JvmClassMappingKtClass.staticMethodId(
+  r'isArrayOf',
+  r'([Ljava/lang/Object;)Z',
+);
+
+final _isArrayOf = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticBooleanMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
+
+/// from: `synthetic static public final boolean isArrayOf(java.lang.Object[] objects)`
+bool isArrayOf(
+  jni$_.JArray<jni$_.JObject?>? objects,
+) {
+  final _$objects = objects?.reference ?? jni$_.jNullReference;
+  return _isArrayOf(_JvmClassMappingKtClass.reference.pointer,
+          _id_isArrayOf as jni$_.JMethodIDPtr, _$objects.pointer)
+      .boolean;
+}
+
+final _id_getAnnotationClass = _JvmClassMappingKtClass.staticMethodId(
+  r'getAnnotationClass',
+  r'(Ljava/lang/annotation/Annotation;)Lkotlin/reflect/KClass;',
+);
+
+final _getAnnotationClass = jni$_.ProtectedJniExtensions.lookup<
+            jni$_.NativeFunction<
+                jni$_.JniResult Function(
+                    jni$_.Pointer<jni$_.Void>,
+                    jni$_.JMethodIDPtr,
+                    jni$_.VarArgs<(jni$_.Pointer<jni$_.Void>,)>)>>(
+        'globalEnv_CallStaticObjectMethod')
+    .asFunction<
+        jni$_.JniResult Function(jni$_.Pointer<jni$_.Void>, jni$_.JMethodIDPtr,
+            jni$_.Pointer<jni$_.Void>)>();
+
+/// from: `static public final kotlin.reflect.KClass<? extends T> getAnnotationClass(T annotation)`
+/// The returned object must be released after use, by calling the [release] method.
+jni$_.JObject getAnnotationClass<$T extends jni$_.JObject?>(
+  $T annotation, {
+  required jni$_.JObjType<$T> T,
+}) {
+  final _$annotation = annotation?.reference ?? jni$_.jNullReference;
+  return _getAnnotationClass(_JvmClassMappingKtClass.reference.pointer,
+          _id_getAnnotationClass as jni$_.JMethodIDPtr, _$annotation.pointer)
+      .object<jni$_.JObject>(const jni$_.JObjectType());
 }

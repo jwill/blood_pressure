@@ -1,3 +1,4 @@
+import "dart:ui";
 import "package:flutter/material.dart";
 
 class MaterialTheme {
@@ -348,90 +349,90 @@ class MaterialTheme {
      canvasColor: colorScheme.surface,
   );
 
+
   /// Good
-  static const good = ExtendedColor(
+   ExtendedColor get good => ExtendedColor(
     seed: Color(4278228316),
     value: Color(4278228316),
     light: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.1608, green: 0.4157, blue: 0.2784, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.1608, green: 0.4157, blue: 0.2784, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB),
     ),
     lightMediumContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.1608, green: 0.4157, blue: 0.2784, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.1608, green: 0.4157, blue: 0.2784, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 1.0000, green: 1.0000, blue:1.0000, colorSpace:  ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB),
     ),
     lightHighContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.1608, green: 0.4157, blue: 0.2784, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.1608, green: 0.4157, blue: 0.2784, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB),
     ),
     dark: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.5725, green: 0.8353, blue: 0.6706, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 0.0000, green: 0.2235, blue: 0.1255, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.5725, green: 0.8353, blue: 0.6706, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 0.0000, green: 0.2235, blue: 0.1255, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB),
     ),
     darkMediumContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.5725, green: 0.8353, blue: 0.6706, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 0.0000, green: 0.2235, blue: 0.1255, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.5725, green: 0.8353, blue: 0.6706, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 0.0000, green: 0.2235, blue: 0.1255, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB),
     ),
     darkHighContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.5725, green: 0.8353, blue: 0.6706, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 0.0000, green: 0.2235, blue: 0.1255, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.5725, green: 0.8353, blue: 0.6706, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 0.0000, green: 0.2235, blue: 0.1255, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.0314, green: 0.3216, blue: 0.1922, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.6824, green: 0.9490, blue: 0.7765, colorSpace: ColorSpace.sRGB),
     ),
   );
 
   /// Warning
-  static const warning = ExtendedColor(
+   ExtendedColor get warning => ExtendedColor(
     seed: Color(4293975063),
     value: Color(4293975063),
     light: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.4078, green: 0.3725, blue: 0.0706, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.4078, green: 0.3725, blue: 0.0706, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB),
     ),
     lightMediumContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.4078, green: 0.3725, blue: 0.0706, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.4078, green: 0.3725, blue: 0.0706, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB),
     ),
     lightHighContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.4078, green: 0.3725, blue: 0.0706, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.4078, green: 0.3725, blue: 0.0706, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB),
     ),
     dark: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.8314, green: 0.7843, blue: 0.4431, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 0.2118, green: 0.1922, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.8314, green: 0.7843, blue: 0.4431, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 0.2118, green: 0.1922, blue: 0.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB),
     ),
     darkMediumContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.8314, green: 0.7843, blue: 0.4431, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 0.2118, green: 0.1922, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.8314, green: 0.7843, blue: 0.4431, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 0.2118, green: 0.1922, blue: 0.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB),
     ),
     darkHighContrast: ColorFamily(
-      color: Color(Color(alpha: 1.0000, red: 0.8314, green: 0.7843, blue: 0.4431, colorSpace: ColorSpace.sRGB)),
-      onColor: Color(Color(alpha: 1.0000, red: 0.2118, green: 0.1922, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
-      colorContainer: Color(Color(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB)),
-      onColorContainer: Color(Color(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB)),
+      color: Color.from(alpha: 1.0000, red: 0.8314, green: 0.7843, blue: 0.4431, colorSpace: ColorSpace.sRGB),
+      onColor: Color.from(alpha: 1.0000, red: 0.2118, green: 0.1922, blue: 0.0000, colorSpace: ColorSpace.sRGB),
+      colorContainer: Color.from(alpha: 1.0000, red: 0.3098, green: 0.2824, blue: 0.0000, colorSpace: ColorSpace.sRGB),
+      onColorContainer: Color.from(alpha: 1.0000, red: 0.9451, green: 0.8941, blue: 0.5412, colorSpace: ColorSpace.sRGB),
     ),
   );
-
 
   List<ExtendedColor> get extendedColors => [
     good,
@@ -473,3 +474,4 @@ class ColorFamily {
   final Color colorContainer;
   final Color onColorContainer;
 }
+

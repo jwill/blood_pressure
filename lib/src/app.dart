@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         ?.getPermissionController()
         .getGrantedPermissions();
 
-    var x = JvmClassMappingKt.getKotlinClass(BloodPressureRecord.type.jClass,
+    var x = getKotlinClass(BloodPressureRecord.type.jClass,
         T: BloodPressureRecord.type);
 
     var PERMISSIONS = {
@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
 
   Future<ReadRecordsResponse<BloodPressureRecord>> readBloodPressureRecords(
       HealthConnectClient client, DateTime start, DateTime end) async {
-    var kClass = JvmClassMappingKt.getKotlinClass(
+    var kClass = getKotlinClass(
         BloodPressureRecord.type.jClass,
         T: BloodPressureRecord.type);
     var ascendingOrder = false;

@@ -2,14 +2,16 @@ import 'dart:convert';
 
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/key_value_store.dart';
-import 'package:blood_pressure_app/src/data/persisted_signal.dart';
+import 'package:signals/signals_flutter.dart';
 
-class BPRecordSignal extends PersistedSignal<List<BPRecord>> {
+class BPRecordSignal extends FlutterSignal<List<BPRecord>> with PersistedSignalMixin<List<BPRecord>> {
   BPRecordSignal(super.val, String key)
       : super(
-          key: key,
-          store: SharedPreferencesStore(),
+         // key: key,
+    //  store: SharedPreferencesStore()
         );
+
+
 
   @override
   String encode(List<BPRecord> value) {
@@ -30,4 +32,12 @@ class BPRecordSignal extends PersistedSignal<List<BPRecord>> {
     });
     return records;
   }
+
+  @override
+  // TODO: implement key
+  String get key => "store";
+
+  @override
+  // TODO: implement store
+  SignalsKeyValueStore get store => SharedPreferencesStore();
 }

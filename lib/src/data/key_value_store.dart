@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:signals/signals.dart';
 
 abstract class KeyValueStore {
   Future<void> setItem(String key, String value);
@@ -31,7 +32,7 @@ class InMemoryStore implements KeyValueStore {
   }
 }
 
-class SharedPreferencesStore implements KeyValueStore {
+class SharedPreferencesStore implements SignalsKeyValueStore {
   SharedPreferencesStore();
 
   SharedPreferencesAsync? prefs;

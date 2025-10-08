@@ -5,7 +5,7 @@ import 'package:signals/signals.dart';
 
 import 'key_value_store.dart';
 
-mixin PersistedSignalMixin<T> on Signal<T> {
+/*mixin PersistedSignalMixin<T> on Signal<T> {
   String get key;
   KeyValueStore get store;
 
@@ -52,4 +52,4 @@ mixin PersistedSignalMixin<T> on Signal<T> {
   T decode(String value) => jsonDecode(value);
 
   String encode(T value) => jsonEncode(value);
-}
+}*/

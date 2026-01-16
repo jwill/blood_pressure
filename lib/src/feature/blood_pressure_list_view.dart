@@ -163,18 +163,41 @@ class _BloodPressureListViewState extends State<BloodPressureListView> {
   Widget _buildList(BuildContext context) {
     final signal = SignalProvider.of<BPRecordSignal>(context)!;
 
-    return Watch((context) => ListView.builder(
-          restorationId: 'bloodPressureItemListView',
-          itemCount: signal.value.length,
-          itemBuilder: (BuildContext context, int index) {
-            final item = signal.value[index];
-            final data = item.notes.isNotEmpty
-                ? "${item.systolic}/${item.diastolic} - ${item.notes}"
-                : "${item.systolic}/${item.diastolic}";
+    return ListenableBuilder(
+      listenable: widget.controller,
+      builder: (context, child) {
+        return Watch((context) {
+          final allRecords = signal.value;
+          List<BPRecord> displayRecords;
 
-            return _buildItem(context, item);
-          },
-        ));
+          if (widget.controller.showLowestOnly) {
+            // Group by day and find lowest systolic
+            final Map<String, BPRecord> lowestPerDay = {};
+            
+            for (var record in allRecords) {
+              final dateKey = DateFormat('yyyy-MM-dd').format(record.date);
+              if (!lowestPerDay.containsKey(dateKey) || 
+                  record.systolic < lowestPerDay[dateKey]!.systolic) {
+                lowestPerDay[dateKey] = record;
+              }
+            }
+            displayRecords = lowestPerDay.values.toList()
+              ..sort((a, b) => a.date.compareTo(b.date));
+          } else {
+            displayRecords = allRecords;
+          }
+
+          return ListView.builder(
+            restorationId: 'bloodPressureItemListView',
+            itemCount: displayRecords.length,
+            itemBuilder: (BuildContext context, int index) {
+              final item = displayRecords[index];
+              return _buildItem(context, item);
+            },
+          );
+        });
+      },
+    );
   }
 
 

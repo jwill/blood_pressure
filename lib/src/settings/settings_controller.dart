@@ -21,12 +21,15 @@ class SettingsController with ChangeNotifier {
   final CsvService _csvService;
   final HealthConnectService healthConnectService;
   late ThemeMode _themeMode;
+  late bool _showLowestOnly;
   BPRecordSignal recordsSignal;
-
+ 
   ThemeMode get themeMode => _themeMode;
-
+  bool get showLowestOnly => _showLowestOnly;
+ 
   Future<void> loadSettings() async {
     _themeMode = await _settingsService.themeMode();
+    _showLowestOnly = await _settingsService.showLowestOnly();
     notifyListeners();
   }
 
@@ -36,6 +39,14 @@ class SettingsController with ChangeNotifier {
     _themeMode = newThemeMode;
     notifyListeners();
     await _settingsService.updateThemeMode(newThemeMode);
+  }
+
+  Future<void> updateShowLowestOnly(bool? value) async {
+    if (value == null) return;
+    if (value == _showLowestOnly) return;
+    _showLowestOnly = value;
+    notifyListeners();
+    await _settingsService.updateShowLowestOnly(value);
   }
 
   Future<void> loadFile() async {

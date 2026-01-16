@@ -59,6 +59,15 @@ class SettingsView extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
+            SwitchListTile(
+              title: const Text('Show lowest reading per day'),
+              value: controller.showLowestOnly,
+              onChanged: controller.updateShowLowestOnly,
+              contentPadding: EdgeInsets.zero,
+            ),
+            SizedBox(
+              height: 16,
+            ),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(

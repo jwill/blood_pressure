@@ -1,6 +1,7 @@
 import 'package:blood_pressure_app/src/app.dart';
 import 'package:blood_pressure_app/src/data/csv_service.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
+import 'package:blood_pressure_app/src/data/health_connect_service.dart';
 import 'package:blood_pressure_app/src/settings/settings_controller.dart';
 import 'package:blood_pressure_app/src/settings/settings_service.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ void main() {
   testWidgets('Adding a blood pressure record updates the list', (WidgetTester tester) async {
     // Initialize things like in main.dart but for testing
     final records = BPRecordSignal([], 'test_records');
-    final settingsController = SettingsController(SettingsService(), records, CsvService());
+    final settingsController = SettingsController(SettingsService(), records, CsvService(), HealthConnectService());
     await settingsController.loadSettings();
 
     await tester.pumpWidget(MyApp(

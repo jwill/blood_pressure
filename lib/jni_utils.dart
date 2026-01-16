@@ -1,4 +1,4 @@
-import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
+import 'health_connect/java/time/_package.dart';
 
 ZoneOffset getZoneOffset() {
   // Get current time

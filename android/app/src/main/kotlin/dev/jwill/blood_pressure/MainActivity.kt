@@ -42,23 +42,14 @@ class MainActivity: FlutterFragmentActivity() {
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
-            call, result ->
-            if (call.method == "checkPermissions") {
-
-                println(BloodPressureRecord::class)
-                hasRequiredPermissions()
-
-                result.success(true);
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
+            if (call.method == "requestPermissions") {
+                requestPermissions.launch(PERMISSIONS)
+                result.success(null)
+            } else {
+                result.notImplemented()
             }
         }
-    }
-
-    private fun hasRequiredPermissions(): Boolean {
-        val granted = HealthConnectClient.getOrCreate(MainActivity@this).permissionController
-        granted
-       // requestPermissions.launch(PERMISSIONS)
-        return true
     }
 
 }

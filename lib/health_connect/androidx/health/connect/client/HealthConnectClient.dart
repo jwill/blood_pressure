@@ -36,6 +36,8 @@ import 'dart:core' as core$_;
 import 'package:jni/_internal.dart' as jni$_;
 import 'package:jni/jni.dart' as jni$_;
 
+import '../../../../android/content/Intent.dart' as intent$_;
+
 import 'PermissionController.dart' as permissioncontroller$_;
 
 import 'request/ReadRecordsRequest.dart' as readrecordsrequest$_;
@@ -411,7 +413,7 @@ class HealthConnectClient$Companion extends jni$_.JObject {
 
   /// from: `public final android.content.Intent getHealthConnectManageDataIntent(android.content.Context context, java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
-  jni$_.JObject getHealthConnectManageDataIntent(
+  intent$_.Intent getHealthConnectManageDataIntent(
     jni$_.JObject context,
     jni$_.JString string,
   ) {
@@ -422,7 +424,7 @@ class HealthConnectClient$Companion extends jni$_.JObject {
             _id_getHealthConnectManageDataIntent as jni$_.JMethodIDPtr,
             _$context.pointer,
             _$string.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
+        .object<intent$_.Intent>(const intent$_.$Intent$Type());
   }
 
   static final _id_getSdkStatus$1 = _class.instanceMethodId(
@@ -497,7 +499,7 @@ class HealthConnectClient$Companion extends jni$_.JObject {
 
   /// from: `public final android.content.Intent getHealthConnectManageDataIntent(android.content.Context context)`
   /// The returned object must be released after use, by calling the [release] method.
-  jni$_.JObject getHealthConnectManageDataIntent$1(
+  intent$_.Intent getHealthConnectManageDataIntent$1(
     jni$_.JObject context,
   ) {
     final _$context = context.reference;
@@ -505,7 +507,7 @@ class HealthConnectClient$Companion extends jni$_.JObject {
             reference.pointer,
             _id_getHealthConnectManageDataIntent$1 as jni$_.JMethodIDPtr,
             _$context.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
+        .object<intent$_.Intent>(const intent$_.$Intent$Type());
   }
 }
 
@@ -2537,7 +2539,7 @@ class HealthConnectClient extends jni$_.JObject {
 
   /// from: `static public android.content.Intent getHealthConnectManageDataIntent(android.content.Context context, java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject getHealthConnectManageDataIntent(
+  static intent$_.Intent getHealthConnectManageDataIntent(
     jni$_.JObject context,
     jni$_.JString string,
   ) {
@@ -2548,7 +2550,7 @@ class HealthConnectClient extends jni$_.JObject {
             _id_getHealthConnectManageDataIntent as jni$_.JMethodIDPtr,
             _$context.pointer,
             _$string.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
+        .object<intent$_.Intent>(const intent$_.$Intent$Type());
   }
 
   static final _id_getSdkStatus$1 = _class.staticMethodId(
@@ -2623,7 +2625,7 @@ class HealthConnectClient extends jni$_.JObject {
 
   /// from: `static public android.content.Intent getHealthConnectManageDataIntent(android.content.Context context)`
   /// The returned object must be released after use, by calling the [release] method.
-  static jni$_.JObject getHealthConnectManageDataIntent$1(
+  static intent$_.Intent getHealthConnectManageDataIntent$1(
     jni$_.JObject context,
   ) {
     final _$context = context.reference;
@@ -2631,7 +2633,7 @@ class HealthConnectClient extends jni$_.JObject {
             _class.reference.pointer,
             _id_getHealthConnectManageDataIntent$1 as jni$_.JMethodIDPtr,
             _$context.pointer)
-        .object<jni$_.JObject>(const jni$_.JObjectType());
+        .object<intent$_.Intent>(const intent$_.$Intent$Type());
   }
 
   /// Maps a specific port to the implemented interface.
@@ -3143,11 +3145,12 @@ abstract base mixin class $HealthConnectClient {
     required HealthConnectClient Function(
             jni$_.JObject context, jni$_.JString string)
         getOrCreate,
-    required jni$_.JObject Function(jni$_.JObject context, jni$_.JString string)
+    required intent$_.Intent Function(
+            jni$_.JObject context, jni$_.JString string)
         getHealthConnectManageDataIntent,
     required int Function(jni$_.JObject context) getSdkStatus$1,
     required HealthConnectClient Function(jni$_.JObject context) getOrCreate$1,
-    required jni$_.JObject Function(jni$_.JObject context)
+    required intent$_.Intent Function(jni$_.JObject context)
         getHealthConnectManageDataIntent$1,
   }) = _$HealthConnectClient;
 
@@ -3202,11 +3205,11 @@ abstract base mixin class $HealthConnectClient {
   jni$_.JString getHealthConnectSettingsAction();
   int getSdkStatus(jni$_.JObject context, jni$_.JString string);
   HealthConnectClient getOrCreate(jni$_.JObject context, jni$_.JString string);
-  jni$_.JObject getHealthConnectManageDataIntent(
+  intent$_.Intent getHealthConnectManageDataIntent(
       jni$_.JObject context, jni$_.JString string);
   int getSdkStatus$1(jni$_.JObject context);
   HealthConnectClient getOrCreate$1(jni$_.JObject context);
-  jni$_.JObject getHealthConnectManageDataIntent$1(jni$_.JObject context);
+  intent$_.Intent getHealthConnectManageDataIntent$1(jni$_.JObject context);
 }
 
 final class _$HealthConnectClient with $HealthConnectClient {
@@ -3289,11 +3292,12 @@ final class _$HealthConnectClient with $HealthConnectClient {
     required HealthConnectClient Function(
             jni$_.JObject context, jni$_.JString string)
         getOrCreate,
-    required jni$_.JObject Function(jni$_.JObject context, jni$_.JString string)
+    required intent$_.Intent Function(
+            jni$_.JObject context, jni$_.JString string)
         getHealthConnectManageDataIntent,
     required int Function(jni$_.JObject context) getSdkStatus$1,
     required HealthConnectClient Function(jni$_.JObject context) getOrCreate$1,
-    required jni$_.JObject Function(jni$_.JObject context)
+    required intent$_.Intent Function(jni$_.JObject context)
         getHealthConnectManageDataIntent$1,
   })  : _getPermissionController = getPermissionController,
         _getFeatures = getFeatures,
@@ -3387,11 +3391,11 @@ final class _$HealthConnectClient with $HealthConnectClient {
   final int Function(jni$_.JObject context, jni$_.JString string) _getSdkStatus;
   final HealthConnectClient Function(
       jni$_.JObject context, jni$_.JString string) _getOrCreate;
-  final jni$_.JObject Function(jni$_.JObject context, jni$_.JString string)
+  final intent$_.Intent Function(jni$_.JObject context, jni$_.JString string)
       _getHealthConnectManageDataIntent;
   final int Function(jni$_.JObject context) _getSdkStatus$1;
   final HealthConnectClient Function(jni$_.JObject context) _getOrCreate$1;
-  final jni$_.JObject Function(jni$_.JObject context)
+  final intent$_.Intent Function(jni$_.JObject context)
       _getHealthConnectManageDataIntent$1;
 
   permissioncontroller$_.PermissionController getPermissionController() {
@@ -3524,7 +3528,7 @@ final class _$HealthConnectClient with $HealthConnectClient {
     return _getOrCreate(context, string);
   }
 
-  jni$_.JObject getHealthConnectManageDataIntent(
+  intent$_.Intent getHealthConnectManageDataIntent(
       jni$_.JObject context, jni$_.JString string) {
     return _getHealthConnectManageDataIntent(context, string);
   }
@@ -3537,7 +3541,7 @@ final class _$HealthConnectClient with $HealthConnectClient {
     return _getOrCreate$1(context);
   }
 
-  jni$_.JObject getHealthConnectManageDataIntent$1(jni$_.JObject context) {
+  intent$_.Intent getHealthConnectManageDataIntent$1(jni$_.JObject context) {
     return _getHealthConnectManageDataIntent$1(context);
   }
 }

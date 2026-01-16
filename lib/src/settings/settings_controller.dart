@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:blood_pressure_app/src/data/csv_service.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
+import 'package:blood_pressure_app/src/data/health_connect_service.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:cross_file/cross_file.dart';
@@ -14,10 +15,11 @@ import 'dart:io' show File, Platform;
 
 /// A class that many Widgets can interact with to listen to user settings changes.
 class SettingsController with ChangeNotifier {
-  SettingsController(this._settingsService, this.recordsSignal, this._csvService);
+  SettingsController(this._settingsService, this.recordsSignal, this._csvService, this.healthConnectService);
 
   final SettingsService _settingsService;
   final CsvService _csvService;
+  final HealthConnectService healthConnectService;
   late ThemeMode _themeMode;
   BPRecordSignal recordsSignal;
 

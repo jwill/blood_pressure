@@ -13,7 +13,7 @@ import '../../health_connect/androidx/health/connect/client/records/BloodPressur
 import '../../health_connect/androidx/health/connect/client/records/metadata/Metadata.dart';
 import '../../health_connect/androidx/health/connect/client/response/InsertRecordsResponse.dart';
 import '../../health_connect/androidx/health/connect/client/units/Pressure.dart';
-import '../../health_connect/java/time/Instant.dart';
+import '../../health_connect/java/time/_package.dart';
 import '../../jni_utils.dart';
 import '../data/bp_record_signal.dart';
 
@@ -99,7 +99,7 @@ void insertBloodPressure(HealthConnectClient client, BPRecord record) {
   var metadata = Metadata.manualEntry$2();
 
   var bp = BloodPressureRecord(
-    Instant.ofEpochMilli(millis)!,
+    record.date.toInstant(),
     getZoneOffset(),
     metadata,
     systolic,

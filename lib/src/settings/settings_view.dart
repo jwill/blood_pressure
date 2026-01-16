@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 
 import 'settings_controller.dart';
 
@@ -77,6 +78,24 @@ class SettingsView extends StatelessWidget {
                       backgroundColor: colorScheme.secondary),
                   onPressed: controller.saveFile,
                   child: const Text("Export Data")),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: double.infinity),
+              child: Watch((context) {
+                final isConnected = controller.healthConnectService.isConnected.value;
+                return FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: isConnected ? Colors.green : colorScheme.primary,
+                  ),
+                  onPressed: () {
+                    controller.healthConnectService.requestPermissions();
+                  },
+                  child: Text(isConnected ? "Connected to Health Connect" : "Connect to Health Connect"),
+                );
+              }),
             ),
             const SizedBox(
               height: 32,

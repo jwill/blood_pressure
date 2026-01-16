@@ -1,11 +1,14 @@
 import 'package:blood_pressure_app/src/feature/blood_pressure_chart_view.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_list_view.dart';
 import 'package:blood_pressure_app/src/settings/settings_view.dart';
+import 'package:blood_pressure_app/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BloodPressureTabView extends StatefulWidget {
-  const BloodPressureTabView({super.key});
+  const BloodPressureTabView({super.key, required this.controller});
+
+  final SettingsController controller;
 
   static const routeName = '/';
 
@@ -69,7 +72,7 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView>
                 ])]))
           ),
           body:TabBarView(controller: _tabController, children: <Widget>[
-            BloodPressureListView(),
+            BloodPressureListView(controller: widget.controller),
             BloodPressureChartView()
             ]),)
         );

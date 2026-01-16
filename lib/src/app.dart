@@ -54,9 +54,9 @@ class MyApp extends StatelessWidget {
                       case BloodPressureItemDetailsView.routeName:
                         return BloodPressureItemDetailsView();
                       case BloodPressureTabView.routeName:
-                        return BloodPressureTabView();
+                        return BloodPressureTabView(controller: settingsController);
                       default:
-                        return BloodPressureListView();
+                        return BloodPressureListView(controller: settingsController);
                     }
                   },
                 );

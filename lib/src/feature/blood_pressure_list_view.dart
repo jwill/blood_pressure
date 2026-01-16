@@ -1,16 +1,10 @@
 import 'dart:io';
 
-import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/_package.dart';
-import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/_package.dart';
-import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/records/metadata/_package.dart';
-import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/response/_package.dart';
-import 'package:blood_pressure_app/health_connect/androidx/health/connect/client/units/_package.dart';
-import 'package:blood_pressure_app/health_connect/java/time/_package.dart';
-import 'package:blood_pressure_app/jni_utils.dart';
 import 'package:blood_pressure_app/src/data/bp_record.dart';
 import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_input_bottom_sheet.dart';
 import 'package:blood_pressure_app/src/feature/blood_pressure_item_details_view.dart';
+import 'package:blood_pressure_app/src/settings/settings_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,68 +12,46 @@ import 'package:intl/intl.dart';
 import 'package:jni/jni.dart';
 import 'package:signals/signals_flutter.dart';
 
-import 'blood_pressure_input.dart';
-
 /// Displays a list of SampleItems.
 class BloodPressureListView extends StatefulWidget {
-  BloodPressureListView({
+  const BloodPressureListView({
     super.key,
+    required this.controller,
   });
 
+  final SettingsController controller;
+
   static const routeName = '/list';
-  late var hostContext;
 
   @override
   State<BloodPressureListView> createState() => _BloodPressureListViewState();
 }
 
 class _BloodPressureListViewState extends State<BloodPressureListView> {
+  late JObject hostContext;
   @override
   Widget build(BuildContext context) {
     if (Platform.isAndroid) {
-      widget.hostContext = JObject.fromReference(Jni.getCachedApplicationContext());
+      hostContext = JObject.fromReference(Jni.getCachedApplicationContext());
     }
 
-    final colorScheme = Theme.of(context).colorScheme;
     final surfaceContainerHighest = Color(0xFFf7dcdd);
     return Scaffold(
-      body: _buildList(context),
+      body: RefreshIndicator(
+        onRefresh: _syncWithHealthConnect,
+        child: _buildList(context),
+      ),
       floatingActionButton: FloatingActionButton(
           onPressed: () => {
             showModalBottomSheet<void>(context: context,
                 backgroundColor: surfaceContainerHighest,
                 builder: (BuildContext context) {
-                  return BloodPressureInputBottomSheet();
+                  return BloodPressureInputBottomSheet(healthConnectService: widget.controller.healthConnectService);
                 })
              /* _dialogBuilder(context)*/},
           child: const Icon(Icons.add)),
     );
   }
-
-  // void insertBloodPressure(HealthConnectClient client, BPRecord record) {
-  //   var millis = record.date.millisecondsSinceEpoch;
-  //
-  //   var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
-  //   var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
-  //
-  //   var metadata = Metadata.manualEntry$2();
-  //   var bp = BloodPressureRecord(
-  //     Instant.ofEpochMilli(millis)!,
-  //     getZoneOffset(),
-  //     metadata,
-  //     systolic,
-  //     diastolic,
-  //     BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
-  //     BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
-  //   );
-  //
-  //   client
-  //       .insertRecords([bp].toJList(BloodPressureRecord.type))
-  //       .then((InsertRecordsResponse onValue) {
-  //     print(onValue.getRecordIdsList());
-  //   });
-  // }
-
 
   Color pickColorForBP(BPRecord record) {
     if (record.systolic <= 120 && record.diastolic <= 80) {
@@ -206,4 +178,62 @@ class _BloodPressureListViewState extends State<BloodPressureListView> {
   }
 
 
+  Future<void> _syncWithHealthConnect() async {
+    final service = widget.controller.healthConnectService;
+    if (!service.isConnected.value) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Health Connect is not connected')),
+        );
+      }
+      return;
+    }
+
+    final now = DateTime.now();
+    final thirtyDaysAgo = now.subtract(const Duration(days: 30));
+    
+    final records = await service.readBloodPressure(thirtyDaysAgo, now);
+    
+    if (records.isNotEmpty) {
+      final signal = SignalProvider.of<BPRecordSignal>(context, listen: false)!;
+      final currentRecords = signal.value;
+      
+      // Merge unique records
+      final Map<DateTime, BPRecord> recordMap = {
+        for (var r in currentRecords) r.date: r
+      };
+      
+      int addedCount = 0;
+      for (var record in records) {
+        if (!recordMap.containsKey(record.date)) {
+          recordMap[record.date] = record;
+          addedCount++;
+        }
+      }
+      
+      if (addedCount > 0) {
+        final newList = recordMap.values.toList()
+          ..sort((a, b) => a.date.compareTo(b.date));
+        signal.value = newList;
+        
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Synced $addedCount new records from Health Connect')),
+          );
+        }
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('No new records found in Health Connect')),
+          );
+        }
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No records found in Health Connect for the last 30 days')),
+        );
+      }
+    }
+  }
 }

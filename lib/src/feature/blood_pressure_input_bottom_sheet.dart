@@ -8,22 +8,17 @@ import 'package:jni/_internal.dart';
 import 'package:jni/jni.dart';
 import 'package:signals/signals_flutter.dart';
 
-import '../../health_connect/androidx/health/connect/client/HealthConnectClient.dart';
-import '../../health_connect/androidx/health/connect/client/records/BloodPressureRecord.dart';
-import '../../health_connect/androidx/health/connect/client/records/metadata/Metadata.dart';
-import '../../health_connect/androidx/health/connect/client/response/InsertRecordsResponse.dart';
-import '../../health_connect/androidx/health/connect/client/units/Pressure.dart';
-import '../../health_connect/java/time/_package.dart';
-import '../../jni_utils.dart';
 import '../data/bp_record_signal.dart';
+import '../data/health_connect_service.dart';
 
 class BloodPressureInputBottomSheet extends StatefulWidget {
   final date = signal(DateTime.now());
   final systolic = signal('');
   final diastolic = signal('');
   final notes = signal('');
+  final HealthConnectService healthConnectService;
 
-  BloodPressureInputBottomSheet({super.key});
+  BloodPressureInputBottomSheet({super.key, required this.healthConnectService});
 
   @override
   State<BloodPressureInputBottomSheet> createState() =>
@@ -76,9 +71,7 @@ print(widget.systolic.value);
 
       // Use health connect if on Android
       if (Platform.isAndroid) {
-        var client = HealthConnectClient.getOrCreate(
-            hostContext, JString.fromString(""));
-        insertBloodPressure(client, record);
+        widget.healthConnectService.insertBloodPressure(record);
       }
 
       final newList = [...signal!.value, record]..sort((a, b) {
@@ -90,38 +83,7 @@ print(widget.systolic.value);
       Navigator.pop(context, 'OK');
     }
 
-void insertBloodPressure(HealthConnectClient client, BPRecord record) {
-  var millis = record.date.millisecondsSinceEpoch;
 
-  var systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
-  var diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
-
-  var metadata = Metadata.manualEntry$2();
-
-  var bp = BloodPressureRecord(
-    record.date.toInstant(),
-    getZoneOffset(),
-    metadata,
-    systolic,
-    diastolic,
-    BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
-    BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
-  );
-
-  client
-      .insertRecords([bp].toJList(BloodPressureRecord.type))
-      .then((InsertRecordsResponse onValue) {
-    print(onValue.getRecordIdsList());
-  });
-
-  // Proactively release JObjects
-  // https://github.com/dart-lang/native/blob/main/pkgs/jnigen/doc/lifecycle.md#eagerly-releasing-references-manually-recommended-for-packages
-  systolic.release();
-  diastolic.release();
-  metadata.release();
-  bp.release();
-  
-}
 
 
   @override

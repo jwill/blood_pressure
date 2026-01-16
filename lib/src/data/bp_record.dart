@@ -47,6 +47,21 @@ class BPRecord {
     return '$date - $systolic / $diastolic - $notes';
   }
 
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is BPRecord &&
+        other.date == date &&
+        other.systolic == systolic &&
+        other.diastolic == diastolic;
+  }
+
+  @override
+  int get hashCode {
+    return date.hashCode ^ systolic.hashCode ^ diastolic.hashCode;
+  }
+
   static List<BPRecord> generateSampleData(int num) {
     List<BPRecord> list = [];
     final today = DateTime.now();

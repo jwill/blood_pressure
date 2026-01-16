@@ -3,12 +3,18 @@ import 'package:jni/jni.dart' as jni;
 import '../../health_connect/androidx/health/connect/client/HealthConnectClient.dart';
 import '../../health_connect/androidx/health/connect/client/PermissionController.dart';
 import '../../health_connect/androidx/health/connect/client/permission/HealthPermission.dart';
-import '../../health_connect/androidx/activity/ComponentActivity.dart';
-import '../../health_connect/androidx/activity/result/ActivityResultCallback.dart';
-import '../../health_connect/androidx/activity/result/ActivityResultLauncher.dart';
+import '../../health_connect/androidx/health/connect/client/records/BloodPressureRecord.dart';
+import '../../health_connect/androidx/health/connect/client/records/metadata/Metadata.dart';
+import '../../health_connect/androidx/health/connect/client/units/Pressure.dart';
+import '../../health_connect/androidx/health/connect/client/records/metadata/DataOrigin.dart';
+import '../../health_connect/androidx/health/connect/client/request/ReadRecordsRequest.dart';
+import '../../health_connect/androidx/health/connect/client/response/ReadRecordsResponse.dart';
+import '../../health_connect/androidx/health/connect/client/time/TimeRangeFilter.dart';
+import '../../health_connect/java/time/Instant.dart';
+import '../../jni_utils.dart';
 import 'package:signals/signals.dart';
-
 import 'package:flutter/services.dart';
+import 'bp_record.dart';
 
 class HealthConnectService {
   static const _channel = MethodChannel('androidx.healthconnect');
@@ -53,6 +59,48 @@ class HealthConnectService {
 
   Future<void> checkPermissions() => _updateConnectionStatus();
 
+  Future<void> insertBloodPressure(BPRecord record) async {
+    try {
+      var activityPtr = jni.Jni.getCurrentActivity();
+      if (activityPtr.isNull) {
+        activityPtr = jni.Jni.getCachedApplicationContext();
+      }
+      if (activityPtr.isNull) {
+        print("HealthConnectService: No context available for insertion");
+        return;
+      }
+      
+      final client = HealthConnectClient.Companion.getOrCreate$1(
+        jni.JObject.fromReference(activityPtr),
+      );
+
+      final systolic = Pressure.millimetersOfMercury(record.systolic.toDouble());
+      final diastolic = Pressure.millimetersOfMercury(record.diastolic.toDouble());
+      final metadata = Metadata.manualEntry$2();
+
+      final bp = BloodPressureRecord(
+        record.date.toInstant(),
+        getZoneOffset(),
+        metadata,
+        systolic,
+        diastolic,
+        BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
+        BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
+      );
+
+      await client.insertRecords([bp].toJList(BloodPressureRecord.type));
+      
+      // Cleanup
+      bp.release();
+      metadata.release();
+      diastolic.release();
+      systolic.release();
+      client.release();
+    } catch (e) {
+      print("Error inserting into Health Connect: $e");
+    }
+  }
+
   Future<void> requestPermissions() async {
     try {
       await _channel.invokeMethod('requestPermissions');
@@ -61,6 +109,66 @@ class HealthConnectService {
       _updateConnectionStatus();
     } catch (e) {
       print("Error requesting Health Connect permissions: $e");
+    }
+  }
+
+  Future<List<BPRecord>> readBloodPressure(DateTime start, DateTime end) async {
+    try {
+      var activityPtr = jni.Jni.getCurrentActivity();
+      if (activityPtr.isNull) {
+        activityPtr = jni.Jni.getCachedApplicationContext();
+      }
+      if (activityPtr.isNull) {
+        print("HealthConnectService: No context available for reading");
+        return [];
+      }
+      
+      final client = HealthConnectClient.Companion.getOrCreate$1(
+        jni.JObject.fromReference(activityPtr),
+      );
+
+      final kClass = getKotlinClass(BloodPressureRecord.type.jClass, T: BloodPressureRecord.type);
+      final filter = TimeRangeFilter.Companion.between(start.toInstant(), end.toInstant());
+      
+      final request = ReadRecordsRequest(
+        kClass,
+        filter,
+        <DataOrigin>[].toJSet(DataOrigin.type),
+        false, // ascendingOrder
+        100, // pageSize
+        null, // pageToken
+        0, // deduplicateStrategy
+        T: BloodPressureRecord.type,
+      );
+
+      final response = await client.readRecords(request, T: BloodPressureRecord.type);
+      final records = response.getRecords();
+      
+      final List<BPRecord> result = [];
+      for (var i = 0; i < records.length; i++) {
+        final bp = records[i];
+        final record = BPRecord(
+          date: DateTime.fromMillisecondsSinceEpoch(bp.getTime().toEpochMilli()),
+          systolic: bp.getSystolic().getMillimetersOfMercury().round(),
+          diastolic: bp.getDiastolic().getMillimetersOfMercury().round(),
+          notes: "",
+        );
+        result.add(record);
+        bp.release();
+      }
+      
+      // Cleanup
+      records.release();
+      response.release();
+      request.release();
+      filter.release();
+      kClass.release();
+      client.release();
+      
+      return result;
+    } catch (e) {
+      print("Error reading from Health Connect: $e");
+      return [];
     }
   }
 }

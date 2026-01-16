@@ -25,6 +25,7 @@ import 'package:flutter/services.dart';
 import 'feature/blood_pressure_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 final healthConnectSignal = signal(false);
 
@@ -106,7 +107,20 @@ class MyApp extends StatelessWidget {
       JObject context =
           JObject.fromReference(Jni.getCachedApplicationContext());
 
+      const platform = MethodChannel('androidx.healthconnect');
+      var l;
+      try {
+        platform.invokeMethod<bool>('checkPermissions').then((onValue) {
+          print("has perms");
+          print(onValue);
+        });
+      } on PlatformException catch (e) {
+        print(e.message);
+      }
+
+
       _checkHealthConnectPermissions().then((onValue) {
+        print("has perms");
         print(healthConnectSignal.value);
       });
 
@@ -129,7 +143,7 @@ class MyApp extends StatelessWidget {
           .getPermissionController()
           .getGrantedPermissions()
           .then((onValue) {
-        print("perms");
+        print("from flutter - perms");
         print(onValue);
         print(onValue.containsAll(permissions));
       });
@@ -146,7 +160,7 @@ class MyApp extends StatelessWidget {
     }
 
     return SignalProvider<BPRecordSignal>(
-        create: () => BPRecordSignal([], 'records'),
+        create: () => signal,
         child: ListenableBuilder(
           listenable: settingsController,
           builder: (BuildContext context, Widget? child) {

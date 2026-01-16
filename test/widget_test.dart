@@ -1,31 +1,45 @@
-// This is an example Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-//
-// Visit https://flutter.dev/docs/cookbook/testing/widget/introduction for
-// more information about Widget testing.
-
+import 'package:blood_pressure_app/src/app.dart';
+import 'package:blood_pressure_app/src/data/csv_service.dart';
+import 'package:blood_pressure_app/src/data/bp_record_signal.dart';
+import 'package:blood_pressure_app/src/settings/settings_controller.dart';
+import 'package:blood_pressure_app/src/settings/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:signals/signals_flutter.dart';
 
 void main() {
-  group('MyWidget', () {
-    testWidgets('should display a string of text', (WidgetTester tester) async {
-      // Define a Widget
-      const myWidget = MaterialApp(
-        home: Scaffold(
-          body: Text('Hello'),
-        ),
-      );
+  testWidgets('Adding a blood pressure record updates the list', (WidgetTester tester) async {
+    // Initialize things like in main.dart but for testing
+    final records = BPRecordSignal([], 'test_records');
+    final settingsController = SettingsController(SettingsService(), records, CsvService());
+    await settingsController.loadSettings();
 
-      // Build myWidget and trigger a frame.
-      await tester.pumpWidget(myWidget);
+    await tester.pumpWidget(MyApp(
+      settingsController: settingsController,
+      signal: records,
+    ));
 
-      // Verify myWidget shows some text
-      expect(find.byType(Text), findsOneWidget);
-    });
+    // Initially no records should be visible in the list (assuming fresh start)
+    // The ListView.builder uses Watch, so it should be empty.
+    expect(find.byType(Card), findsNothing);
+
+    // Tap the FAB to add a record
+    await tester.tap(find.byType(FloatingActionButton));
+    await tester.pumpAndSettle(); // Wait for bottom sheet
+
+    // Enter systolic and diastolic values
+    // Finding by label text as it is unique and reliable
+    await tester.enterText(find.widgetWithText(TextField, 'Top number (systolic)'), '130');
+    await tester.enterText(find.widgetWithText(TextField, 'Bottom number (diastolic)'), '85');
+
+    // Tap "Add"
+    final addButton = find.text('Add');
+    await tester.ensureVisible(addButton);
+    await tester.tap(addButton);
+    await tester.pumpAndSettle(); // Wait for bottom sheet to close and list to update
+
+    // Verify a record appears in the list
+    expect(find.byType(Card), findsOneWidget);
+    expect(find.textContaining('130 / 85'), findsOneWidget);
   });
 }

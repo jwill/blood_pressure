@@ -81,15 +81,11 @@ print(widget.systolic.value);
         insertBloodPressure(client, record);
       }
 
-      signal?.value.add(record);
-      // Sort before saving
-      signal?.value.sort((a, b) {
+      final newList = [...signal!.value, record]..sort((a, b) {
         return a.date.millisecondsSinceEpoch
             .compareTo(b.date.millisecondsSinceEpoch);
       });
-      signal?.save(signal.value);
-      // Force immediate update
-      signal?.set(signal.value, force: true);
+      signal.value = newList;
 
       Navigator.pop(context, 'OK');
     }
@@ -128,141 +124,143 @@ void insertBloodPressure(HealthConnectClient client, BPRecord record) {
 }
 
 
-@override
+  @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-            padding: EdgeInsets.only(left: 24, top: 40, bottom: 0),
-            child: Text(
-              "New Reading",
-              style: textTheme.headlineSmall
-                  ?.copyWith(fontFamily: corben.fontFamily),
-            )),
-        Column(
-          spacing: 4,
-          children: [
-            Padding(
-                padding:
-                    EdgeInsets.only(left: 16, top: 16, bottom: 8, right: 16),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFFFFF0F0),
-                    border: InputBorder.none,
-                    labelText: "Top number (systolic)",
-                    labelStyle: concertOne,
-                  ),
-                  style: concertOne,
-                  controller: _systolic_controller,
-                  onChanged: (value) {
-                    widget.systolic.value = value;
-                  },
-                )),
-            Padding(
-                padding:
-                    EdgeInsets.only(left: 16, top: 0, bottom: 16, right: 16),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFFFFF0F0),
-                    border: InputBorder.none,
-                    labelText: "Bottom number (diastolic)",
-                    labelStyle: concertOne,
-                  ),
-                  style: concertOne,
-                  controller: _diatolic_controller,
-                  onChanged: (value) {
-                    widget.diastolic.value = value;
-                  },
-                )),
-            // TextField(
-            //   controller: _notes_controller,
-            //   onChanged: (value) {
-            //     widget.notes.value = value;
-            //   },
-            // ),
-          ],
-        ),
-        Padding(padding: EdgeInsets.only(left:24.0, right: 24.0, top:12), child:
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Row(
-            spacing: 8,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+              padding: EdgeInsets.only(left: 24, top: 40, bottom: 0),
+              child: Text(
+                "New Reading",
+                style: textTheme.headlineSmall
+                    ?.copyWith(fontFamily: corben.fontFamily),
+              )),
+          Column(
+            spacing: 4,
             children: [
-              Baseline(
+              Padding(
+                  padding:
+                      EdgeInsets.only(left: 16, top: 16, bottom: 8, right: 16),
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFFFF0F0),
+                      border: InputBorder.none,
+                      labelText: "Top number (systolic)",
+                      labelStyle: concertOne,
+                    ),
+                    style: concertOne,
+                    controller: _systolic_controller,
+                    onChanged: (value) {
+                      widget.systolic.value = value;
+                    },
+                  )),
+              Padding(
+                  padding:
+                      EdgeInsets.only(left: 16, top: 0, bottom: 16, right: 16),
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFFFFF0F0),
+                      border: InputBorder.none,
+                      labelText: "Bottom number (diastolic)",
+                      labelStyle: concertOne,
+                    ),
+                    style: concertOne,
+                    controller: _diatolic_controller,
+                    onChanged: (value) {
+                      widget.diastolic.value = value;
+                    },
+                  )),
+              // TextField(
+              //   controller: _notes_controller,
+              //   onChanged: (value) {
+              //     widget.notes.value = value;
+              //   },
+              // ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(left:24.0, right: 24.0, top:12), child:
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(
+              spacing: 8,
+              children: [
+                Baseline(
+                  baseline: 32.0,
+                  baselineType: TextBaseline.ideographic,
+                  child:Icon(Icons.event)),
+  
+            Watch((context) {
+              var displayDate = widget.date.value;
+              final display = DateFormat.yMd().format(displayDate);
+              return Text(
+                display,
+                style: concertOne.copyWith(fontSize: textTheme.titleLarge?.fontSize),
+              );
+            }),
+            ],),
+  
+            const SizedBox(
+              width: 8,
+            ),
+            IconButton.filled(
+              onPressed: () async {
+                showDatePicker(
+                        context: context,
+                        firstDate: DateTime.now().subtract(Duration(days: 365)),
+                        lastDate: DateTime.now(),
+                        currentDate: DateTime.now())
+                    .then((value) => widget.date.value = value!);
+              },
+              icon: Icon(Icons.edit),
+            )
+          ])),
+  
+          Padding(padding: EdgeInsets.only(left:24, right: 24.0, top:12),  child:
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(spacing: 8,
+            children: [
+            Baseline(
                 baseline: 32.0,
                 baselineType: TextBaseline.ideographic,
-                child:Icon(Icons.event)),
-
-          Watch((context) {
-            var displayDate = widget.date.value;
-            final display = DateFormat.yMd().format(displayDate);
-            return Text(
-              display,
-              style: concertOne.copyWith(fontSize: textTheme.titleLarge?.fontSize),
-            );
-          }),
-          ],),
-
-          const SizedBox(
-            width: 8,
-          ),
-          IconButton.filled(
-            onPressed: () async {
-              showDatePicker(
-                      context: context,
-                      firstDate: DateTime.now().subtract(Duration(days: 365)),
-                      lastDate: DateTime.now(),
-                      currentDate: DateTime.now())
-                  .then((value) => widget.date.value = value!);
-            },
-            icon: Icon(Icons.edit),
-          )
-        ])),
-
-        Padding(padding: EdgeInsets.only(left:24, right: 24.0, top:12),  child:
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Row(spacing: 8,
-          children: [
-          Baseline(
-              baseline: 32.0,
-              baselineType: TextBaseline.ideographic,
-              child:Icon(Icons.schedule)),
-          Watch((context) {
-            var displayTime = widget.date.value;
-            final display = DateFormat.Hm().format(displayTime);
-            return Text(
-              display,
-              style: concertOne.copyWith(fontSize: textTheme.titleLarge?.fontSize),
-            );
-          })]),
-          const SizedBox(
-            width: 8,
-          ),
-          IconButton.filled(
-            onPressed: () async {
-              showTimePicker(
-                context: context,
-                initialTime: TimeOfDay.now(),
-              ).then((value) {
-                widget.date.value = widget.date.value
-                    .copyWith(hour: value?.hour, minute: value?.minute);
-              });
-            },
-            icon: Icon(Icons.edit),
-          )
-        ]),
-          ),
-        Padding(padding: EdgeInsets.only(right:24, top:64), child:Row(spacing: 16, mainAxisAlignment: MainAxisAlignment.end, children: [
-          TextButton(onPressed: (){Navigator.pop(context, 'Cancel');}, child: Text("Cancel")),
-          FilledButton(onPressed: (){saveRecord();}, child: Text("Add"))
-        ],))
-      ],
+                child:Icon(Icons.schedule)),
+            Watch((context) {
+              var displayTime = widget.date.value;
+              final display = DateFormat.Hm().format(displayTime);
+              return Text(
+                display,
+                style: concertOne.copyWith(fontSize: textTheme.titleLarge?.fontSize),
+              );
+            })]),
+            const SizedBox(
+              width: 8,
+            ),
+            IconButton.filled(
+              onPressed: () async {
+                showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                ).then((value) {
+                  widget.date.value = widget.date.value
+                      .copyWith(hour: value?.hour, minute: value?.minute);
+                });
+              },
+              icon: Icon(Icons.edit),
+            )
+          ]),
+            ),
+          Padding(padding: EdgeInsets.only(right:24, top:64, bottom: 24), child:Row(spacing: 16, mainAxisAlignment: MainAxisAlignment.end, children: [
+            TextButton(onPressed: (){Navigator.pop(context, 'Cancel');}, child: Text("Cancel")),
+            FilledButton(onPressed: (){saveRecord();}, child: Text("Add"))
+          ],))
+        ],
+      ),
     );
   }
 }

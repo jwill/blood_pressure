@@ -31,9 +31,7 @@ class MainActivity: FlutterFragmentActivity() {
         HealthPermission.getReadPermission(BloodPressureRecord::class),
         HealthPermission.getWritePermission(BloodPressureRecord::class)
     )
-
     val requestPermissionActivityContract = PermissionController.createRequestPermissionResultContract()
-
     val requestPermissions = registerForActivityResult(requestPermissionActivityContract) { granted ->
         if (granted.containsAll(PERMISSIONS)) {
             // Permissions successfully granted
@@ -41,7 +39,6 @@ class MainActivity: FlutterFragmentActivity() {
             // Lack of required permissions
         }
     }
-
     @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -52,7 +49,6 @@ class MainActivity: FlutterFragmentActivity() {
                 println(BloodPressureRecord::class)
                 hasRequiredPermissions()
 
-
                 result.success(true);
             }
         }
@@ -60,7 +56,7 @@ class MainActivity: FlutterFragmentActivity() {
 
     private fun hasRequiredPermissions(): Boolean {
         val granted = HealthConnectClient.getOrCreate(MainActivity@this).permissionController
-        println(granted)
+        granted
        // requestPermissions.launch(PERMISSIONS)
         return true
     }

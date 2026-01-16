@@ -5,13 +5,15 @@ import 'package:blood_pressure_app/src/data/key_value_store.dart';
 import 'package:signals/signals_flutter.dart';
 
 class BPRecordSignal extends FlutterSignal<List<BPRecord>> with PersistedSignalMixin<List<BPRecord>> {
-  BPRecordSignal(super.val, String key)
-      : super(
-         // key: key,
-    //  store: SharedPreferencesStore()
-        );
+  BPRecordSignal(super.val, this.key) : _store = SharedPreferencesStore();
 
+  @override
+  final String key;
 
+  final SignalsKeyValueStore _store;
+
+  @override
+  SignalsKeyValueStore get store => _store;
 
   @override
   String encode(List<BPRecord> value) {
@@ -21,7 +23,6 @@ class BPRecordSignal extends FlutterSignal<List<BPRecord>> with PersistedSignalM
   @override
   List<BPRecord> decode(String value) {
     List<dynamic> list = jsonDecode(value);
-    print(value);
     List<BPRecord> records = [];
     for (var item in list) {
       records.add(BPRecord.fromMap(item));
@@ -32,12 +33,4 @@ class BPRecordSignal extends FlutterSignal<List<BPRecord>> with PersistedSignalM
     });
     return records;
   }
-
-  @override
-  // TODO: implement key
-  String get key => "store";
-
-  @override
-  // TODO: implement store
-  SignalsKeyValueStore get store => SharedPreferencesStore();
 }

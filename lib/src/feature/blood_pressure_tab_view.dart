@@ -56,7 +56,7 @@ class _BloodPressureTabViewState extends State<BloodPressureTabView>
                 tabs: <Widget>[
                   Tab(
                     //text: "My Data",
-                    icon: Icon(Icons.favorite, size: 24.0),
+                    icon: Icon(Icons.table_chart, size: 24.0),
                     text: "My data",
                   ),
                   Tab(

@@ -101,6 +101,72 @@ class HealthConnectService {
     }
   }
 
+  Future<void> batchInsertBloodPressure(List<BPRecord> records) async {
+    if (records.isEmpty) return;
+    
+    try {
+      var activityPtr = jni.Jni.getCurrentActivity();
+      if (activityPtr.isNull) {
+        activityPtr = jni.Jni.getCachedApplicationContext();
+      }
+      if (activityPtr.isNull) {
+        print("HealthConnectService: No context available for batch insertion");
+        return;
+      }
+      
+      final client = HealthConnectClient.Companion.getOrCreate$1(
+        jni.JObject.fromReference(activityPtr),
+      );
+
+      final zoneOffset = getZoneOffset();
+      
+      const chunkSize = 50;
+      for (var i = 0; i < records.length; i += chunkSize) {
+        final end = i + chunkSize > records.length ? records.length : i + chunkSize;
+        final chunk = records.sublist(i, end);
+        final List<BloodPressureRecord> nativeRecords = [];
+        final List<jni.JObject> toRelease = [];
+
+        for (final record in chunk) {
+          final systolicValue = record.systolic.toDouble();
+          final diastolicValue = record.diastolic.toDouble();
+          
+          final systolic = Pressure.millimetersOfMercury(systolicValue);
+          final diastolic = Pressure.millimetersOfMercury(diastolicValue);
+          final metadata = Metadata.manualEntry$2();
+
+          final bp = BloodPressureRecord(
+            record.date.toInstant(),
+            zoneOffset,
+            metadata,
+            systolic,
+            diastolic,
+            BloodPressureRecord.BODY_POSITION_SITTING_DOWN,
+            BloodPressureRecord.MEASUREMENT_LOCATION_LEFT_UPPER_ARM,
+          );
+          nativeRecords.add(bp);
+          toRelease.add(bp);
+          toRelease.add(metadata);
+          toRelease.add(systolic);
+          toRelease.add(diastolic);
+        }
+
+        final jList = nativeRecords.toJList(BloodPressureRecord.type);
+        await client.insertRecords(jList);
+        jList.release();
+        
+        for (final obj in toRelease) {
+          obj.release();
+        }
+      }
+      
+      client.release();
+      zoneOffset.release();
+    } catch (e) {
+      print("Error batch inserting into Health Connect: $e");
+    }
+  }
+
   Future<void> requestPermissions() async {
     try {
       await _channel.invokeMethod('requestPermissions');

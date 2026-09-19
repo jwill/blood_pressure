@@ -49,7 +49,7 @@ class SettingsController with ChangeNotifier {
     await _settingsService.updateShowLowestOnly(value);
   }
 
-  Future<void> loadFile() async {
+  Future<List<BPRecord>?> loadFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
@@ -60,8 +60,10 @@ class SettingsController with ChangeNotifier {
       if (records.isNotEmpty) {
         recordsSignal.value = records;
         notifyListeners();
+        return records;
       }
     }
+    return null;
   }
 
   Future<void> saveFile() async {

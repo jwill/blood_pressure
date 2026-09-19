@@ -71,9 +71,31 @@ class SettingsView extends StatelessWidget {
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: double.infinity),
               child: FilledButton(
-                  onPressed: () {
-                    controller.loadFile();
-                    Navigator.pop(context);
+                  onPressed: () async {
+                    final records = await controller.loadFile();
+                    if (records != null && controller.healthConnectService.isConnected.value && context.mounted) {
+                      final shouldSync = await showDialog<bool>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Sync to Health Connect?'),
+                          content: Text('Do you want to sync ${records.length} records to Health Connect?'),
+                          actions: [
+                            TextButton(child: const Text('No'), onPressed: () => Navigator.pop(context, false)),
+                            TextButton(child: const Text('Yes'), onPressed: () => Navigator.pop(context, true)),
+                          ],
+                        ),
+                      );
+                      
+                      if (shouldSync == true && context.mounted) {
+                        await controller.healthConnectService.batchInsertBloodPressure(records);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Synced to Health Connect'))
+                        );
+                      }
+                    }
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                    }
                   },
                   child: const Text("Load Data")),
             ),
@@ -88,6 +110,37 @@ class SettingsView extends StatelessWidget {
                   onPressed: controller.saveFile,
                   child: const Text("Export Data")),
             ),
+            Watch((context) {
+              final isConnected =
+                  controller.healthConnectService.isConnected.value;
+              final hasRecords = controller.recordsSignal.value.isNotEmpty;
+              if (isConnected && hasRecords) {
+                return Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    ConstrainedBox(
+                        constraints:
+                            const BoxConstraints(minWidth: double.infinity),
+                        child: FilledButton(
+                            style: FilledButton.styleFrom(
+                                backgroundColor: colorScheme.tertiary),
+                            onPressed: () async {
+                              await controller.healthConnectService
+                                  .batchInsertBloodPressure(
+                                      controller.recordsSignal.value);
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'All records synced to Health Connect')));
+                              }
+                            },
+                            child: const Text("Sync All to Health Connect"))),
+                  ],
+                );
+              }
+              return const SizedBox.shrink();
+            }),
             const SizedBox(
               height: 8,
             ),
